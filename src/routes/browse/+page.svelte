@@ -2,4 +2,8 @@
 	import Content from '../../components/content.svelte';
 </script>
 
-<Content header="Games">Game</Content>
+<svelte:head>
+	<title>Browse</title>
+</svelte:head>
+
+<Content header="Browse">This will be where you browse stuff</Content>

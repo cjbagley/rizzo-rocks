@@ -1,5 +1,12 @@
+<script>
+	function toggleMobileMenu() {
+		document.getElementById('mobile-menu').classList.toggle('hidden');
+	}
+</script>
+
 <!-- Mobile menu button -->
 <button
+	on:click={toggleMobileMenu}
 	type="button"
 	class="relative inline-flex items-center justify-center rounded-md bg-black p-2 text-white focus:outline-none focus:ring-2 focus:ring-white"
 	aria-controls="mobile-menu"

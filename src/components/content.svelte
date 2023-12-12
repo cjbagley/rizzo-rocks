@@ -12,7 +12,7 @@
 		</div>
 	{/if}
 	<div
-		class="bg-white dark:bg-black border-2 rounded-lg border-black dark:border-white mx-3 xl:mx-auto max-w-7xl"
+		class="text-2xl bg-white dark:bg-black border-2 space-y-2 rounded-lg border-black dark:border-white p-3 mx-3 xl:mx-auto max-w-7xl"
 	>
 		<slot />
 	</div>
