@@ -1,4 +1,5 @@
-<div>
-	<h1>Welcome to SvelteKit</h1>
-	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-</div>
+<script>
+	import Content from '../components/content.svelte';
+</script>
+
+<Content header="Rizzo's Recollections">Home Page</Content>
