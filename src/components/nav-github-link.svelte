@@ -1,7 +1,7 @@
 <a
 	tabindex="0"
 	href="https://github.com/cjbagley/rizzos-recollections"
-	class="relative rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-white"
+	class="text-white relative rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-white dark:text-black"
 >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
