@@ -4,4 +4,4 @@
 </script>
 
 <Nav />
-<div class="background min-h-full"><slot /></div>
+<div class="bg-white text-black dark:text-white dark:bg-black background min-h-full"><slot /></div>

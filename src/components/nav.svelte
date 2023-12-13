@@ -1,4 +1,5 @@
 <script>
+	import DarkModeToggle from './dark-mode-toggle.svelte';
 	import NavGithubLink from './nav-github-link.svelte';
 	import NavLink from './nav-link.svelte';
 	import NavMobileButton from './nav-mobile-button.svelte';
@@ -26,7 +27,8 @@
 				</div>
 			</div>
 			<div class="hidden md:block">
-				<div class="ml-4 flex items-center md:ml-6">
+				<div class="ml-4 flex space-x-4 items-center md:ml-6">
+					<DarkModeToggle />
 					<NavGithubLink />
 					<!-- <NavProfileDropdown /> -->
 				</div>
