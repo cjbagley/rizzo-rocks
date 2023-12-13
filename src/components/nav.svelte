@@ -34,6 +34,7 @@
 				</div>
 			</div>
 			<div class="-mr-2 flex space-x-5 items-center md:hidden">
+				<DarkModeToggle />
 				<NavGithubLink />
 				<NavMobileButton />
 			</div>

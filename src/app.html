@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee+Inline">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     %sveltekit.head%
+    <script>
+        const DARK_THEME = 'dark';
+        const LIGHT_THEME = 'light';
+        let currentTheme = localStorage.theme;
+        if (!currentTheme) {
+            currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK_THEME : LIGHT_THEME;
+        }
+
+        if (currentTheme == LIGHT_THEME) {
+            document.getElementsByTagName('html')[0].classList.remove('dark');
+        } else {
+            document.getElementsByTagName('html')[0].classList.add('dark');
+        }
+    </script>
 </head>
 
 <body class="h-full" data-sveltekit-preload-data="hover">
