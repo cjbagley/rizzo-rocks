@@ -8,8 +8,8 @@
 	import NavSiteLogo from './nav-site-logo.svelte';
 
 	const navLinks = [
-		{ name: 'By Game', href: '/browse' },
-		{ name: 'Full List', href: '/browse' }
+		{ name: 'By Game', href: '/browse/games' },
+		{ name: 'Full List', href: '/browse/list' }
 	];
 </script>
 
