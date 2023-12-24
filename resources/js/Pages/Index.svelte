@@ -10,6 +10,6 @@
 <Layout>
     <Content header="Rizzo's Recollections">
         <p>Welcome!</p>
-        <p>This is a site</p>
+        <p>This is a site - running on vercel correctly!</p>
     </Content>
 </Layout>
