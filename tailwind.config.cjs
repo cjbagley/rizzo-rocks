@@ -1,14 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
-        "./resources/**/*.vue",
         "./resources/**/*.svelte",
     ],
     theme: {
         extend: {},
     },
     plugins: [],
-}
-
+    darkMode: 'class',
+};

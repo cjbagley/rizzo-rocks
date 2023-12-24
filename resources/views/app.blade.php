@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="h-full" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Rizzo's Recollections</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,10 +13,6 @@
     @inertiaHead
 </head>
 
-<body>
-    <div>
-        @inertia
-    </div>
-</body>
+<body class="h-full">@inertia</body>
 
 </html>

@@ -7,7 +7,7 @@ const root = resolve(__dirname)
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/js/app.js'],
+            input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
         }),
         svelte({})
@@ -17,6 +17,6 @@ export default defineConfig({
             '@': resolve(root, 'resources/js'),
             '~': resolve(root, 'resources'),
         },
-        extensions: ['.js', '.svelte', '.json'],
+        extensions: ['.js', '.svelte', '.json', '.css'],
     }
 });
