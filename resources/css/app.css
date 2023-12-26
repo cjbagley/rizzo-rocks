@@ -11,7 +11,7 @@ html {
 }
 
 .game-font {
-    font-family: "Bungee Inline";
+    font-family: 'Bungee Inline', display;
 }
 
 .background {
