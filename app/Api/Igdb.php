@@ -26,14 +26,14 @@ class Igdb
         }
 
         try {
-            $q = http_build_query([
+            $data = [
                 'client_id' => config('igdb.client_id'),
                 'client_secret' => config('igdb.secret_id'),
                 'grant_type' => 'client_credentials'
 
-            ]);
+            ];
 
-            $r = Http::post(self::IGDB_AUTH_URL . "?" . $q)->throw()->json();
+            $r = Http::post(self::IGDB_AUTH_URL, $data)->throw()->json();
             if (is_array($r) && !empty($r['access_token'])) {
                 Cache::put(self::CACHE_KEY, $r['access_token'], (int) $r['expires_in'] - 120);
                 $this->access_token = $r['access_token'];
@@ -43,5 +43,20 @@ class Igdb
         }
 
         return $this->access_token ?? '';
+    }
+
+
+    public function getGameCoverArt()
+    {
+        // WIP
+        // $r = Http::withHeader('Client-ID', config('igdb.client_id'))
+        //     ->withToken($this->access_token)
+        //     ->withBody('search "halo";fields *, platforms.*, cover.*;')
+        //     ->acceptJson()
+        //     ->post(self::IGDB_API_URL . 'games')
+        //     ->throw()
+        //     ->json();
+        //
+        // dd($r);
     }
 }
