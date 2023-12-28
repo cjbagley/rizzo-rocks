@@ -1,0 +1,28 @@
+version: "3"
+
+name: "rizzos-recollections"
+
+services:
+    database:
+        image: 'mysql:8.0'
+        ports:
+            - '3306:3306'
+        build:
+                context: .
+                dockerfile: Dockerfile
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 0
+        volumes:
+            - '$HOME/docker/volumes/mysql:/var/lib/mysql'
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
