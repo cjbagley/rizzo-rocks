@@ -8,7 +8,7 @@ Route::get('/', [AppController::class, 'index']);
 Route::get('/browse/games', [AppController::class, 'games']);
 Route::get('/browse/list', [AppController::class, 'list']);
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 

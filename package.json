@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@inertiajs/svelte": "^1.0.14",
-        "@sveltejs/vite-plugin-svelte": "^3.0.1"
+        "@sveltejs/vite-plugin-svelte": "^3.0.1",
+        "alpinejs": "^3.13.3"
     }
 }
