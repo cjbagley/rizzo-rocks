@@ -15,7 +15,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:flex">
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                    <x-nav-link :href="route('lookup.form')" :active="request()->routeIs('lookup.form')">
                         {{ __('IGDB Lookup') }}
                     </x-nav-link>
                 </div>
