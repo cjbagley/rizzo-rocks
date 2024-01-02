@@ -21,4 +21,20 @@ class LookupTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_lookup_search_posts_correctly(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->post(self::URL, [
+                'search' => 'Test',
+            ]);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertSessionHas('data')
+            ->assertRedirect(self::URL);
+    }
 }

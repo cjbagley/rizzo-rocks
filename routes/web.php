@@ -19,6 +19,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/lookup', [LookupController::class, 'form'])->name('lookup.form');
+    Route::post('/lookup', [LookupController::class, 'search'])->name('lookup.search');
 });
 
 require __DIR__ . '/auth.php';
