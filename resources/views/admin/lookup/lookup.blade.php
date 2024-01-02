@@ -10,8 +10,14 @@
             @include('admin.lookup.partials.lookup-form')
         </x-admin-card>
 
+        @if(!empty(session('data')))
+        @include('admin.lookup.partials.lookup-result')
+        @endif
+
+        @if(session('api_error'))
         <x-admin-card>
-            @include('admin.lookup.partials.lookup-result')
+            <p>{{ session('api_error') }}</p>
         </x-admin-card>
+        @endif
     </x-admin-card-holder>
 </x-admin-layout>

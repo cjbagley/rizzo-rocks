@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class Igdb
+class GameLookupService
 {
     private $access_token = '';
-    const CACHE_KEY = 'igdb_acccess_token';
-    const IGDB_API_URL = 'https://api.igdb.com/v4/';
-    const IGDB_AUTH_URL = 'https://id.twitch.tv/oauth2/token';
+    const CACHE_KEY = 'game_lookup_acccess_token';
+    const API_URL = 'https://api.igdb.com/v4/';
+    const AUTH_URL = 'https://id.twitch.tv/oauth2/token';
 
     public function __construct()
     {
@@ -33,7 +33,7 @@ class Igdb
 
             ];
 
-            $r = Http::post(self::IGDB_AUTH_URL, $data)->throw()->json();
+            $r = Http::post(self::AUTH_URL, $data)->throw()->json();
             if (is_array($r) && !empty($r['access_token'])) {
                 Cache::put(self::CACHE_KEY, $r['access_token'], (int) $r['expires_in'] - 120);
                 $this->access_token = $r['access_token'];
@@ -46,17 +46,27 @@ class Igdb
     }
 
 
-    public function getGameCoverArt()
+    public function getGameData(string $search)
     {
-        // WIP
-        // $r = Http::withHeader('Client-ID', config('igdb.client_id'))
-        //     ->withToken($this->access_token)
-        //     ->withBody('search "halo";fields *, platforms.*, cover.*;')
-        //     ->acceptJson()
-        //     ->post(self::IGDB_API_URL . 'games')
-        //     ->throw()
-        //     ->json();
-        //
-        // dd($r);
+        $err = "Error loading Game Data";
+        try {
+            $r = Http::withHeader('Client-ID', config('igdb.client_id'))
+                ->withToken($this->access_token)
+                ->withBody(sprintf('search "%s";fields *, platforms.*, cover.*;', $search))
+                ->acceptJson()
+                ->post(self::API_URL . 'games')
+                ->throw()
+                ->json();
+        } catch (Exception $e) {
+            Log::error($e);
+            throw new Exception($err);
+        }
+
+        if (!is_array($r)) {
+            Log::error("Non Array response from getGameData API call");
+            throw new Exception($err);
+        }
+
+        return $r;
     }
 }
