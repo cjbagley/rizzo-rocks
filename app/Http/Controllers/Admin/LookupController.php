@@ -9,6 +9,6 @@ class LookupController extends AuthController
 {
     public function form(): View
     {
-        return view('admin.lookup.form');
+        return view('admin.lookup.lookup');
     }
 }
