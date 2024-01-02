@@ -17,7 +17,7 @@ class DashboardTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->get(self::PROFILE_URL);
+            ->get(self::DASHBOARD_URL);
 
         $response->assertOk();
     }
