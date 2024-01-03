@@ -13,6 +13,8 @@ class GameLookupService
     const CACHE_KEY = 'game_lookup_acccess_token';
     const API_URL = 'https://api.igdb.com/v4/';
     const AUTH_URL = 'https://id.twitch.tv/oauth2/token';
+    const GENERIC_ERROR_MSG = "Error loading Game Data";
+    const EMPTY_ARRAY_MSG = "Non Array response from getGameData API call";
 
     public function __construct()
     {
@@ -45,28 +47,37 @@ class GameLookupService
         return $this->access_token ?? '';
     }
 
-
-    public function getGameData(string $search)
+    private function apiRequest(string $endpoint, string $body): array
     {
-        $err = "Error loading Game Data";
         try {
             $r = Http::withHeader('Client-ID', config('igdb.client_id'))
                 ->withToken($this->access_token)
-                ->withBody(sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search))
+                ->withBody($body)
                 ->acceptJson()
-                ->post(self::API_URL . 'games')
+                ->post(self::API_URL . $endpoint)
                 ->throw()
                 ->json();
         } catch (Exception $e) {
-            Log::error($e);
-            throw new Exception($err);
+            Log::error($e->getMessage());
+            if (defined("DEBUG_ERRORS")) {
+                throw new Exception($e->getMessage());
+            } else {
+                throw new Exception(self::GENERIC_ERROR_MSG);
+            }
         }
 
         if (!is_array($r)) {
-            Log::error("Non Array response from getGameData API call");
-            throw new Exception($err);
+            Log::error(self::EMPTY_ARRAY_MSG);
+            throw new Exception(self::EMPTY_ARRAY_MSG);
         }
 
         return $r;
+    }
+
+    public function getGameData(string $search): array
+    {
+        $body = sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search);
+
+        return $this->apiRequest('games',  $body);
     }
 }

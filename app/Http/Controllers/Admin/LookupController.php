@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class LookupController extends AuthController
 {
+    const SEARCH_ROUTE = 'lookup.search';
+
     public function form(): View
     {
         return view('admin.lookup.lookup');
@@ -29,10 +31,9 @@ class LookupController extends AuthController
             $data = $game_lookup->getGameData($search);
         } catch (Exception $e) {
             $api_error = $e->getMessage();
+            return Redirect::route(self::SEARCH_ROUTE)->with('api_error', $api_error);
         }
 
-        return Redirect::route('lookup.search')
-            ->with('data', $data)
-            ->with('api_error', $api_error);
+        return Redirect::route(self::SEARCH_ROUTE)->with('data', $data);
     }
 }

@@ -29,7 +29,7 @@ class LookupTest extends TestCase
         $response = $this
             ->actingAs($user)
             ->post(self::URL, [
-                'search' => 'Test',
+                'search' => 'Halo 5',
             ]);
 
         $response
