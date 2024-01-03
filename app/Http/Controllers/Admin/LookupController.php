@@ -30,6 +30,7 @@ class LookupController extends AuthController
         } catch (Exception $e) {
             $api_error = $e->getMessage();
         }
+
         return Redirect::route('lookup.search')
             ->with('data', $data)
             ->with('api_error', $api_error);

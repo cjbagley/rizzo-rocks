@@ -10,7 +10,7 @@
             @include('admin.lookup.partials.lookup-form')
         </x-admin-card>
 
-        @if(!empty(session('data')))
+        @if(session('data') !== null)
         @include('admin.lookup.partials.lookup-result')
         @endif
 

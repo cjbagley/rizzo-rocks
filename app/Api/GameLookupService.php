@@ -52,7 +52,7 @@ class GameLookupService
         try {
             $r = Http::withHeader('Client-ID', config('igdb.client_id'))
                 ->withToken($this->access_token)
-                ->withBody(sprintf('search "%s";fields *, platforms.*, cover.*;', $search))
+                ->withBody(sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search))
                 ->acceptJson()
                 ->post(self::API_URL . 'games')
                 ->throw()
