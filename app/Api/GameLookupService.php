@@ -2,6 +2,7 @@
 
 namespace App\Api;
 
+use App\Models\GameData;
 use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -77,7 +78,16 @@ class GameLookupService
     public function getGameData(string $search): array
     {
         $body = sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search);
+        $games = [];
+        $r = $this->apiRequest('games',  $body);
+        if (!is_array($r)) {
+            return $games;
+        }
 
-        return $this->apiRequest('games',  $body);
+        foreach ($r as $data) {
+            $games[] = new GameData($data);
+        }
+
+        return $games;
     }
 }
