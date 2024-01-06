@@ -1,3 +1,3 @@
-<li style="flex">
-    <div style="width: 100px;"><strong>{{ $label }}: </strong></div>{{ $slot }}
+<li class="flex">
+    <div class="min-w-32"><strong>{{ $label }}: </strong></div>{{ $slot }}
 </li>
