@@ -11,7 +11,8 @@ class GameController extends AuthController
 {
     public function index()
     {
-        //
+        $games = Game::all();
+        return view('admin.games.index')->with('games', $games);
     }
 
     public function create()

@@ -19,6 +19,11 @@
                         {{ __('IGDB Lookup') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:flex">
+                    <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
+                        {{ __('Games') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -86,6 +91,10 @@
 
                 <x-responsive-nav-link :href="route('lookup.form')" :active="request()->routeIs('lookup.form')">
                     {{ __('IGDB Lookup') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
+                    {{ __('Games') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

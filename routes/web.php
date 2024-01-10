@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\LookupController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\AppController;
@@ -20,6 +21,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::get('/lookup', [LookupController::class, 'form'])->name('lookup.form');
     Route::post('/lookup', [LookupController::class, 'search'])->name('lookup.search');
+
+    Route::resource('games', GameController::class);
 });
 
 require __DIR__ . '/auth.php';
