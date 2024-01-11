@@ -11,6 +11,8 @@ class GameRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'played_years' => ['required', 'string', 'max:255'],
+            'igdb_id' => ['required', 'integer', 'min:1'],
+            'comments' => ['nullable', 'string'],
         ];
     }
 }

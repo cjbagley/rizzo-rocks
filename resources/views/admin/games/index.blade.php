@@ -9,11 +9,14 @@
     </x-slot>
 
     <x-admin-card-holder>
+        @forelse($games as $game)
         <x-admin-card>
-            @if($games->isEmpty())
-            No games added yet!
-            @else
-            @endif
+            {{ $game->title }}
         </x-admin-card>
+        @empty
+        <x-admin-card>
+            No games added yet!
+        </x-admin-card>
+        @endforelse
     </x-admin-card-holder>
 </x-admin-layout>

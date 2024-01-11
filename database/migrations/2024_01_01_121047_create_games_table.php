@@ -11,9 +11,9 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('played_years');
-            $table->text('comments');
-            $table->unsignedBigInteger('igdb_id');
+            $table->string('played_years')->nullable();
+            $table->text('comments')->nullable();
+            $table->unsignedBigInteger('igdb_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

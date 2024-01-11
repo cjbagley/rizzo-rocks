@@ -9,4 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Game extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public $timesptamps = true;
+
+    protected $fillable = [
+        'title',
+        'years_played',
+        'comments',
+        'igdb_id',
+    ];
 }

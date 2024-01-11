@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\Admin\GameRequest;
 use App\Models\Game;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class GameController extends AuthController
 {
@@ -21,7 +23,11 @@ class GameController extends AuthController
 
     public function store(GameRequest $request)
     {
-        dd($request);
+        $game = new Game();
+        $game->fill($request->validated());
+        $game->save();
+        Session::flash('success', sprintf("%s added", $game->title));
+        return Redirect::to(route('games.index'));
     }
 
     public function show(Game $game)
