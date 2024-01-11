@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Games') }}
             </h2>
-            <x-primary-button>Test</x-primary-button>
+            <x-primary-button-link href="{{ route('games.create') }}">Add</x-primary-button-link>
         </div>
     </x-slot>
 

@@ -14,7 +14,7 @@
             <x-input-error :messages="$errors->get('search')" class="mt-2" />
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 justify-end">
             <x-primary-button>{{ __('Search') }}</x-primary-button>
         </div>
     </form>

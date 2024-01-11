@@ -15,6 +15,7 @@ return new class extends Migration
             $table->text('comments');
             $table->unsignedBigInteger('igdb_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index('title');
             $table->index('igdb_id');

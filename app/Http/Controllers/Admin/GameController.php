@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Requests\StoreGameRequest;
-use App\Http\Requests\UpdateGameRequest;
+use App\Http\Requests\Admin\GameRequest;
 use App\Models\Game;
 
 class GameController extends AuthController
@@ -17,12 +16,12 @@ class GameController extends AuthController
 
     public function create()
     {
-        //
+        return view('admin.games.form');
     }
 
-    public function store(StoreGameRequest $request)
+    public function store(GameRequest $request)
     {
-        //
+        dd($request);
     }
 
     public function show(Game $game)
@@ -35,7 +34,7 @@ class GameController extends AuthController
         //
     }
 
-    public function update(UpdateGameRequest $request, Game $game)
+    public function update(GameRequest $request, Game $game)
     {
         //
     }
