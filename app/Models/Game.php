@@ -14,7 +14,7 @@ class Game extends Model
 
     protected $fillable = [
         'title',
-        'years_played',
+        'played_years',
         'comments',
         'igdb_id',
     ];
