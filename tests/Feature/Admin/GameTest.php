@@ -18,6 +18,8 @@ class GameTest extends TestCase
         $fake = new stdClass();
         $fake->title = fake()->name();
         $fake->igdb_id = fake()->randomNumber(1, 10000);
+        $fake->igdb_cover_id = fake()->word();
+        $fake->igdb_url = fake()->url();
         $fake->played_years = fake()->words(3, true);
         $fake->comments = fake()->text();
         return  $fake;
@@ -44,6 +46,8 @@ class GameTest extends TestCase
                 'title' => $fake_game->title,
                 'played_years' => $fake_game->played_years,
                 'igdb_id' => $fake_game->igdb_id,
+                'igdb_cover_id' => $fake_game->igdb_cover_id,
+                'igdb_url' => $fake_game->igdb_url,
                 'comments' => $fake_game->comments,
             ]);
 

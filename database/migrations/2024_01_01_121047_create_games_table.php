@@ -14,11 +14,14 @@ return new class extends Migration
             $table->string('played_years')->nullable();
             $table->text('comments')->nullable();
             $table->unsignedBigInteger('igdb_id')->nullable();
+            $table->string('igdb_cover_id')->nullable();
+            $table->string('igdb_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->index('title');
             $table->index('igdb_id');
+            $table->index('igdb_cover_id');
         });
     }
 

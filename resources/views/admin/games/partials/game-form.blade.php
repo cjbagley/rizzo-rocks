@@ -18,6 +18,18 @@
         </div>
 
         <div>
+            <x-input-label for="igdb_cover_id" :value="__('igdb_cover_id')" />
+            <x-text-input id="igdb_cover_id" :value="old('igdb_cover_id', request()->igdb_cover_id)" name="igdb_cover_id" type="text" class="mt-1 block w-full" />
+            <x-input-error :messages="$errors->get('igdb_cover_id')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="igdb_url" :value="__('igdb_url')" />
+            <x-text-input id="igdb_url" :value="old('igdb_url', request()->igdb_url)" name="igdb_url" type="text" class="mt-1 block w-full" />
+            <x-input-error :messages="$errors->get('igdb_url')" class="mt-2" />
+        </div>
+
+        <div>
             <x-input-label for="played_years" :value="__('Played Years')" />
             <x-text-input id="played_years" :value="old('played_years', request()->played_years)" name="played_years" type="text" class="mt-1 block w-full" />
             <x-input-error :messages="$errors->get('played_years')" class="mt-2" />
