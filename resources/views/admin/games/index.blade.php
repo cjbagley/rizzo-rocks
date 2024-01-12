@@ -25,6 +25,10 @@
                     @endif
                 </div>
             </div>
+            <div class="flex justify-end space-x-5">
+                <x-secondary-button-link href="{{ route('games.edit', $game) }}">Edit</x-secondary-button-link>
+                <x-danger-button>Delete</x-danger-button>
+            </div>
         </x-admin-card>
         @empty
         <x-admin-card>

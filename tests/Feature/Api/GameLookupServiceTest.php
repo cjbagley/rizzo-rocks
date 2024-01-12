@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App;
+namespace Tests\Feature\Api;
 
 use App\Api\GameLookupService;
 use Exception;

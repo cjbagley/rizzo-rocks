@@ -22,7 +22,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/lookup', [LookupController::class, 'form'])->name('lookup.form');
     Route::post('/lookup', [LookupController::class, 'search'])->name('lookup.search');
 
-    Route::resource('games', GameController::class);
+    Route::resource('games', GameController::class)->except(['show']);
 });
 
 require __DIR__ . '/auth.php';
