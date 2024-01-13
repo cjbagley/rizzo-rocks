@@ -9,6 +9,7 @@ use Tests\TestCase;
 class ProfileTest extends TestCase
 {
     use RefreshDatabase;
+
     const PROFILE_URL = '/admin/profile';
 
     public function test_profile_page_is_displayed(): void

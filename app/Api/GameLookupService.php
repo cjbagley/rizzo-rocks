@@ -11,11 +11,16 @@ use Illuminate\Support\Facades\Log;
 class GameLookupService
 {
     private $access_token = '';
+
     const CACHE_KEY = 'game_lookup_acccess_token';
+
     const API_URL = 'https://api.igdb.com/v4/';
+
     const AUTH_URL = 'https://id.twitch.tv/oauth2/token';
-    const GENERIC_ERROR_MSG = "Error loading Game Data";
-    const EMPTY_ARRAY_MSG = "Non Array response from getGameData API call";
+
+    const GENERIC_ERROR_MSG = 'Error loading Game Data';
+
+    const EMPTY_ARRAY_MSG = 'Non Array response from getGameData API call';
 
     public function __construct()
     {
@@ -32,17 +37,17 @@ class GameLookupService
             $data = [
                 'client_id' => config('igdb.client_id'),
                 'client_secret' => config('igdb.secret_id'),
-                'grant_type' => 'client_credentials'
+                'grant_type' => 'client_credentials',
 
             ];
 
             $r = Http::post(self::AUTH_URL, $data)->throw()->json();
-            if (is_array($r) && !empty($r['access_token'])) {
+            if (is_array($r) && ! empty($r['access_token'])) {
                 Cache::put(self::CACHE_KEY, $r['access_token'], (int) $r['expires_in'] - 120);
                 $this->access_token = $r['access_token'];
             }
         } catch (Exception $e) {
-            Log::error(sprintf("Error optaining key: %s", $e->getMessage()));
+            Log::error(sprintf('Error optaining key: %s', $e->getMessage()));
         }
 
         return $this->access_token ?? '';
@@ -55,19 +60,19 @@ class GameLookupService
                 ->withToken($this->access_token)
                 ->withBody($body)
                 ->acceptJson()
-                ->post(self::API_URL . $endpoint)
+                ->post(self::API_URL.$endpoint)
                 ->throw()
                 ->json();
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            if (defined("DEBUG_ERRORS")) {
+            if (defined('DEBUG_ERRORS')) {
                 throw new Exception($e->getMessage());
             } else {
                 throw new Exception(self::GENERIC_ERROR_MSG);
             }
         }
 
-        if (!is_array($r)) {
+        if (! is_array($r)) {
             Log::error(self::EMPTY_ARRAY_MSG);
             throw new Exception(self::EMPTY_ARRAY_MSG);
         }
@@ -79,8 +84,8 @@ class GameLookupService
     {
         $body = sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search);
         $games = [];
-        $r = $this->apiRequest('games',  $body);
-        if (!is_array($r)) {
+        $r = $this->apiRequest('games', $body);
+        if (! is_array($r)) {
             return $games;
         }
 

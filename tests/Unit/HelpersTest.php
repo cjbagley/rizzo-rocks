@@ -2,9 +2,8 @@
 
 namespace Tests\Unit;
 
-use Exception;
-use PHPUnit\Framework\TestCase;
 use App\Helpers\Helpers;
+use PHPUnit\Framework\TestCase;
 
 class HelpersTest extends TestCase
 {
@@ -24,8 +23,8 @@ class HelpersTest extends TestCase
         $result_3 = $helpers->firstNonEmpty([], 'Default');
         $this->assertSame($expected_3, $result_3);
 
-        $expected_4 = ["Key" => "Value"];
-        $result_4 = $helpers->firstNonEmpty([0, ["Key" => "Value"]], 'Default');
+        $expected_4 = ['Key' => 'Value'];
+        $result_4 = $helpers->firstNonEmpty([0, ['Key' => 'Value']], 'Default');
         $this->assertSame($expected_4, $result_4);
     }
 }

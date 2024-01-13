@@ -10,10 +10,11 @@ class Helpers
             return $default;
         }
         foreach ($arr as $value) {
-            if (!empty($value)) {
+            if (! empty($value)) {
                 return $value;
             }
         }
+
         return $default;
     }
 }

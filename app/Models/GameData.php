@@ -3,19 +3,25 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class GameData
 {
     private array $raw_data;
+
     private string $cover_url_slug;
 
     public int $id;
+
     public string $name;
+
     public array $platforms;
+
     public int $rating;
+
     public string $summary;
+
     public string $info_url;
 
     public function __construct(array $data)
@@ -49,7 +55,7 @@ class GameData
 
     public function getReleaseDate(): string
     {
-        if (!empty($this->raw_data['first_release_date'])) {
+        if (! empty($this->raw_data['first_release_date'])) {
             return Carbon::parse($this->raw_data['first_release_date'])->format('d/m/Y');
         }
 
@@ -61,6 +67,7 @@ class GameData
         if (empty($this->cover_url_slug)) {
             return '';
         }
-        return 'https:' . Str::replace('/{img_type}/', sprintf('/%s/', $type), $this->cover_url_slug);
+
+        return 'https:'.Str::replace('/{img_type}/', sprintf('/%s/', $type), $this->cover_url_slug);
     }
 }

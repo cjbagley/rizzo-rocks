@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Session;
 
 class GameController extends AuthController
 {
-    private function getFormData(Game|null $game = null): array
+    private function getFormData(?Game $game = null): array
     {
         $helpers = new Helpers();
+
         return [
             'id' => $helpers->firstNonEmpty([$game?->id]),
             'title' => $helpers->firstNonEmpty([$game?->title, old('title', request()->title)]),
@@ -22,14 +23,15 @@ class GameController extends AuthController
             'igdb_url' => $helpers->firstNonEmpty([$game?->igdb_url, old('igdb_url', request()->igdb_url)]),
             'played_years' => $helpers->firstNonEmpty([$game?->played_years, old('played_years', request()->played_years)]),
             'comments' => $helpers->firstNonEmpty([$game?->comments, old('comments', request()->comments)]),
-            'is_update' => !empty($game),
-            'form_route' => !empty($game) ? route('games.update', $game) : route('games.store'),
+            'is_update' => ! empty($game),
+            'form_route' => ! empty($game) ? route('games.update', $game) : route('games.store'),
         ];
     }
 
     public function index()
     {
         $games = Game::all();
+
         return view('admin.games.index')->with('games', $games);
     }
 
@@ -43,7 +45,8 @@ class GameController extends AuthController
         $game = new Game();
         $game->fill($request->validated());
         $game->save();
-        Session::flash('success', sprintf("%s added", $game->title));
+        Session::flash('success', sprintf('%s added', $game->title));
+
         return Redirect::to(route('games.index'));
     }
 
@@ -56,12 +59,13 @@ class GameController extends AuthController
     {
         $game->fill($request->validated());
         $game->save();
-        Session::flash('success', sprintf("%s added", $game->title));
+        Session::flash('success', sprintf('%s added', $game->title));
+
         return Redirect::to(route('games.index'));
     }
 
     public function destroy(Game $game)
     {
-        dd("DEL");
+        dd('DEL');
     }
 }

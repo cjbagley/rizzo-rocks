@@ -2,15 +2,16 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Models\Game;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-use App\Models\Game;
 use stdClass;
+use Tests\TestCase;
 
 class GameTest extends TestCase
 {
     use RefreshDatabase;
+
     const GAME_URL = '/admin/games';
 
     private function get_fake_game(): stdClass
@@ -22,7 +23,8 @@ class GameTest extends TestCase
         $fake->igdb_url = fake()->url();
         $fake->played_years = fake()->words(3, true);
         $fake->comments = fake()->text();
-        return  $fake;
+
+        return $fake;
     }
 
     public function test_game_index_page_is_displayed(): void

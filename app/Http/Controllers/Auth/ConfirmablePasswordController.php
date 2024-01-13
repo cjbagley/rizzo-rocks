@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\AuthController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,7 +24,7 @@ class ConfirmablePasswordController extends AuthController
      */
     public function store(Request $request): RedirectResponse
     {
-        if (!Auth::guard('web')->validate([
+        if (! Auth::guard('web')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {

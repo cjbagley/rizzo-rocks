@@ -7,8 +7,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\Admin\LookupRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class LookupController extends AuthController
 {
@@ -31,6 +31,7 @@ class LookupController extends AuthController
             $data = $game_lookup->getGameData($search);
         } catch (Exception $e) {
             $api_error = $e->getMessage();
+
             return Redirect::route(self::SEARCH_ROUTE)->with('api_error', $api_error);
         }
 
