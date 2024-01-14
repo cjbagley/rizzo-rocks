@@ -10,7 +10,7 @@ class LookupTest extends TestCase
 {
     use RefreshDatabase;
 
-    const URL = 'admin/lookup';
+    final protected const URL = 'admin/lookup';
 
     public function test_lookup_page_is_displayed(): void
     {

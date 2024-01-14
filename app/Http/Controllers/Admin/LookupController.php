@@ -12,7 +12,7 @@ use Illuminate\View\View;
 
 class LookupController extends AuthController
 {
-    const SEARCH_ROUTE = 'lookup.search';
+    final protected const SEARCH_ROUTE = 'lookup.search';
 
     public function form(): View
     {

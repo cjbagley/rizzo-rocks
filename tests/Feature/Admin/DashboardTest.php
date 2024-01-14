@@ -10,7 +10,7 @@ class DashboardTest extends TestCase
 {
     use RefreshDatabase;
 
-    const DASHBOARD_URL = '/admin';
+    final protected const DASHBOARD_URL = '/admin';
 
     public function test_dashboard_page_is_displayed(): void
     {

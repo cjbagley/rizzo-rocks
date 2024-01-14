@@ -12,7 +12,7 @@ class GameTest extends TestCase
 {
     use RefreshDatabase;
 
-    const GAME_URL = '/admin/games';
+    final protected const GAME_URL = '/admin/games';
 
     private function get_fake_game(): stdClass
     {

@@ -12,15 +12,15 @@ class GameLookupService
 {
     private $access_token = '';
 
-    const CACHE_KEY = 'game_lookup_acccess_token';
+    final protected const CACHE_KEY = 'game_lookup_acccess_token';
 
-    const API_URL = 'https://api.igdb.com/v4/';
+    final protected const API_URL = 'https://api.igdb.com/v4/';
 
-    const AUTH_URL = 'https://id.twitch.tv/oauth2/token';
+    final protected const AUTH_URL = 'https://id.twitch.tv/oauth2/token';
 
-    const GENERIC_ERROR_MSG = 'Error loading Game Data';
+    final protected const GENERIC_ERROR_MSG = 'Error loading Game Data';
 
-    const EMPTY_ARRAY_MSG = 'Non Array response from getGameData API call';
+    final protected const EMPTY_ARRAY_MSG = 'Non Array response from getGameData API call';
 
     public function __construct()
     {
@@ -42,7 +42,7 @@ class GameLookupService
             ];
 
             $r = Http::post(self::AUTH_URL, $data)->throw()->json();
-            if (is_array($r) && ! empty($r['access_token'])) {
+            if (is_array($r) && !empty($r['access_token'])) {
                 Cache::put(self::CACHE_KEY, $r['access_token'], (int) $r['expires_in'] - 120);
                 $this->access_token = $r['access_token'];
             }
@@ -60,7 +60,7 @@ class GameLookupService
                 ->withToken($this->access_token)
                 ->withBody($body)
                 ->acceptJson()
-                ->post(self::API_URL.$endpoint)
+                ->post(self::API_URL . $endpoint)
                 ->throw()
                 ->json();
         } catch (Exception $e) {
@@ -72,7 +72,7 @@ class GameLookupService
             }
         }
 
-        if (! is_array($r)) {
+        if (!is_array($r)) {
             Log::error(self::EMPTY_ARRAY_MSG);
             throw new Exception(self::EMPTY_ARRAY_MSG);
         }
@@ -85,7 +85,7 @@ class GameLookupService
         $body = sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search);
         $games = [];
         $r = $this->apiRequest('games', $body);
-        if (! is_array($r)) {
+        if (!is_array($r)) {
             return $games;
         }
 
