@@ -22,7 +22,7 @@ class LookupController extends AuthController
     public function search(LookupRequest $request): RedirectResponse
     {
         $search = $request->validated('search');
-        $search = htmlentities($search, ENT_QUOTES, 'UTF-8');
+        $search = htmlentities((string) $search, ENT_QUOTES, 'UTF-8');
         $data = [];
         $api_error = '';
 

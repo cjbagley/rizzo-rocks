@@ -8,9 +8,7 @@ use Illuminate\Support\Str;
 
 class GameData
 {
-    private array $raw_data;
-
-    private string $cover_url_slug;
+    private readonly string $cover_url_slug;
 
     public int $id;
 
@@ -24,16 +22,15 @@ class GameData
 
     public string $info_url;
 
-    public function __construct(array $data)
+    public function __construct(private array $raw_data)
     {
-        $this->raw_data = $data;
-        $this->id = Arr::get($data, 'id', '-');
-        $this->name = Arr::get($data, 'name', '-');
+        $this->id = Arr::get($this->raw_data, 'id', '-');
+        $this->name = Arr::get($this->raw_data, 'name', '-');
         $this->cover_url_slug = $this->getCoverUrlSlug();
-        $this->platforms = Arr::has($data, 'platforms') ? array_column($data['platforms'], 'abbreviation') : [];
-        $this->rating = Arr::has($data, 'total_rating') ? round($data['total_rating']) : 0;
-        $this->summary = Arr::get($data, 'summary', 'No summary avialable');
-        $this->info_url = Arr::get($data, 'url', '');
+        $this->platforms = Arr::has($this->raw_data, 'platforms') ? array_column($this->raw_data['platforms'], 'abbreviation') : [];
+        $this->rating = Arr::has($this->raw_data, 'total_rating') ? round($this->raw_data['total_rating']) : 0;
+        $this->summary = Arr::get($this->raw_data, 'summary', 'No summary avialable');
+        $this->info_url = Arr::get($this->raw_data, 'url', '');
     }
 
     /*
