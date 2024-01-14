@@ -66,9 +66,9 @@ class GameLookupService
         } catch (Exception $e) {
             Log::error($e->getMessage());
             if (defined('DEBUG_ERRORS')) {
-                throw new Exception($e->getMessage());
+                throw new Exception($e->getMessage(), $e->getCode(), $e);
             } else {
-                throw new Exception(self::GENERIC_ERROR_MSG);
+                throw new Exception(self::GENERIC_ERROR_MSG, $e->getCode(), $e);
             }
         }
 

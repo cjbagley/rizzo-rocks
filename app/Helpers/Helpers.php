@@ -6,7 +6,7 @@ class Helpers
 {
     public function firstNonEmpty(array $arr = [], mixed $default = null): mixed
     {
-        if (empty($arr)) {
+        if ($arr === []) {
             return $default;
         }
         foreach ($arr as $value) {

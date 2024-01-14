@@ -64,7 +64,7 @@ class GameData
 
     public function getCoverImageUrl($type = 't_thumb'): string
     {
-        if (empty($this->cover_url_slug)) {
+        if ($this->cover_url_slug === '' || $this->cover_url_slug === '0') {
             return '';
         }
 
