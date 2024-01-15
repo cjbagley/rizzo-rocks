@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Session;
 
 class GameController extends AuthController
 {
+    private const INDEX_ROUTE = 'games.index';
+
     private function getFormData(?Game $game = null): array
     {
         $helpers = new Helpers();
@@ -47,7 +49,7 @@ class GameController extends AuthController
         $game->save();
         Session::flash('success', sprintf('%s added', $game->title));
 
-        return Redirect::to(route('games.index'));
+        return Redirect::to(route(self::INDEX_ROUTE));
     }
 
     public function edit(Game $game)
@@ -61,7 +63,7 @@ class GameController extends AuthController
         $game->save();
         Session::flash('success', sprintf('%s added', $game->title));
 
-        return Redirect::to(route('games.index'));
+        return Redirect::to(route(self::INDEX_ROUTE));
     }
 
     public function destroy(Game $game)
@@ -69,6 +71,6 @@ class GameController extends AuthController
         $game->delete();
         Session::flash('success', sprintf('%s deleted', $game->title));
 
-        return Redirect::to(route('games.index'));
+        return Redirect::to(route(self::INDEX_ROUTE));
     }
 }

@@ -5,27 +5,15 @@ namespace Tests\Feature\Admin;
 use App\Models\Game;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use stdClass;
 use Tests\TestCase;
+
+use function PHPUnit\Framework\assertSame;
 
 class GameTest extends TestCase
 {
     use RefreshDatabase;
 
     final protected const GAME_URL = '/admin/games';
-
-    private function get_fake_game(): stdClass
-    {
-        $fake = new stdClass();
-        $fake->title = fake()->name();
-        $fake->igdb_id = fake()->randomNumber(1, 10000);
-        $fake->igdb_cover_id = fake()->word();
-        $fake->igdb_url = fake()->url();
-        $fake->played_years = fake()->words(3, true);
-        $fake->comments = fake()->text();
-
-        return $fake;
-    }
 
     public function test_game_index_page_is_displayed(): void
     {
@@ -41,26 +29,42 @@ class GameTest extends TestCase
     public function test_game_can_be_added(): void
     {
         $user = User::factory()->create();
-        $fake_game = $this->get_fake_game();
+        $game = Game::factory()->create();
         $response = $this
             ->actingAs($user)
             ->post(self::GAME_URL, [
-                'title' => $fake_game->title,
-                'played_years' => $fake_game->played_years,
-                'igdb_id' => $fake_game->igdb_id,
-                'igdb_cover_id' => $fake_game->igdb_cover_id,
-                'igdb_url' => $fake_game->igdb_url,
-                'comments' => $fake_game->comments,
+                'title' => $game->title,
+                'played_years' => $game->played_years,
+                'igdb_id' => $game->igdb_id,
+                'igdb_cover_id' => $game->igdb_cover_id,
+                'igdb_url' => $game->igdb_url,
+                'comments' => $game->comments,
             ]);
 
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect(self::GAME_URL);
 
-        $saved_game = Game::where(['title' => $fake_game->title])->first();
-        $this->assertSame($saved_game->title, $fake_game->title);
-        $this->assertSame($saved_game->played_years, $fake_game->played_years);
-        $this->assertSame($saved_game->igdb_id, $fake_game->igdb_id);
-        $this->assertSame($saved_game->comments, $fake_game->comments);
+        $saved_game = Game::where(['title' => $game->title])->first();
+        $this->assertSame($saved_game->title, $game->title);
+        $this->assertSame($saved_game->played_years, $game->played_years);
+        $this->assertSame($saved_game->igdb_id, $game->igdb_id);
+        $this->assertSame($saved_game->comments, $game->comments);
+    }
+
+    public function test_game_can_be_deleted(): void
+    {
+        $user = User::factory()->create();
+        $game = Game::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->delete(route('games.destroy', $game));
+
+        assertSame(Game::find($game->id), null);
+
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect(self::GAME_URL);
     }
 }

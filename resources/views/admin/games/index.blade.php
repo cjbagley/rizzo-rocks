@@ -4,6 +4,9 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Games') }}
             </h2>
+            @if(!empty(session('success')))
+            <div class="text-green-800">{{ session('success') }}</div>
+            @endif
             <x-primary-button-link href="{{ route('games.create') }}">Add</x-primary-button-link>
         </div>
     </x-slot>
