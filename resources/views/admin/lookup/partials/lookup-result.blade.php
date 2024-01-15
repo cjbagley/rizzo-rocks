@@ -20,7 +20,9 @@
             @endif
         </div>
     </div>
-
+    <div class="flex justify-end space-x-5">
+        <x-secondary-button-link href="{{ route('games.create', ['lookup-id'=> $game->id]) }}">Add</x-secondary-button-link>
+    </div>
 </x-admin-card>
 @endif
 @empty

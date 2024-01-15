@@ -28,7 +28,7 @@ class LookupController extends AuthController
 
         try {
             $game_lookup = new GameLookupService();
-            $data = $game_lookup->getGameData($search);
+            $data = $game_lookup->getGameDataFromSearch($search);
         } catch (Exception $e) {
             $api_error = $e->getMessage();
 

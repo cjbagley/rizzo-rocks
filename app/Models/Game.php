@@ -17,5 +17,7 @@ class Game extends Model
         'played_years',
         'comments',
         'igdb_id',
+        'igdb_cover_id',
+        'igdb_url',
     ];
 }

@@ -2,7 +2,7 @@
 
 namespace App\Api;
 
-use App\Models\GameData;
+use App\Models\GameLookupData;
 use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 class GameLookupService
 {
     private $access_token = '';
+
+    private $body_request = 'fields *, platforms.*, cover.*;';
 
     final protected const CACHE_KEY = 'game_lookup_acccess_token';
 
@@ -80,9 +82,9 @@ class GameLookupService
         return $r;
     }
 
-    public function getGameData(string $search): array
+    public function getGameDataFromSearch(string $search): array
     {
-        $body = sprintf('search "%s";fields *, platforms.*, cover.*; where version_parent = null;', $search);
+        $body = sprintf('search "%s"; where version_parent = null; %s', $search, $this->body_request);
         $games = [];
         $r = $this->apiRequest('games', $body);
         if (!is_array($r)) {
@@ -90,9 +92,20 @@ class GameLookupService
         }
 
         foreach ($r as $data) {
-            $games[] = new GameData($data);
+            $games[] = new GameLookupData($data);
         }
 
         return $games;
+    }
+
+    public function getGameDataFromId(int $id): ?GameLookupData
+    {
+        $body = sprintf('where id = %d; %s', $id, $this->body_request);
+        $r = $this->apiRequest('games', $body);
+        if (!is_array($r)) {
+            return null;
+        }
+        $game = new GameLookupData($r[0]);
+        return $game;
     }
 }

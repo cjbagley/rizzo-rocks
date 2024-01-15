@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class GameData
+class GameLookupData
 {
     private readonly string $cover_url_slug;
 
@@ -22,8 +22,13 @@ class GameData
 
     public string $info_url;
 
-    public function __construct(private array $raw_data)
+    public string $cover_image_id;
+
+    public array $raw_data;
+
+    public function __construct(array $raw_data)
     {
+        $this->raw_data = $raw_data;
         $this->id = Arr::get($this->raw_data, 'id', '-');
         $this->name = Arr::get($this->raw_data, 'name', '-');
         $this->cover_url_slug = $this->getCoverUrlSlug();
@@ -31,6 +36,7 @@ class GameData
         $this->rating = Arr::has($this->raw_data, 'total_rating') ? round($this->raw_data['total_rating']) : 0;
         $this->summary = Arr::get($this->raw_data, 'summary', 'No summary avialable');
         $this->info_url = Arr::get($this->raw_data, 'url', '');
+        $this->cover_image_id = Arr::get($this->raw_data, 'cover.image_id', '');
     }
 
     /*
@@ -52,7 +58,7 @@ class GameData
 
     public function getReleaseDate(): string
     {
-        if (! empty($this->raw_data['first_release_date'])) {
+        if (!empty($this->raw_data['first_release_date'])) {
             return Carbon::parse($this->raw_data['first_release_date'])->format('d/m/Y');
         }
 
@@ -65,6 +71,6 @@ class GameData
             return '';
         }
 
-        return 'https:'.Str::replace('/{img_type}/', sprintf('/%s/', $type), $this->cover_url_slug);
+        return 'https:' . Str::replace('/{img_type}/', sprintf('/%s/', $type), $this->cover_url_slug);
     }
 }
