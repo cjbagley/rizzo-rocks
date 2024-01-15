@@ -66,6 +66,9 @@ class GameController extends AuthController
 
     public function destroy(Game $game)
     {
-        dd('DEL');
+        $game->delete();
+        Session::flash('success', sprintf('%s deleted', $game->title));
+
+        return Redirect::to(route('games.index'));
     }
 }

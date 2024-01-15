@@ -27,8 +27,28 @@
             </div>
             <div class="flex justify-end space-x-5">
                 <x-secondary-button-link href="{{ route('games.edit', $game) }}">Edit</x-secondary-button-link>
-                <x-danger-button>Delete</x-danger-button>
+                <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-game-deletion')">{{ __('Delete') }}</x-danger-button>
             </div>
+            <x-modal name="confirm-game-deletion" :show="$errors->gameDeletion->isNotEmpty()" focusable>
+                <form method="post" action="{{ route('games.destroy', $game) }}" class="p-6">
+                    @csrf
+                    @method('delete')
+
+                    <h2 class="text-lg font-medium text-gray-900">
+                        {{ __('Are you sure you want to delete this game?') }}
+                    </h2>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+
+                        <x-danger-button class="ms-3">
+                            {{ __('Delete') }}
+                        </x-danger-button>
+                    </div>
+                </form>
+            </x-modal>
         </x-admin-card>
         @empty
         <x-admin-card>
