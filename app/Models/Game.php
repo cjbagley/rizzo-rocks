@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Enums\ImageSize;
 
 class Game extends Model
 {
@@ -20,4 +21,10 @@ class Game extends Model
         'igdb_cover_id',
         'igdb_url',
     ];
+
+    public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_big): string
+    {
+        $slug = "https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg";
+        return sprintf($slug, $size->value, $this->igdb_cover_id);
+    }
 }
