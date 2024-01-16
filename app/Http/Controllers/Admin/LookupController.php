@@ -34,7 +34,6 @@ class LookupController extends AuthController
 
             return Redirect::route(self::SEARCH_ROUTE)->with('api_error', $api_error);
         }
-
-        return Redirect::route(self::SEARCH_ROUTE)->with('data', $data);
+        return Redirect::route(self::SEARCH_ROUTE)->with(['data' => $data, 'search' => $search]);
     }
 }

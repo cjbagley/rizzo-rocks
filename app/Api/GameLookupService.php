@@ -12,7 +12,7 @@ class GameLookupService
 {
     private $access_token = '';
 
-    private $body_request = 'fields *, platforms.*, cover.*;';
+    private $body_request = 'fields *, platforms.*, cover.*; limit 50;';
 
     final protected const CACHE_KEY = 'game_lookup_acccess_token';
 

@@ -7,10 +7,9 @@
 
     <form method="post" action="{{ route('lookup.search') }}" class="mt-6 space-y-6">
         @csrf
-
         <div>
             <x-input-label for="search" :value="__('Game Name')" class="sr-only" />
-            <x-text-input :value="old('search')" required id="search" name="search" type="text" class="mt-1 block w-full" />
+            <x-text-input :value="empty(session('search')) ? old('search') : session('search')" required id="search" name="search" type="text" class="mt-1 block w-full" />
             <x-input-error :messages="$errors->get('search')" class="mt-2" />
         </div>
 
