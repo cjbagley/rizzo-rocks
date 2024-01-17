@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -14,7 +15,11 @@ class AppController
 
     public function games(): Response
     {
-        return Inertia::render('Games');
+        $games = Game::all();
+        foreach ($games as $game) {
+            $game->cover = $game->getCoverImageUrl();
+        }
+        return Inertia::render('Games')->with('games', $games);
     }
 
     public function list(): Response
