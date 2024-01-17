@@ -22,9 +22,20 @@ class Game extends Model
         'igdb_url',
     ];
 
+    public function addCalculatedFields()
+    {
+        $this->cover = $this->getCoverImageUrl();
+        $this->page_url = $this->getPageUrl();
+    }
+
     public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_big): string
     {
         $slug = "https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg";
         return sprintf($slug, $size->value, $this->igdb_cover_id);
+    }
+
+    public function getPageUrl(): string
+    {
+        return route('game.view', $this);
     }
 }
