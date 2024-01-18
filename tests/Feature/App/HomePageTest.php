@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
-class HomeTest extends TestCase
+class HomePageTest extends TestCase
 {
     use RefreshDatabase;
 
