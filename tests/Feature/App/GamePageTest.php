@@ -16,13 +16,13 @@ class GamePageTest extends TestCase
     public function test_game_page_is_displayed(): void
     {
         $game = Game::factory()->create();
-        $this->get(sprintf(self::GAME_URL, $game->id))->assertOk();
+        $this->get(sprintf(self::GAME_URL, $game->slug))->assertOk();
     }
 
     public function test_game_page_loads_game_component(): void
     {
         $game = Game::factory()->create();
-        $this->get(sprintf(self::GAME_URL, $game->id))->assertInertia(
+        $this->get(sprintf(self::GAME_URL, $game->slug))->assertInertia(
             fn (Assert $page) => $page
                 ->component('Game')
         );

@@ -7,7 +7,6 @@ use App\Helpers\Helpers;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\Admin\GameRequest;
 use App\Models\Game;
-use App\Models\GameLookupData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -30,7 +29,7 @@ class GameController extends AuthController
             'played_years' => $helpers->firstNonEmpty([$game?->played_years, old('played_years', request()->played_years)]),
             'comments' => $helpers->firstNonEmpty([$game?->comments, old('comments', request()->comments)]),
             'is_update' => $is_update,
-            'form_route' => $is_update ? route('games.update', $game) : route('games.store'),
+            'form_route' => $is_update ? route('games.update', $game->slug) : route('games.store'),
         ];
     }
 
