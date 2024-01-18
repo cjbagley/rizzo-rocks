@@ -6,6 +6,7 @@ use App\Models\Game;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 use function PHPUnit\Framework\assertSame;
 
@@ -50,6 +51,7 @@ class GameTest extends TestCase
         $this->assertSame($saved_game->played_years, $game->played_years);
         $this->assertSame($saved_game->igdb_id, $game->igdb_id);
         $this->assertSame($saved_game->comments, $game->comments);
+        $this->assertSame($saved_game->slug, Str::slug($game->title));
     }
 
     public function test_game_can_be_deleted(): void

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Enums\ImageSize;
+use Illuminate\Support\Str;
 
 class Game extends Model
 {
@@ -21,6 +22,18 @@ class Game extends Model
         'igdb_cover_id',
         'igdb_url',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (Game $game) {
+            $game->slug = Str::slug($game->title);
+        });
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function addCalculatedFields()
     {
