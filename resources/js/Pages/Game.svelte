@@ -1,6 +1,8 @@
 <script>
     import Layout from "../Layouts/Layout.svelte";
     import Content from "../Components/Content.svelte";
+    import Video from "../Components/Video.svelte";
+    import Image from "../Components/Image.svelte";
     export let game;
 </script>
 
@@ -33,4 +35,7 @@
             </div>
         </div>
     </Content>
+
+    <Video />
+    <Image />
 </Layout>
