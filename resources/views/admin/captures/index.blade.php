@@ -2,37 +2,29 @@
     <x-slot name="header">
         <div class="flex flex-row justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Games') }}
+                {{ __('Captures') }}
             </h2>
-            @if(!empty(session('success')))
-            <div class="text-green-800">{{ session('success') }}</div>
-            @endif
-            <x-primary-button-link href="{{ route('games.create') }}">Add</x-primary-button-link>
+            <x-primary-button-link href="{{ route('captures.create' , $game) }}">Add Capture</x-primary-button-link>
         </div>
     </x-slot>
 
     <x-admin-card-holder>
-        @forelse($games as $game)
+        @forelse($game->captures() as $capture)
         <x-admin-card>
             <div class="flex flex-col items-start md:flex-row gap-5">
-                @if(!empty($game->getCoverImageUrl()))
-                <img width="160" class="max-md:mx-auto" src="{{ $game->getCoverImageUrl() }}" alt="{{ $game->title }}">
-                @endif
+                <img width="160" class="max-md:mx-auto" src="{{ $capture->url }}" alt="{{ $capture->title }}">
                 <div class="flex flex-col justify-between max-md:pl-4 leading-normal">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $game->title }}</h5>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $game->comments }}</p>
-                    @if(!empty($game->url))
-                    <small><a href="{{ $game->info_url }}">More Info</a></small>
-                    @endif
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $capture->title }}</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $capture->comments }}</p>
                 </div>
             </div>
             <div class="flex justify-end space-x-5">
-                <x-secondary-button-link href="{{ route('games.edit', $game) }}">Edit</x-secondary-button-link>
-                <x-secondary-button-link href="{{ route('captures.index', $game) }}">Captures</x-secondary-button-link>
+                <x-secondary-button-link href="{{ route('capture.edit', $capture) }}">Edit</x-secondary-button-link>
+                <x-secondary-button-link href="{{ route('captures.index', $capture) }}">Captures</x-secondary-button-link>
                 <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-game-deletion')">{{ __('Delete') }}</x-danger-button>
             </div>
             <x-modal name="confirm-game-deletion" :show="$errors->gameDeletion->isNotEmpty()" focusable>
-                <form method="post" action="{{ route('games.destroy', $game) }}" class="p-6">
+                <form method="post" action="{{ route('capture.destroy', $capture) }}" class="p-6">
                     @csrf
                     @method('delete')
 
@@ -54,7 +46,7 @@
         </x-admin-card>
         @empty
         <x-admin-card>
-            No games added yet!
+            No captures added yet!
         </x-admin-card>
         @endforelse
     </x-admin-card-holder>

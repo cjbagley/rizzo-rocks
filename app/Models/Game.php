@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Enums\ImageSize;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\GameCapture;
 
 class Game extends Model
 {
@@ -22,6 +24,11 @@ class Game extends Model
         'igdb_cover_id',
         'igdb_url',
     ];
+
+    public function captures(): HasMany
+    {
+        return $this->hasMany(GameCapture::class);
+    }
 
     protected static function booted(): void
     {
