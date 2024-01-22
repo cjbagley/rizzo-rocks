@@ -9,7 +9,7 @@
     </x-slot>
 
     <x-admin-card-holder>
-        @forelse($game->captures() as $capture)
+        @forelse($game->captures as $capture)
         <x-admin-card>
             <div class="flex flex-col items-start md:flex-row gap-5">
                 <img width="160" class="max-md:mx-auto" src="{{ $capture->url }}" alt="{{ $capture->title }}">
@@ -19,12 +19,12 @@
                 </div>
             </div>
             <div class="flex justify-end space-x-5">
-                <x-secondary-button-link href="{{ route('capture.edit', $capture) }}">Edit</x-secondary-button-link>
-                <x-secondary-button-link href="{{ route('captures.index', $capture) }}">Captures</x-secondary-button-link>
+                <x-secondary-button-link href="{{ route('captures.edit', ['game' => $game, 'capture' => $capture]) }}">Edit</x-secondary-button-link>
+                <x-secondary-button-link href="{{ route('captures.index', ['game' => $game, 'capture' => $capture]) }}">Captures</x-secondary-button-link>
                 <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-game-deletion')">{{ __('Delete') }}</x-danger-button>
             </div>
             <x-modal name="confirm-game-deletion" :show="$errors->gameDeletion->isNotEmpty()" focusable>
-                <form method="post" action="{{ route('capture.destroy', $capture) }}" class="p-6">
+                <form method="post" action="{{ route('captures.destroy', ['game' => $game, 'capture' => $capture]) }}" class="p-6">
                     @csrf
                     @method('delete')
 

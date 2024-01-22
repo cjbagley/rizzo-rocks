@@ -17,7 +17,7 @@ class GameCaptureFactory extends Factory
         return [
             'title' => fake()->name(),
             'game_id' => $game->id,
-            'type' => fake()->randomElement(GameCaptureType::class),
+            'type' => fake()->randomElement(GameCaptureType::class)->value,
             'href' => fake()->url(),
             'comments' => fake()->text(),
         ];

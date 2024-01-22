@@ -43,7 +43,6 @@ class GameCaptureTest extends TestCase
             ->actingAs($user)
             ->post($this->getCaptureUrl($game), [
                 'title' => $capture->title,
-                'game_id' => $game->id,
                 'type' => $capture->type,
                 'href' => $capture->href,
                 'comments' => $capture->comments,
@@ -53,7 +52,7 @@ class GameCaptureTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect($this->getCaptureUrl($game));
 
-        $saved_capture = Game::where(['title' => $capture->title, 'game_id' => $game->id])->first();
+        $saved_capture = GameCapture::where(['title' => $capture->title, 'game_id' => $game->id])->first();
         $this->assertSame($saved_capture->title, $capture->title);
         $this->assertSame($saved_capture->type, $capture->type);
         $this->assertSame($saved_capture->href, $capture->href);

@@ -8,11 +8,11 @@ use App\Http\Requests\Admin\GameCaptureRequest;
 use App\Models\Game;
 use App\Models\GameCapture;
 use App\Helpers\Helpers;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class GameCaptureController extends AuthController
 {
-    private const ROUTE = 'games.index';
-
     private function getFormData(Game $game, ?GameCapture $capture = null): array
     {
         $helpers = new Helpers();
@@ -42,9 +42,16 @@ class GameCaptureController extends AuthController
         return view('admin.captures.form', $this->getFormData($game));
     }
 
-    public function store(GameCaptureRequest $request)
+    public function store(GameCaptureRequest $request, Game $game)
     {
-        dd($request->all());
+        $capture = new GameCapture();
+        $capture->fill($request->validated());
+        $capture->game_id = $game->id;
+        $capture->save();
+
+        Session::flash('success', sprintf('%s added', $capture->title));
+
+        return Redirect::to(route('captures.index', $game));
     }
 
     public function edit(GameCapture $capture)
