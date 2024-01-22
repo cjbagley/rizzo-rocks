@@ -19,7 +19,7 @@
 
         <div>
             <x-input-label for="type" :value="__('Type')" />
-            <x-select-input id="type" :options="$types" :value="$type" name="type" class="mt-1 block w-full" />
+            <x-select :options="$types" :selected="$type" name="type" class="mt-1 block w-full" />
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>
 
