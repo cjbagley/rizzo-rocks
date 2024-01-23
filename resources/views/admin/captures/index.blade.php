@@ -12,9 +12,17 @@
         @forelse($game->captures as $capture)
         <x-admin-card>
             <div class="flex flex-col items-start md:flex-row gap-5">
+                @if($capture->type == 'video')
                 <img width="160" class="max-md:mx-auto" src="{{ $capture->url }}" alt="{{ $capture->title }}">
-                <div class="flex flex-col justify-between max-md:pl-4 leading-normal">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $capture->title }}</h5>
+                @else
+                <video width="160" controls>
+                    Your browser does not support video :(
+                    <source src="{{ $capture->href }}" type="video/webm" />
+                </video>
+                @endif
+                <div class="flex flex-col justify-between max-md:pl-4 leading-normal space-y-2">
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $capture->title }}</h5>
+                    <div><strong>Type: </strong>{{ $capture->type }}</div>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $capture->comments }}</p>
                 </div>
             </div>
