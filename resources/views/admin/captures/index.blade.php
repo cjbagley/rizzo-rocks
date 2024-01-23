@@ -21,9 +21,9 @@
             <div class="flex justify-end space-x-5">
                 <x-secondary-button-link href="{{ route('captures.edit', ['game' => $game, 'capture' => $capture]) }}">Edit</x-secondary-button-link>
                 <x-secondary-button-link href="{{ route('captures.index', ['game' => $game, 'capture' => $capture]) }}">Captures</x-secondary-button-link>
-                <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-game-deletion')">{{ __('Delete') }}</x-danger-button>
+                <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-deletion-{{$capture->id}}')">{{ __('Delete') }}</x-danger-button>
             </div>
-            <x-modal name="confirm-game-deletion" :show="$errors->gameDeletion->isNotEmpty()" focusable>
+            <x-modal name="confirm-deletion-{{$capture->id}}" :show="$errors->gameDeletion->isNotEmpty()" focusable>
                 <form method="post" action="{{ route('captures.destroy', ['game' => $game, 'capture' => $capture]) }}" class="p-6">
                     @csrf
                     @method('delete')
