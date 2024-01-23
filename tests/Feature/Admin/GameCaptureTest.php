@@ -69,7 +69,7 @@ class GameCaptureTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->put(sprintf($this->getCaptureUrl($game, "/{$capture->id}")), [
+            ->put(route('captures.update', ['game' => $game, 'capture' => $updated_capture]), [
                 'title' => $updated_capture->title,
                 'type' => $capture->type,
                 'href' => $capture->href,
@@ -78,7 +78,7 @@ class GameCaptureTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect(self::CAPTURE_URL);
+            ->assertRedirect($this->getCaptureUrl($game));
 
         $capture->refresh();
 
@@ -102,6 +102,6 @@ class GameCaptureTest extends TestCase
 
         $response
             ->assertSessionHasNoErrors()
-            ->assertRedirect(self::CAPTURE_URL);
+            ->assertRedirect($this->getCaptureUrl($game));
     }
 }

@@ -54,18 +54,25 @@ class GameCaptureController extends AuthController
         return Redirect::to(route('captures.index', $game));
     }
 
-    public function edit(GameCapture $capture)
+    public function edit(Game $game, GameCapture $capture)
     {
-        //
+        return view('admin.captures.form', $this->getFormData($game, $capture));
     }
 
-    public function update(GameCaptureRequest $request, GameCapture $capture)
+    public function update(GameCaptureRequest $request, Game $game, GameCapture $capture)
     {
-        //
+        $capture->fill($request->validated());
+        $capture->save();
+        Session::flash('success', sprintf('%s added', $capture->title));
+
+        return Redirect::to(route('captures.index', $game));
     }
 
-    public function destroy(GameCapture $capture)
+    public function destroy(Game $game, GameCapture $capture)
     {
-        //
+        $capture->delete();
+        Session::flash('success', sprintf('%s deleted', $capture->title));
+
+        return Redirect::to(route('captures.index', $game));
     }
 }

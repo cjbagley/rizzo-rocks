@@ -66,7 +66,7 @@ class GameController extends AuthController
 
     public function edit(Game $game)
     {
-        return view('admin.games.form', $this->getFormData($game))->with('test', 'test');
+        return view('admin.games.form', $this->getFormData($game));
     }
 
     public function update(GameRequest $request, Game $game)
