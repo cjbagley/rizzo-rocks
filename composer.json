@@ -20,6 +20,8 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
+        "pestphp/pest": "*",
+        "pestphp/pest-plugin-drift": "*",
         "phpunit/phpunit": "^10.1",
         "rector/rector": "*",
         "spatie/laravel-ignition": "^2.0"
