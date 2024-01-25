@@ -1,12 +1,8 @@
 <?php
 
-use App\Models\User;
-
 test('the dashboard page is displayed', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->get('/admin')
         ->assertOk();
 });

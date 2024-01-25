@@ -2,30 +2,27 @@
 
 use App\Models\Game;
 use App\Models\GameCapture;
-use App\Models\User;
 
-function getCaptureUrl(Game $game, string $append = '') : string
+function getCaptureUrl(Game $game, string $append = ''): string
 {
     return sprintf('/admin/games/%s/captures', $game->slug) . $append;
 }
 
 test('capture index page is displayed', function () {
-    $game = Game::factory()->create();
-    $user = User::factory()->create();
+    $game = create_test_game();
 
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->get(getCaptureUrl($game))
         ->assertOk();
 });
 
 test('capture can be added', function () {
-    $user = User::factory()->create();
-    $game = Game::factory()->create();
+    $game = create_test_game();
     $capture = GameCapture::factory()->make();
 
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->post(getCaptureUrl($game), [
             'title' => $capture->title,
             'type' => $capture->type,
@@ -43,14 +40,13 @@ test('capture can be added', function () {
 });
 
 test('capture can be edited', function () {
-    $user = User::factory()->create();
-    $game = Game::factory()->create();
+    $game = create_test_game();
     $capture = GameCapture::factory()->create();
     $updated_capture = clone $capture;
     $updated_capture->title = fake()->name();
 
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->put(route('captures.update', ['game' => $game, 'capture' => $updated_capture]), [
             'title' => $updated_capture->title,
             'type' => $capture->type,
@@ -69,12 +65,11 @@ test('capture can be edited', function () {
 });
 
 test('capture can be deleted', function () {
-    $user = User::factory()->create();
-    $game = Game::factory()->create();
+    $game = create_test_game();
     $capture = GameCapture::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->delete(getCaptureUrl($game, "/{$capture->id}"))
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));

@@ -11,6 +11,9 @@
 |
 */
 
+use App\Models\Game;
+use App\Models\User;
+
 uses(
     Tests\TestCase::class,
     Tests\CreatesApplication::class,
@@ -43,7 +46,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function create_test_user(array $attrs = []): User
 {
-    // ..
+    return User::factory()->create($attrs);
+}
+
+function create_test_game(array $attrs = []): Game
+{
+    return Game::factory()->create($attrs);
 }

@@ -1,22 +1,18 @@
 <?php
 
-use App\Models\User;
-
 const ADMIN_PROFILE_URL = '/admin/profile';
 
 test('profile page is displayed', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->get(ADMIN_PROFILE_URL)
         ->assertOk();
 });
 
 test('profile information can be updated', function () {
-    $user = User::factory()->create();
+    $user = create_test_user();
 
-    $response = $this
+    $this
         ->actingAs($user)
         ->patch(ADMIN_PROFILE_URL, [
             'name' => 'Test User',
@@ -33,9 +29,9 @@ test('profile information can be updated', function () {
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
-    $user = User::factory()->create();
+    $user = create_test_user();
 
-    $response = $this
+    $this
         ->actingAs($user)
         ->patch(ADMIN_PROFILE_URL, [
             'name' => 'Test User',
@@ -48,9 +44,9 @@ test('email verification status is unchanged when the email address is unchanged
 });
 
 test('user can delete their account', function () {
-    $user = User::factory()->create();
+    $user = create_test_user();
 
-    $response = $this
+    $this
         ->actingAs($user)
         ->delete(ADMIN_PROFILE_URL, [
             'password' => 'password',
@@ -63,9 +59,9 @@ test('user can delete their account', function () {
 });
 
 test('correct password must be provided to delete account', function () {
-    $user = User::factory()->create();
+    $user = create_test_user();
 
-    $response = $this
+    $this
         ->actingAs($user)
         ->from(ADMIN_PROFILE_URL)
         ->delete(ADMIN_PROFILE_URL, [

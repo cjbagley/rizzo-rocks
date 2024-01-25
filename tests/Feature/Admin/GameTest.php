@@ -1,25 +1,22 @@
 <?php
 
 use App\Models\Game;
-use App\Models\User;
 use Illuminate\Support\Str;
 
 const ADMIN_GAME_URL = '/admin/games';
 
 test('game index page is displayed', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->get(ADMIN_GAME_URL)
         ->assertOk();
 });
 
 test('game can be added', function () {
-    $user = User::factory()->create();
     $game = Game::factory()->make();
-    $response = $this
-        ->actingAs($user)
+
+    $this
+        ->actingAs(create_test_user())
         ->post(ADMIN_GAME_URL, [
             'title' => $game->title,
             'played_years' => $game->played_years,
@@ -40,14 +37,13 @@ test('game can be added', function () {
 });
 
 test('game can be edited', function () {
-    $user = User::factory()->create();
-    $game = Game::factory()->create();
+    $game = create_test_game();
     $original_game = clone $game;
     $updated_game = clone $game;
     $updated_game->title = fake()->name();
 
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->put(sprintf('%s/%s', ADMIN_GAME_URL, $original_game->slug), [
             'title' => $updated_game->title,
             'played_years' => $original_game->played_years,
@@ -71,11 +67,10 @@ test('game can be edited', function () {
 });
 
 test('game can be deleted', function () {
-    $user = User::factory()->create();
-    $game = Game::factory()->create();
+    $game = create_test_game();
 
-    $response = $this
-        ->actingAs($user)
+    $this
+        ->actingAs(create_test_user())
         ->delete(route('games.destroy', $game))
         ->assertSessionHasNoErrors()
         ->assertRedirect(ADMIN_GAME_URL);
