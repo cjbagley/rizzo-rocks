@@ -1,41 +1,27 @@
 <?php
 
-namespace Tests\Feature\Admin;
-
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class LookupTest extends TestCase
-{
-    use RefreshDatabase;
+const ADMIN_LOOKUP_URL = 'admin/lookup';
 
-    final protected const URL = 'admin/lookup';
+test('lookup page is displayed', function () {
+    $user = User::factory()->create();
 
-    public function test_lookup_page_is_displayed(): void
-    {
-        $user = User::factory()->create();
+    $response = $this
+        ->actingAs($user)
+        ->get(ADMIN_LOOKUP_URL)
+        ->assertOk();
+});
 
-        $response = $this
-            ->actingAs($user)
-            ->get(self::URL);
+test('lookup search posts correctly', function () {
+    $user = User::factory()->create();
 
-        $response->assertOk();
-    }
-
-    public function test_lookup_search_posts_correctly(): void
-    {
-        $user = User::factory()->create();
-
-        $response = $this
-            ->actingAs($user)
-            ->post(self::URL, [
-                'search' => 'Halo 5',
-            ]);
-
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertSessionHas('data')
-            ->assertRedirect(self::URL);
-    }
-}
+    $response = $this
+        ->actingAs($user)
+        ->post(ADMIN_LOOKUP_URL, [
+            'search' => 'Halo 5',
+        ])
+        ->assertSessionHasNoErrors()
+        ->assertSessionHas('data')
+        ->assertRedirect(ADMIN_LOOKUP_URL);
+});

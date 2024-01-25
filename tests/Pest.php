@@ -13,8 +13,9 @@
 
 uses(
     Tests\TestCase::class,
-    // Illuminate\Foundation\Testing\RefreshDatabase::class,
-)->in('Feature');
+    Tests\CreatesApplication::class,
+    Illuminate\Foundation\Testing\RefreshDatabase::class,
+)->in(__DIR__);
 
 /*
 |--------------------------------------------------------------------------

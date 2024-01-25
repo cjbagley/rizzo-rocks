@@ -1,25 +1,14 @@
 <?php
 
-namespace Tests\Feature\App;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Inertia\Testing\AssertableInertia as Assert;
-use Tests\TestCase;
 
-class HomePageTest extends TestCase
-{
-    use RefreshDatabase;
+test('home page is displayed', function () {
+    $this->get('/')->assertOk();
+});
 
-    public function test_home_page_is_displayed(): void
-    {
-        $this->get('/')->assertOk();
-    }
-
-    public function test_home_page_loads_index_component(): void
-    {
-        $this->get('/')->assertInertia(
-            fn (Assert $page) => $page
-                ->component('Index')
-        );
-    }
-}
+test('home page loads index component', function () {
+    $this->get('/')->assertInertia(
+        fn (Assert $page) => $page
+            ->component('Index')
+    );
+});

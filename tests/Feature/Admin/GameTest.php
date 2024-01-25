@@ -1,106 +1,84 @@
 <?php
 
-namespace Tests\Feature\Admin;
-
 use App\Models\Game;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use Illuminate\Support\Str;
 
-use function PHPUnit\Framework\assertSame;
+const ADMIN_GAME_URL = '/admin/games';
 
-class GameTest extends TestCase
-{
-    use RefreshDatabase;
+test('game index page is displayed', function () {
+    $user = User::factory()->create();
 
-    final protected const GAME_URL = '/admin/games';
+    $response = $this
+        ->actingAs($user)
+        ->get(ADMIN_GAME_URL)
+        ->assertOk();
+});
 
-    public function test_game_index_page_is_displayed(): void
-    {
-        $user = User::factory()->create();
+test('game can be added', function () {
+    $user = User::factory()->create();
+    $game = Game::factory()->make();
+    $response = $this
+        ->actingAs($user)
+        ->post(ADMIN_GAME_URL, [
+            'title' => $game->title,
+            'played_years' => $game->played_years,
+            'igdb_id' => $game->igdb_id,
+            'igdb_cover_id' => $game->igdb_cover_id,
+            'igdb_url' => $game->igdb_url,
+            'comments' => $game->comments,
+        ])
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(ADMIN_GAME_URL);
 
-        $response = $this
-            ->actingAs($user)
-            ->get(self::GAME_URL);
+    $saved_game = Game::where(['title' => $game->title])->first();
+    expect($saved_game->title)->toBe($game->title);
+    expect($saved_game->played_years)->toBe($game->played_years);
+    expect($saved_game->igdb_id)->toBe($game->igdb_id);
+    expect($saved_game->comments)->toBe($game->comments);
+    expect(Str::slug($saved_game->title))->toBe($saved_game->slug);
+});
 
-        $response->assertOk();
-    }
+test('game can be edited', function () {
+    $user = User::factory()->create();
+    $game = Game::factory()->create();
+    $original_game = clone $game;
+    $updated_game = clone $game;
+    $updated_game->title = fake()->name();
 
-    public function test_game_can_be_added(): void
-    {
-        $user = User::factory()->create();
-        $game = Game::factory()->make();
-        $response = $this
-            ->actingAs($user)
-            ->post(self::GAME_URL, [
-                'title' => $game->title,
-                'played_years' => $game->played_years,
-                'igdb_id' => $game->igdb_id,
-                'igdb_cover_id' => $game->igdb_cover_id,
-                'igdb_url' => $game->igdb_url,
-                'comments' => $game->comments,
-            ]);
+    $response = $this
+        ->actingAs($user)
+        ->put(sprintf('%s/%s', ADMIN_GAME_URL, $original_game->slug), [
+            'title' => $updated_game->title,
+            'played_years' => $original_game->played_years,
+            'igdb_id' => $original_game->igdb_id,
+            'igdb_cover_id' => $original_game->igdb_cover_id,
+            'igdb_url' => $original_game->igdb_url,
+            'comments' => $original_game->comments,
+        ])
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(ADMIN_GAME_URL);
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect(self::GAME_URL);
+    // Note - need to refresh here to get updated slug
+    $updated_game->refresh();
 
-        $saved_game = Game::where(['title' => $game->title])->first();
-        $this->assertSame($saved_game->title, $game->title);
-        $this->assertSame($saved_game->played_years, $game->played_years);
-        $this->assertSame($saved_game->igdb_id, $game->igdb_id);
-        $this->assertSame($saved_game->comments, $game->comments);
-        $this->assertSame($saved_game->slug, Str::slug($game->title));
-    }
+    expect($original_game->title)->not->toBe($updated_game->title);
+    expect($original_game->slug)->not->toBe($updated_game->slug);
+    expect($updated_game->played_years)->toBe($original_game->played_years);
+    expect($updated_game->igdb_id)->toBe($original_game->igdb_id);
+    expect($updated_game->comments)->toBe($original_game->comments);
+    expect(Str::slug($updated_game->title))->toBe($updated_game->slug);
+});
 
-    public function test_game_can_be_edited(): void
-    {
-        $user = User::factory()->create();
-        $game = Game::factory()->create();
-        $original_game = clone $game;
-        $updated_game = clone $game;
-        $updated_game->title = fake()->name();
+test('game can be deleted', function () {
+    $user = User::factory()->create();
+    $game = Game::factory()->create();
 
-        $response = $this
-            ->actingAs($user)
-            ->put(sprintf('%s/%s', self::GAME_URL, $original_game->slug), [
-                'title' => $updated_game->title,
-                'played_years' => $original_game->played_years,
-                'igdb_id' => $original_game->igdb_id,
-                'igdb_cover_id' => $original_game->igdb_cover_id,
-                'igdb_url' => $original_game->igdb_url,
-                'comments' => $original_game->comments,
-            ]);
+    $response = $this
+        ->actingAs($user)
+        ->delete(route('games.destroy', $game))
+        ->assertSessionHasNoErrors()
+        ->assertRedirect(ADMIN_GAME_URL);
 
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect(self::GAME_URL);
-
-        // Note - need to refresh here to get updated slug
-        $updated_game->refresh();
-
-        $this->assertNotSame($original_game->title, $updated_game->title);
-        $this->assertNotSame($original_game->slug, $updated_game->slug);
-        $this->assertSame($original_game->played_years, $updated_game->played_years);
-        $this->assertSame($original_game->igdb_id, $updated_game->igdb_id);
-        $this->assertSame($original_game->comments, $updated_game->comments);
-        $this->assertSame($updated_game->slug, Str::slug($updated_game->title));
-    }
-
-    public function test_game_can_be_deleted(): void
-    {
-        $user = User::factory()->create();
-        $game = Game::factory()->create();
-
-        $response = $this
-            ->actingAs($user)
-            ->delete(route('games.destroy', $game));
-
-        assertSame(Game::find($game->id), null);
-
-        $response
-            ->assertSessionHasNoErrors()
-            ->assertRedirect(self::GAME_URL);
-    }
-}
+    expect(Game::find($game->id))->toBeNull();
+});
