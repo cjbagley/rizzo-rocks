@@ -3,10 +3,8 @@
 </script>
 
 <header>
-    <div class="mx-auto max-w-7xl px-2 py-6 sm:px-6 lg:px-8">
-        <h1
-            class="game-font text-4xl md:text-6xl text-center overflow-auto text-blue-900"
-        >
+    <div class="header">
+        <h1 class="game-font">
             {header}
         </h1>
     </div>

@@ -13,41 +13,95 @@
     ];
 </script>
 
-<nav class="bg-red-800">
-    <div class="mx-3 xl:mx-auto max-w-7xl">
-        <div class="flex h-16 items-center justify-between">
-            <div class="flex items-center">
-                <NavSiteLogo />
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        {#each navLinks as link}
-                            <NavLink href={link.href}>{link.name}</NavLink>
-                        {/each}
-                    </div>
-                </div>
+<nav>
+    <div id="desktop-menu">
+        <div class="flex items-center">
+            <NavSiteLogo />
+            <div class="mobile-links">
+                {#each navLinks as link}
+                    <NavLink href={link.href}>{link.name}</NavLink>
+                {/each}
             </div>
-            <div class="hidden md:block">
-                <div class="ml-4 flex space-x-4 items-center md:ml-6">
-                    <DarkModeToggle />
-                    <NavGithubLink />
-                    <!-- <NavProfileDropdown /> -->
-                </div>
-            </div>
-            <div class="-mr-2 flex space-x-5 items-center md:hidden">
-                <DarkModeToggle />
-                <NavGithubLink />
-                <NavMobileButton />
-            </div>
+        </div>
+        <div class="mobile-buttons">
+            <DarkModeToggle />
+            <NavGithubLink />
+            <NavMobileButton />
+        </div>
+        <div class="desktop-buttons">
+            <DarkModeToggle />
+            <NavGithubLink />
         </div>
     </div>
 
-    <!-- Mobile menu -->
-    <div class="md:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            {#each navLinks as link}
-                <NavLink href={link.href}>{link.name}</NavLink>
-            {/each}
-        </div>
-        <!-- <NavMobileProfile /> -->
+    <div id="mobile-menu">
+        {#each navLinks as link}
+            <NavLink href={link.href}>{link.name}</NavLink>
+        {/each}
     </div>
 </nav>
+
+<style>
+    nav {
+        background-color: #7f1d1d;
+    }
+    #desktop-menu {
+        margin-left: 12px;
+        margin-right: 12px;
+        max-width: 1280px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #desktop-menu > div {
+        height: 64px;
+    }
+    @media (min-width: 1280px) {
+        #desktop-menu {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .mobile-links {
+        display: flex;
+        margin-left: 16px;
+        align-items: baseline;
+    }
+
+    .mobile-buttons {
+        display: flex;
+        margin-left: 20px;
+        align-items: center;
+    }
+    @media (min-width: 768px) {
+        .mobile-links {
+            display: none;
+        }
+        .mobile-buttons {
+            display: none;
+        }
+    }
+
+    .desktop-buttons {
+        display: none;
+        margin-left: 24px;
+        align-items: center;
+    }
+    @media (min-width: 768px) {
+        .desktop-buttons {
+            display: flex;
+        }
+    }
+
+    #mobile-menu {
+        padding: 8px 8px 12px 8px;
+        margin-top: 4px;
+    }
+
+    @media (min-width: 768px) {
+        #mobile-menu {
+            display: none;
+        }
+    }
+</style>

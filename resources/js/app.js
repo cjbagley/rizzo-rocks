@@ -1,3 +1,4 @@
+import '../css/reset.css'
 import '../css/app.css'
 import { createInertiaApp } from "@inertiajs/svelte"
 
