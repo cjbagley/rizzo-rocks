@@ -21,7 +21,7 @@ html {
     min-height: 100%;
 }
 
-body.dark-theme .background {
+.dark-theme .background {
     background-color: #000;
     color: #FFF;
 }
@@ -101,7 +101,7 @@ body.dark-theme .background {
     }
 }
 
-body.dark-theme .card {
+.dark-theme .card {
     background-color: #000;
     border-color: #A1A1AA;
 }

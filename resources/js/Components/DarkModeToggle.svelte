@@ -7,13 +7,13 @@
 
     import { onMount } from "svelte";
 
-    const DARK_THEME = "dark";
-    const LIGHT_THEME = "light";
+    const DARK_THEME = "dark-theme";
+    const LIGHT_THEME = "light-theme";
 
     function getAppliedTheme() {
         return document
             .getElementsByTagName("html")[0]
-            .classList.contains("dark")
+            .classList.contains(DARK_THEME)
             ? DARK_THEME
             : LIGHT_THEME;
     }
@@ -28,7 +28,9 @@
 
     function applySiteTheme(theme) {
         if (theme == LIGHT_THEME) {
-            document.getElementsByTagName("html")[0].classList.remove("dark");
+            document
+                .getElementsByTagName("html")[0]
+                .classList.remove(DARK_THEME);
             document
                 .querySelectorAll(".dark-mode-icon")
                 .forEach((el) => el.classList.add("hidden"));
@@ -36,7 +38,7 @@
                 .querySelectorAll(".light-mode-icon")
                 .forEach((el) => el.classList.remove("hidden"));
         } else {
-            document.getElementsByTagName("html")[0].classList.add("dark");
+            document.getElementsByTagName("html")[0].classList.add(DARK_THEME);
             document
                 .querySelectorAll(".dark-mode-icon")
                 .forEach((el) => el.classList.remove("hidden"));
@@ -57,7 +59,7 @@
         width="35"
         height="35"
         fill="currentColor"
-        class="light-mode-icon hidden bi bi-brightness-high-fill text-white"
+        class="light-mode-icon"
         viewBox="0 0 16 16"
     >
         <path
@@ -69,7 +71,7 @@
         width="30"
         height="30"
         fill="currentColor"
-        class="dark-mode-icon hidden bi bi-moon-fill text-black"
+        class="dark-mode-icon"
         viewBox="0 0 16 16"
     >
         <path
@@ -77,3 +79,16 @@
         />
     </svg>
 </button>
+
+<style>
+    button {
+        background: none;
+        border: none;
+    }
+    .light-mode-icon {
+        color: #fff;
+    }
+    .dark-mode-icon {
+        color: #000;
+    }
+</style>
