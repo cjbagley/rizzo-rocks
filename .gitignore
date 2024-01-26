@@ -17,6 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+*.code-workspace
 
 # Ported from svelte
 .DS_Store
