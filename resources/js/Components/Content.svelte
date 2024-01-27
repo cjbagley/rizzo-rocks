@@ -3,13 +3,53 @@
     export let header = "";
 </script>
 
-<main class="space-y-5 pt-10">
+<main>
     {#if header}
-        <div class="card px-5">
+        <div class="card card-header">
             <Header {header} />
         </div>
     {/if}
-    <div class="card space-y-2 p-6 text-2xl">
+    <div class="card card-body">
         <slot />
     </div>
 </main>
+
+<style>
+    main {
+        margin-top: 20px;
+        padding-top: 40px;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 2px solid #000;
+        border-radius: 8px;
+        margin-left: 12px;
+        margin-right: 12px;
+        max-width: 1280px;
+    }
+
+    @media (min-width: 1280px) {
+        .card {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+
+    :global(.dark-theme) .card {
+        background-color: #000;
+        border-color: #a1a1aa;
+    }
+
+    .card-header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .card-body {
+        font-size: 24px;
+        line-height: 24px;
+        margin-top: 8px;
+        padding: 24px;
+    }
+</style>

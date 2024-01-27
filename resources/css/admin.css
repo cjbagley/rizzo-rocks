@@ -1,0 +1,23 @@
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+.space-y-2 {
+    margin-top: 8px;
+}
+
+.p-6 {
+    padding: 24px;
+}
+
+.justify-between {
+    justify-content: space-between;
+}

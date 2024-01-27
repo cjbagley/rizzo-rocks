@@ -22,7 +22,7 @@
                 />
             </div>
             <div class="game-details-wrapper">
-                <div class="space-y-2">
+                <div>
                     <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
                     <p>{game.comments}</p>
                 </div>
@@ -52,6 +52,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+    .game-details-wrapper div {
+        margin-top: 8px;
     }
     .game-details-wrapper a {
         color: #1e3a8a;

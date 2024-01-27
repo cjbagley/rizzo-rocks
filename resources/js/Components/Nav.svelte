@@ -15,7 +15,7 @@
 
 <nav>
     <div id="desktop-menu">
-        <div class="flex items-center">
+        <div class="desktop-links-wrapper">
             <NavSiteLogo />
             <div class="desktop-links">
                 {#each navLinks as link}
@@ -67,6 +67,11 @@
         display: none;
         margin-left: 16px;
         align-items: baseline;
+    }
+
+    .desktop-links-wrapper {
+        display: flex;
+        align-items: center;
     }
 
     .mobile-buttons {
