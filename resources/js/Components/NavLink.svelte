@@ -3,11 +3,19 @@
     export let href = "";
 </script>
 
-<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-<!-- class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" -->
-<Link
-    {href}
-    class="text-white dark:text-black hover:text-blue-900 rounded-md px-3 py-2 text-3xl font-bold"
-    aria-current="page"
-    ><slot />
-</Link>
+<Link {href} class="desktop-nav-link" aria-current="page"><slot /></Link>
+
+<style>
+    :global(.desktop-nav-link) {
+        font-size: 29px;
+        color: #fff;
+        font-weight: bold;
+        padding: 8px 12px;
+    }
+    :global(.desktop-nav-link:hover) {
+        color: #1e3a8a;
+    }
+    :global(.dark-theme .desktop-nav-link) {
+        color: #000 !important;
+    }
+</style>

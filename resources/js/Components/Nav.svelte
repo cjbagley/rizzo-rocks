@@ -17,7 +17,7 @@
     <div id="desktop-menu">
         <div class="flex items-center">
             <NavSiteLogo />
-            <div class="mobile-links">
+            <div class="desktop-links">
                 {#each navLinks as link}
                     <NavLink href={link.href}>{link.name}</NavLink>
                 {/each}
@@ -63,8 +63,8 @@
         }
     }
 
-    .mobile-links {
-        display: flex;
+    .desktop-links {
+        display: none;
         margin-left: 16px;
         align-items: baseline;
     }
@@ -75,8 +75,8 @@
         align-items: center;
     }
     @media (min-width: 768px) {
-        .mobile-links {
-            display: none;
+        .desktop-links {
+            display: flex;
         }
         .mobile-buttons {
             display: none;
