@@ -12,8 +12,8 @@
 
 <Layout>
     <Content header={game.title}>
-        <div class="flex flex-col lg:flex-row w-full space-y-4 space-x-4">
-            <div class="mx-auto my-0">
+        <div class="game-container">
+            <div class="game-image-wrapper">
                 <img
                     height="300"
                     width="175"
@@ -21,16 +21,13 @@
                     alt={game.title}
                 />
             </div>
-            <div class="flex flex-col justify-between">
+            <div class="game-details-wrapper">
                 <div class="space-y-2">
                     <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
                     <p>{game.comments}</p>
                 </div>
                 <p>
-                    <a
-                        class="text-base text-blue-600 underline decoration-blue-500 hover:opacity-80"
-                        href={game.igdb_url}>{game.igdb_url}</a
-                    >
+                    <a href={game.igdb_url}>{game.igdb_url}</a>
                 </p>
             </div>
         </div>
@@ -39,3 +36,35 @@
     <Video />
     <Image />
 </Layout>
+
+<style>
+    .game-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 16px;
+        margin-left: 16px;
+    }
+    .game-image-wrapper {
+        margin: 0 auto;
+    }
+    .game-details-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .game-details-wrapper a {
+        color: #1e3a8a;
+        font-size: 16px;
+        line-height: 24px;
+        text-decoration: solid #1e3a8a;
+    }
+    .game-details-wrapper a:hover {
+        opacity: 0.8;
+    }
+    @media (min-width: 1024px) {
+        .game-container {
+            flex-direction: row;
+        }
+    }
+</style>

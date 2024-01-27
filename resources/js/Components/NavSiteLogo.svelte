@@ -1,3 +1,17 @@
-<div class="flex-shrink-0 bg-white border-2 border-black rounded-lg">
-	<a href="/" class="game-font text-4xl text-blue-900">RR</a>
+<div>
+    <a href="/" class="game-font">RR</a>
 </div>
+
+<style>
+    div {
+        display: flex;
+        flex-shrink: 0;
+        background-color: #fff;
+        border: 22x solid #000;
+        border-radius: 8px;
+    }
+    a {
+        font-size: 36px;
+        color: #1e3a8a;
+    }
+</style>
