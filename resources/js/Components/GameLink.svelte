@@ -14,19 +14,20 @@
 
 <style>
     a {
-        backdrop-filter: #e5e7eb;
         border-radius: 6px;
         overflow: hidden;
         width: 100%;
+        padding: 0 30px;
+    }
+    @media (min-width: 640px) {
+        a {
+            padding: 0;
+        }
     }
     a:hover {
         opacity: 0.75;
     }
-    @media not all and (min-width: 1024px) {
-        a {
-            aspect-ratio: none;
-        }
-    }
+
     img {
         height: 100%;
         object-fit: cover;

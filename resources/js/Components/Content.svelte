@@ -16,7 +16,7 @@
 
 <style>
     main {
-        padding-top: 20px;
+        padding-top: 30px;
     }
 
     .card {
@@ -48,7 +48,7 @@
     .card-body {
         font-size: 24px;
         line-height: 24px;
-        margin-top: 20px;
+        margin-top: 30px;
         padding: 24px;
     }
 </style>

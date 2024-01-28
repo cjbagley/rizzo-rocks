@@ -21,7 +21,7 @@
 
 <style>
     .games-wrapper {
-        column-gap: 24px;
+        column-gap: 34px;
         display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));
         row-gap: 40px;
@@ -34,11 +34,6 @@
     @media (min-width: 1024px) {
         .games-wrapper {
             grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-    }
-    @media (min-width: 1280px) {
-        .games-wrapper {
-            grid-template-columns: repeat(8, minmax(0, 1fr));
         }
     }
 </style>
