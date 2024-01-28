@@ -4,14 +4,14 @@
 
 <style>
     div {
-        display: flex;
-        flex-shrink: 0;
         background-color: #fff;
-        border: 22x solid #000;
+        border: 2px solid #000;
         border-radius: 8px;
+        padding: 0 4px;
     }
     a {
         font-size: 36px;
         color: #1e3a8a;
+        text-decoration: none;
     }
 </style>
