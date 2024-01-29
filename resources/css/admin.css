@@ -1,4 +1,5 @@
-.app-admin {
+/* Auth */
+.app-auth {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -7,13 +8,13 @@
 }
 
 @media (min-width: 640px) {
-    .app-admin {
+    .app-auth {
         padding-top: 0;
         justify-content: center;
     }
 }
 
-.admin-wrapper {
+.auth-wrapper {
     width: 100%;
     overflow: hidden;
     margin-top: 24px;
@@ -21,40 +22,20 @@
 }
 
 @media (min-width: 640px) {
-    .admin-wrapper {
+    .auth-wrapper {
         max-width: 448px;
     }
 }
 
-.block {
-    display: block;
+/* Admin */
+.app-admin {
+    min-height: 100vh;
 }
 
-.flex {
-    display: flex;
-}
-
-.flex-col {
-    flex-direction: column;
-}
-
-.justify-between {
-    justify-content: space-between;
-}
-
-.password-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-top: 6px;
-}
-
-.space-y-2 {
-    margin-top: 8px;
-}
-
-.p-6 {
-    padding: 24px;
+.app-admin header {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 16px
 }
 
 
@@ -114,4 +95,89 @@ input:focus {
 .input-block {
     display: block;
     margin-top: 16px;
+}
+
+/* Nav */
+nav {
+    border-bottom: 2px solid #6b7280;
+}
+
+.nav-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    margin-left: 16px;
+}
+
+.nav-wrapper {
+    display: none;
+    margin-left: 32px;
+}
+
+@media (min-width: 640px) {
+    .nav-wrapper {
+        display: flex;
+    }
+}
+
+.settings-container {
+    display: none;
+    justify-items: center;
+}
+
+.settings-container button {
+    border: 2px solid #000;
+    border-radius: 6px;
+    display: inline-flex;
+    font-size: 14px;
+    justify-items: center;
+    padding: 8px 12px;
+}
+
+@media (min-width: 640px) {
+    .settings-container {
+        display: flex;
+    }
+}
+
+/* Utils */
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin-top: 6px;
+}
+
+.space-y-2 {
+    margin-top: 8px;
+}
+
+.p-6 {
+    padding: 24px;
 }

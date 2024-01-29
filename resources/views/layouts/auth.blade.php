@@ -8,13 +8,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
 </head>
 
 <body style="height: 100%;">
-    <div class="app-admin">
-        <div class="admin-wrapper">
+    <div class="app-auth">
+        <div class="auth-wrapper">
             {{ $slot }}
         </div>
     </div>
