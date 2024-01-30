@@ -1,3 +1,23 @@
+/* General page styling */
+html {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.background {
+    background-color: #fff;
+    /* Hat-tip: https://stackoverflow.com/a/32861765 */
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, silver 1px, transparent 1px),
+        linear-gradient(to bottom, silver 1px, transparent 1px);
+    color: #000;
+    min-height: 100%;
+}
+
+:global(.dark-theme) .background {
+    background-color: #000;
+    color: #fff;
+}
+
 /* Auth */
 .app-auth {
     align-items: center;
@@ -38,6 +58,24 @@
     padding: 24px 16px
 }
 
+/* Buttons */
+.btn {
+    background-color: #1f2937;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    letter-spacing: 0.1em;
+    padding: 8px 16px;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #374151;
+}
+
 
 /* Card */
 .card-container-outer {
@@ -69,6 +107,7 @@
     background-color: #fff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     padding: 16px;
+    border: 2px solid #000;
     border-radius: 4px;
 }
 
@@ -84,6 +123,7 @@ input {
     border-radius: 6px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     display: block;
+    font-size: 20px;
     margin-top: 4px;
     width: 100%;
 }
@@ -95,6 +135,33 @@ input:focus {
 .input-block {
     display: block;
     margin-top: 16px;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+.remember-me-wrapper label {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.remember-me-wrapper input {
+    width: 20px;
+}
+
+.remember-me-wrapper span {
+    width: 100%;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
 }
 
 /* Nav */
@@ -165,13 +232,6 @@ nav {
 
 .justify-between {
     justify-content: space-between;
-}
-
-.password-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    margin-top: 6px;
 }
 
 .space-y-2 {

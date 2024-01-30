@@ -16,10 +16,10 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <div class="input-block">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+        <div class="input-block remember-me-wrapper">
+            <label for="remember-me">
+                <input id="remember-me" type="checkbox" name="remember">
+                <span class="remember-me">{{ __('Remember me') }}</span>
             </label>
         </div>
 
@@ -30,7 +30,7 @@
             </a>
             @endif
 
-            <x-primary-button class="ms-3">
+            <x-primary-button>
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

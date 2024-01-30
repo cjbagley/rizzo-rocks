@@ -11,9 +11,9 @@
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
 </head>
 
-<body style="height: 100%;">
+<body style="height: 100%;" class="background">
     <div class="app-auth">
-        <div class="auth-wrapper">
+        <div class="auth-wrapper card">
             {{ $slot }}
         </div>
     </div>
