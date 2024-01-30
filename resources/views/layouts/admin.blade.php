@@ -14,11 +14,10 @@
 <body>
     <div class="app-admin">
         @include('components.navigation')
-
         <div class="main-wrapper background">
-            @if (isset($header))
+            @if ($attributes->get('header'))
             <header class="card">
-                {{ $header }}
+                {{ $attributes->get('header') }}
             </header>
             @endif
 

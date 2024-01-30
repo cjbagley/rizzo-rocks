@@ -14,9 +14,11 @@ class LookupController extends AuthController
 {
     final protected const SEARCH_ROUTE = 'lookup.search';
 
+    final protected const HEADER = ['header' => 'Game Lookup'];
+
     public function form(): View
     {
-        return view('admin.lookup.lookup');
+        return view('admin.lookup.lookup')->with(self::HEADER);
     }
 
     public function search(LookupRequest $request): RedirectResponse
@@ -32,8 +34,12 @@ class LookupController extends AuthController
         } catch (Exception $e) {
             $api_error = $e->getMessage();
 
-            return Redirect::route(self::SEARCH_ROUTE)->with('api_error', $api_error);
+            return Redirect::route(self::SEARCH_ROUTE)
+                ->with('api_error', $api_error)
+                ->with(self::HEADER);
         }
-        return Redirect::route(self::SEARCH_ROUTE)->with(['data' => $data, 'search' => $search]);
+        return Redirect::route(self::SEARCH_ROUTE)
+            ->with(['data' => $data, 'search' => $search])
+            ->with(self::HEADER);
     }
 }

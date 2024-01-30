@@ -15,6 +15,8 @@ class GameController extends AuthController
 {
     private const INDEX_ROUTE = 'games.index';
 
+    final protected const HEADER = ['header' => 'Games'];
+
     private function getFormData(?Game $game = null): array
     {
         $helpers = new Helpers();
@@ -35,7 +37,7 @@ class GameController extends AuthController
 
     public function index()
     {
-        return view('admin.games.index')->with('games', Game::all());
+        return view('admin.games.index')->with('games', Game::all())->with(self::HEADER);
     }
 
     public function create(Request $request)

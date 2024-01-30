@@ -12,11 +12,13 @@ use Illuminate\View\View;
 
 class ProfileController extends AuthController
 {
+    final protected const HEADER = ['header' => 'Profile'];
+
     public function edit(Request $request): View
     {
         return view('admin.profile.edit', [
             'user' => $request->user(),
-        ]);
+        ])->with(self::HEADER);
     }
 
     /**

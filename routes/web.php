@@ -13,7 +13,7 @@ Route::get('/browse/game/{game}', [AppController::class, 'game'])->name('game.vi
 Route::get('/browse/list', [AppController::class, 'list']);
 
 Route::get('/admin', function () {
-    return view('admin.dashboard');
+    return view('admin.dashboard', ['header' => 'Dashboard']);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
