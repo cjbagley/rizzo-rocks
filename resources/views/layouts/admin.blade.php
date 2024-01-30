@@ -15,15 +15,17 @@
     <div class="app-admin">
         @include('components.navigation')
 
-        @if (isset($header))
-        <header>
-            {{ $header }}
-        </header>
-        @endif
+        <div class="main-wrapper background">
+            @if (isset($header))
+            <header class="card">
+                {{ $header }}
+            </header>
+            @endif
 
-        <main>
-            {{ $slot }}
-        </main>
+            <main>
+                {{ $slot }}
+            </main>
+        </div>
     </div>
 </body>
 
