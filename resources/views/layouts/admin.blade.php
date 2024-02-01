@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite(['resources/js/admin.js'])
+    <link href="https://fonts.bunny.net/css?family=bungee-inline:400&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -16,7 +17,7 @@
         @include('components.navigation')
         <div class="main-wrapper background">
             @if ($attributes->get('header'))
-            <header class="card">
+            <header class="admin-header card">
                 {{ $attributes->get('header') }}
             </header>
             @endif

@@ -1,6 +1,6 @@
 /* General page styling */
 html {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Helvetica, 'Times New Roman', Times, serif;
 }
 
 html,
@@ -47,7 +47,6 @@ body,
 .auth-wrapper {
     width: 100%;
     overflow: hidden;
-    margin-top: 24px;
     padding: 16px 24px;
 }
 
@@ -62,10 +61,24 @@ body,
     min-height: 100vh;
 }
 
-.app-admin header {
+header:not(.admin-header) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.admin-header {
+    font-family: 'Bungee Inline', display;
+    font-size: 64px;
+    background-color: #fff;
+    color: #1e3a8a;
+    line-height: initial;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 24px 16px
+    overflow: auto;
+    padding: 12px 0;
+    text-align: center;
+    text-rendering: geometricPrecision;
 }
 
 /* Buttons */
@@ -87,6 +100,11 @@ body,
     background-color: #374151;
 }
 
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .btn-secondary {
     background-color: #6b7280;
 }
@@ -99,11 +117,15 @@ body,
     background-color: #450a0a;
 }
 
+
 /* Card */
 .card-container {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     margin-top: 24px;
     max-width: 1280px;
+    row-gap: 24px;
 }
 
 .card {
@@ -121,13 +143,20 @@ body,
 }
 
 /* Forms */
+
+form,
+section {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
 input {
     border: 2px solid #d1d5db;
     border-radius: 6px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     display: block;
     font-size: 20px;
-    margin-top: 4px;
     width: 100%;
 }
 
