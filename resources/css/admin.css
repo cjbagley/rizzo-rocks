@@ -56,6 +56,39 @@ body,
     }
 }
 
+/* Card */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 24px;
+    max-width: 1280px;
+    row-gap: 24px;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    border: 2px solid #000;
+    border-radius: 4px;
+}
+
+@media (min-width: 640px) {
+    .card {
+        padding: 32 16px;
+    }
+}
+
+.action-card {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 15px;
+}
+
+
 /* Admin */
 .app-admin {
     min-height: 100vh;
@@ -102,7 +135,14 @@ header:not(.admin-header) {
 
 .btn-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    gap: 20px
+}
+
+@media (min-width: 640px) {
+    .btn-container {
+        justify-content: flex-end;
+    }
 }
 
 .btn-secondary {
@@ -118,29 +158,6 @@ header:not(.admin-header) {
 }
 
 
-/* Card */
-.card-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    margin-top: 24px;
-    max-width: 1280px;
-    row-gap: 24px;
-}
-
-.card {
-    background-color: #fff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    padding: 16px;
-    border: 2px solid #000;
-    border-radius: 4px;
-}
-
-@media (min-width: 640px) {
-    .card {
-        padding: 32px;
-    }
-}
 
 /* Forms */
 
@@ -245,6 +262,27 @@ nav {
     .settings-container {
         display: flex;
     }
+}
+
+.game-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 640px) {
+    .game-info-wrapper {
+        align-items: start;
+        flex-direction: row;
+    }
+}
+
+.game-info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* Utils */

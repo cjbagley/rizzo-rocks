@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h3>{{ __('Profile Information') }}</h3>
+        <h2>{{ __('Profile Information') }}</h2>
     </header>
 
     <p class="info">
