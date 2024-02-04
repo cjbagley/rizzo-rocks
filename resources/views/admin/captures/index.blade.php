@@ -1,51 +1,52 @@
 <x-admin-layout :header="$header??''">
-    <x-slot name="header">
-        <div class="flex flex-row justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Captures') }}
-            </h2>
-            <x-primary-button-link href="{{ route('captures.create' , $game) }}">Add Capture</x-primary-button-link>
-        </div>
-    </x-slot>
 
     <x-admin-card-holder>
+        <div class="card action-card">
+            <div>
+                Add, edit and delete game captures
+            </div>
+            <div class="btn-container">
+                <x-primary-button-link href="{{ route('captures.create', $game) }}">Add</x-primary-button-link>
+            </div>
+        </div>
+
         @forelse($game->captures as $capture)
         <x-admin-card>
-            <div class="flex flex-col items-start md:flex-row gap-5">
+            <div class="game-info-wrapper">
                 @if($capture->type == 'video')
-                <img width="160" class="max-md:mx-auto" src="{{ $capture->url }}" alt="{{ $capture->title }}">
+                <img width="160" src="{{ $capture->url }}" alt="{{ $capture->title }}">
                 @else
                 <video width="160" controls>
                     Your browser does not support video :(
                     <source src="{{ $capture->href }}" type="video/webm" />
                 </video>
                 @endif
-                <div class="flex flex-col justify-between max-md:pl-4 leading-normal space-y-2">
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $capture->title }}</h5>
+                <div class="game-info-details">
+                    <h3>{{ $capture->title }}</h3>
                     <div><strong>Type: </strong>{{ $capture->type }}</div>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $capture->comments }}</p>
+                    <p>{{ $capture->comments }}</p>
                 </div>
             </div>
-            <div class="flex justify-end space-x-5">
+            <div class="btn-container">
                 <x-secondary-button-link href="{{ route('captures.edit', ['game' => $game, 'capture' => $capture]) }}">Edit</x-secondary-button-link>
                 <x-secondary-button-link href="{{ route('captures.index', ['game' => $game, 'capture' => $capture]) }}">Captures</x-secondary-button-link>
                 <x-danger-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-deletion-{{$capture->id}}')">{{ __('Delete') }}</x-danger-button>
             </div>
             <x-modal name="confirm-deletion-{{$capture->id}}" :show="$errors->gameDeletion->isNotEmpty()" focusable>
-                <form method="post" action="{{ route('captures.destroy', ['game' => $game, 'capture' => $capture]) }}" class="p-6">
+                <form method="post" action="{{ route('captures.destroy', ['game' => $game, 'capture' => $capture]) }}">
                     @csrf
                     @method('delete')
 
-                    <h2 class="text-lg font-medium text-gray-900">
+                    <h2>
                         {{ __('Are you sure you want to delete this game?') }}
                     </h2>
 
-                    <div class="mt-6 flex justify-end">
+                    <div class="btn-container">
                         <x-secondary-button x-on:click="$dispatch('close')">
                             {{ __('Cancel') }}
                         </x-secondary-button>
 
-                        <x-danger-button class="ms-3">
+                        <x-danger-button>
                             {{ __('Delete') }}
                         </x-danger-button>
                     </div>

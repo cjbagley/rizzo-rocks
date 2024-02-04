@@ -160,7 +160,6 @@ header:not(.admin-header) {
 
 
 /* Forms */
-
 form,
 section {
     display: flex;
@@ -168,7 +167,8 @@ section {
     row-gap: 15px;
 }
 
-input {
+input,
+textarea {
     border: 2px solid #d1d5db;
     border-radius: 6px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -177,16 +177,17 @@ input {
     width: 100%;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     border-color: #6366f1;
 }
 
 .input-block {
     display: block;
-    margin-top: 16px;
 }
 
 label {
+    font-size: 20px;
     margin-bottom: 10px;
 }
 

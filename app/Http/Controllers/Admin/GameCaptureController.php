@@ -34,7 +34,7 @@ class GameCaptureController extends AuthController
 
     public function index(Game $game)
     {
-        return view('admin.captures.index')->with(['game' => $game]);
+        return view('admin.captures.index')->with(['game' => $game, 'header' => 'Captures']);
     }
 
     public function create(Game $game)

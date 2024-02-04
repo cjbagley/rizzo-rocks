@@ -9,6 +9,7 @@
                 <x-primary-button-link href="{{ route('games.create') }}">Add</x-primary-button-link>
             </div>
         </div>
+
         @forelse($games as $game)
         <x-admin-card>
             <div class="game-info-wrapper">
