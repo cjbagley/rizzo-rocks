@@ -285,6 +285,11 @@ nav {
     gap: 10px;
 }
 
+.game-info-details ul {
+    padding: 0;
+    margin: 0;
+}
+
 /* Utils */
 .block {
     display: block;
