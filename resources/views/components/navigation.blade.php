@@ -16,7 +16,7 @@
         </div>
 
         <div class="profile-container">
-            <div>{{ Auth::user()->name }}</div>
+            <p>{{ Auth::user()->name }}</p>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
