@@ -8,6 +8,8 @@
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "laravel-vite-plugin": "^1.0.0",
+        "stylelint": "^16.2.1",
+        "stylelint-config-standard": "^36.0.0",
         "svelte": "^4.2.8",
         "svelte-loader": "^3.1.9",
         "vite": "^5.0.0"

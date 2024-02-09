@@ -56,7 +56,7 @@
     #desktop-menu > div {
         height: 64px;
     }
-    @media (min-width: 1280px) {
+    @media (width >= 1280px) {
         #desktop-menu {
             margin-left: auto;
             margin-right: auto;
@@ -79,7 +79,7 @@
         margin-left: 20px;
         align-items: center;
     }
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         .desktop-links {
             display: flex;
         }
@@ -93,18 +93,18 @@
         margin-left: 24px;
         align-items: center;
     }
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         .desktop-buttons {
             display: flex;
         }
     }
 
     #mobile-menu {
-        padding: 8px 8px 12px 8px;
+        padding: 8px 8px 12px;
         margin-top: 4px;
     }
 
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         #mobile-menu {
             display: none;
         }

@@ -10,6 +10,7 @@
 <style>
     .background {
         background-color: #fff;
+
         /* Hat-tip: https://stackoverflow.com/a/32861765 */
         background-size: 40px 40px;
         background-image: linear-gradient(to right, silver 1px, transparent 1px),

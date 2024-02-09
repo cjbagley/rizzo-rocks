@@ -19,7 +19,7 @@
         width: 100%;
         padding: 0 30px;
     }
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
         a {
             padding: 0;
         }

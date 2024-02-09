@@ -28,7 +28,7 @@
         max-width: 1280px;
     }
 
-    @media (min-width: 1280px) {
+    @media (width >= 1280px) {
         .card {
             margin-right: auto;
             margin-left: auto;

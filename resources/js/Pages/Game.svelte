@@ -65,7 +65,7 @@
     .game-details-wrapper a:hover {
         opacity: 0.8;
     }
-    @media (min-width: 1024px) {
+    @media (width >= 1024px) {
         .game-container {
             flex-direction: row;
         }

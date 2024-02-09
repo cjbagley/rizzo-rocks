@@ -11,6 +11,7 @@ body,
 
 .background {
     background-color: #fff;
+
     /* Hat-tip: https://stackoverflow.com/a/32861765 */
     background-size: 40px 40px;
     background-image: linear-gradient(to right, silver 1px, transparent 1px),
@@ -19,13 +20,8 @@ body,
     min-height: 100%;
 }
 
-:global(.dark-theme) .background {
-    background-color: #000;
-    color: #fff;
-}
-
 .main-wrapper {
-    padding: 30px 16px 0 16px;
+    padding: 30px 16px 0;
 }
 
 /* Auth */
@@ -37,7 +33,7 @@ body,
     padding-top: 24px;
 }
 
-@media (min-width: 640px) {
+@media (width >=640px) {
     .app-auth {
         padding-top: 0;
         justify-content: center;
@@ -50,7 +46,7 @@ body,
     padding: 16px 24px;
 }
 
-@media (min-width: 640px) {
+@media (width >=640px) {
     .auth-wrapper {
         max-width: 448px;
     }
@@ -68,13 +64,13 @@ body,
 
 .card {
     background-color: #fff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px 0 rgba(0 0 0 10%), 0 1px 2px 0 rgba(0 0 0 6%);
     padding: 16px;
     border: 2px solid #000;
     border-radius: 4px;
 }
 
-@media (min-width: 640px) {
+@media (width >=640px) {
     .card {
         padding: 32px 16px;
     }
@@ -101,7 +97,7 @@ header:not(.admin-header) {
 }
 
 .admin-header {
-    font-family: 'Bungee Inline', display;
+    font-family: 'Bungee Inline', serif;
     font-size: 64px;
     background-color: #fff;
     color: #1e3a8a;
@@ -139,7 +135,7 @@ header:not(.admin-header) {
     gap: 20px
 }
 
-@media (min-width: 640px) {
+@media (width >=640px) {
     .btn-container {
         justify-content: flex-end;
     }
@@ -171,7 +167,7 @@ input,
 textarea {
     border: 2px solid #d1d5db;
     border-radius: 6px;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px 0 rgba(0 0 0 5%);
     display: block;
     font-size: 20px;
     width: 100%;
@@ -231,7 +227,7 @@ nav {
     flex-direction: column;
 }
 
-@media (min-width: 720px) {
+@media (width >=720px) {
     .admin-nav {
         flex-direction: row;
     }
@@ -252,7 +248,7 @@ nav {
     flex-wrap: wrap;
 }
 
-@media (min-width: 720px) {
+@media (width >=720px) {
     .nav-container {
         min-height: 64px;
     }
@@ -291,7 +287,7 @@ nav {
     margin-bottom: 20px;
 }
 
-@media (min-width: 640px) {
+@media (width >=640px) {
     .game-info-wrapper {
         align-items: start;
         flex-direction: row;

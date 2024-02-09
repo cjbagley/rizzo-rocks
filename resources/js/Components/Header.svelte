@@ -18,18 +18,18 @@
         text-rendering: geometricPrecision;
     }
 
-    @media (min-width: 640px) {
+    @media (width >= 640px) {
         header {
             font-size: 52px;
         }
     }
 
-    @media (min-width: 768px) {
+    @media (width >= 768px) {
         header {
             font-size: 52px;
         }
     }
-    @media (min-width: 1024px) {
+    @media (width >= 1024px) {
         header {
             font-size: 64px;
         }
