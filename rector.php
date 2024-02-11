@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
+use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
+use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\Config\RectorConfig;
 use Rector\Php70\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
@@ -27,6 +29,8 @@ return static function (RectorConfig $rectorConfig): void {
         FirstClassCallableRector::class,
         ClosureToArrowFunctionRector::class,
         CallableThisArrayToAnonymousFunctionRector::class,
+        StaticClosureRector::class,
+        StaticArrowFunctionRector::class,
     ]);
 
     // register a single rule
@@ -34,7 +38,10 @@ return static function (RectorConfig $rectorConfig): void {
 
     //define sets of rules
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_81,
-        //SetList::CODE_QUALITY,
+        // LevelSetList::UP_TO_PHP_81,
+        // SetList::CODE_QUALITY,
+        // SetList::CODING_STYLE,
+        // SetList::DEAD_CODE,
+        SetList::EARLY_RETURN,
     ]);
 };

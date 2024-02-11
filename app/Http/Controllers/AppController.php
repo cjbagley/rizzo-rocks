@@ -20,6 +20,7 @@ class AppController
         foreach ($games as $game) {
             $game->addCalculatedFields();
         }
+
         return Inertia::render('Games')->with('games', $games);
     }
 

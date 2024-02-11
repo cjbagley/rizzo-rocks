@@ -12,8 +12,8 @@ use App\Models\GameCapture;
 
 class Game extends Model
 {
-    use HasFactory, SoftDeletes;
-
+    use HasFactory;
+    use SoftDeletes;
     public $timesptamps = true;
 
     protected $fillable = [

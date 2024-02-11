@@ -14,8 +14,8 @@ test('game service get game from search', function () {
         $this->assertObjectHasProperty('name', $game);
         $cover_image_url = $game->getCoverImageUrl('t_thumb');
         expect(Str::isUrl($cover_image_url))->toBeTrue();
-    } catch (Exception $e) {
-        expect($e->getMessage())->toBe('', 'Exception was given');
+    } catch (Exception $exception) {
+        expect($exception->getMessage())->toBe('', 'Exception was given');
     }
 });
 
@@ -30,7 +30,7 @@ test('game service get game from id', function () {
         expect(true)->toBe(Str::contains($game->name, 'Halo 5', false));
         $cover_image_url = $game->getCoverImageUrl('t_thumb');
         expect(Str::isUrl($cover_image_url))->toBeTrue();
-    } catch (Exception $e) {
-        expect($e->getMessage())->toBe('', 'Exception was given');
+    } catch (Exception $exception) {
+        expect($exception->getMessage())->toBe('', 'Exception was given');
     }
 });

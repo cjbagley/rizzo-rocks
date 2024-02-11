@@ -60,6 +60,7 @@ test('game can be edited', function () {
 
     expect($original_game->title)->not->toBe($updated_game->title);
     expect($original_game->slug)->not->toBe($updated_game->slug);
+
     expect($updated_game->played_years)->toBe($original_game->played_years);
     expect($updated_game->igdb_id)->toBe($original_game->igdb_id);
     expect($updated_game->comments)->toBe($original_game->comments);

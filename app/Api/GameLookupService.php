@@ -48,8 +48,8 @@ class GameLookupService
                 Cache::put(self::CACHE_KEY, $r['access_token'], (int) $r['expires_in'] - 120);
                 $this->access_token = $r['access_token'];
             }
-        } catch (Exception $e) {
-            Log::error(sprintf('Error optaining key: %s', $e->getMessage()));
+        } catch (Exception $exception) {
+            Log::error(sprintf('Error optaining key: %s', $exception->getMessage()));
         }
 
         return $this->access_token ?? '';
@@ -65,13 +65,12 @@ class GameLookupService
                 ->post(self::API_URL . $endpoint)
                 ->throw()
                 ->json();
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
             if (defined('DEBUG_ERRORS')) {
-                throw new Exception($e->getMessage(), $e->getCode(), $e);
-            } else {
-                throw new Exception(self::GENERIC_ERROR_MSG, $e->getCode(), $e);
+                throw new Exception($exception->getMessage(), $exception->getCode(), $exception);
             }
+            throw new Exception(self::GENERIC_ERROR_MSG, $exception->getCode(), $exception);
         }
 
         if (!is_array($r)) {
@@ -105,7 +104,7 @@ class GameLookupService
         if (!is_array($r)) {
             return null;
         }
-        $game = new GameLookupData($r[0]);
-        return $game;
+
+        return new GameLookupData($r[0]);
     }
 }

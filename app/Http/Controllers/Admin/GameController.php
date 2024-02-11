@@ -53,6 +53,7 @@ class GameController extends AuthController
             ]);
             return view('admin.games.form', $this->getFormData($game));
         }
+
         return view('admin.games.form', $this->getFormData());
     }
 

@@ -9,6 +9,7 @@ class Helpers
         if ($arr === []) {
             return $default;
         }
+
         foreach ($arr as $value) {
             if (! empty($value)) {
                 return $value;

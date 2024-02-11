@@ -46,6 +46,7 @@ class GameCaptureController extends AuthController
     {
         $capture = new GameCapture();
         $capture->fill($request->validated());
+
         $capture->game_id = $game->id;
         $capture->save();
 

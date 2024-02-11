@@ -8,5 +8,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class AuthController extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
 }

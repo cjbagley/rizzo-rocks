@@ -25,19 +25,21 @@ class LookupController extends AuthController
     {
         $search = $request->validated('search');
         $search = htmlentities((string) $search, ENT_QUOTES, 'UTF-8');
+
         $data = [];
         $api_error = '';
 
         try {
             $game_lookup = new GameLookupService();
             $data = $game_lookup->getGameDataFromSearch($search);
-        } catch (Exception $e) {
-            $api_error = $e->getMessage();
+        } catch (Exception $exception) {
+            $api_error = $exception->getMessage();
 
             return Redirect::route(self::SEARCH_ROUTE)
                 ->with('api_error', $api_error)
                 ->with(self::HEADER);
         }
+
         return Redirect::route(self::SEARCH_ROUTE)
             ->with(['data' => $data, 'search' => $search])
             ->with(self::HEADER);

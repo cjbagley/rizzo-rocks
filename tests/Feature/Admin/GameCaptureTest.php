@@ -70,7 +70,7 @@ test('capture can be deleted', function () {
 
     $this
         ->actingAs(create_test_user())
-        ->delete(getCaptureUrl($game, "/{$capture->id}"))
+        ->delete(getCaptureUrl($game, '/' . $capture->id))
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));
 
