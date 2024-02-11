@@ -15,6 +15,8 @@ class Game extends Model
     use HasFactory;
     use SoftDeletes;
     public $timesptamps = true;
+    public $cover = '';
+    public $page_url = '';
 
     protected $fillable = [
         'title',

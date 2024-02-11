@@ -8,7 +8,7 @@ use Illuminate\View\View;
 class Select extends Component
 {
     /**
-     * Create the component instance.
+     * @param array<mixed> $options
      */
     public function __construct(
         public array $options,
