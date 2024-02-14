@@ -14,15 +14,10 @@
     <Content header={game.title}>
         <div class="game-container">
             <div class="game-image-wrapper">
-                <img
-                    height="300"
-                    width="175"
-                    src={game.cover}
-                    alt={game.title}
-                />
+                <img width="200" src={game.cover} alt={game.title} />
             </div>
             <div class="game-details-wrapper">
-                <div>
+                <div class="game-details">
                     <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
                     <p>{game.comments}</p>
                 </div>
@@ -39,11 +34,9 @@
 
 <style>
     .game-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        margin-top: 16px;
-        margin-left: 16px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     .game-image-wrapper {
         margin: 0 auto;
@@ -53,8 +46,11 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    .game-details-wrapper div {
-        margin-top: 8px;
+    .game-details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 8px;
     }
     .game-details-wrapper a {
         color: #1e3a8a;
@@ -67,7 +63,7 @@
     }
     @media (width >= 1024px) {
         .game-container {
-            flex-direction: row;
+            grid-template-columns: 1fr 3fr;
         }
     }
 </style>
