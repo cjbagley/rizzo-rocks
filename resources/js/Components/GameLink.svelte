@@ -9,7 +9,7 @@
     on:mouseenter={() => (grow = true)}
     on:mouseleave={() => (grow = false)}
 >
-    <img src={game.cover} alt={game.title} />
+    <img width="240" src={game.cover} alt={game.title} />
 </a>
 
 <style>
@@ -29,11 +29,9 @@
     }
 
     img {
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        width: 100%;
+        margin: 0 auto;
     }
+
     .grow {
         transition: all 0.2s ease-in-out;
     }
