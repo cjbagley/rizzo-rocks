@@ -1,6 +1,7 @@
 <?php
 
 use App\Api\GameLookupService;
+use App\Enums\ImageSize;
 use Illuminate\Support\Str;
 
 test('game service get game from search', function () {
@@ -12,7 +13,7 @@ test('game service get game from search', function () {
 
         $game = $data[0];
         $this->assertObjectHasProperty('name', $game);
-        $cover_image_url = $game->getCoverImageUrl('t_thumb');
+        $cover_image_url = $game->getCoverImageUrl(ImageSize::Thumb);
         expect(Str::isUrl($cover_image_url))->toBeTrue();
     } catch (Exception $exception) {
         expect($exception->getMessage())->toBe('', 'Exception was given');
@@ -28,7 +29,7 @@ test('game service get game from id', function () {
 
         $this->assertObjectHasProperty('name', $game);
         expect(true)->toBe(Str::contains($game->name, 'Halo 5', false));
-        $cover_image_url = $game->getCoverImageUrl('t_thumb');
+        $cover_image_url = $game->getCoverImageUrl(ImageSize::Thumb);
         expect(Str::isUrl($cover_image_url))->toBeTrue();
     } catch (Exception $exception) {
         expect($exception->getMessage())->toBe('', 'Exception was given');

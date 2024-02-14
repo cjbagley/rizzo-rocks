@@ -2,8 +2,8 @@
 @if(!empty($game->name))
 <x-admin-card>
     <div class="game-info-wrapper">
-        @if(!empty($game->getCoverImageUrl('t_thumb')))
-        <img width="160" src="{{ $game->getCoverImageUrl('t_cover_big') }}" alt="{{ $game->name }}">
+        @if(!empty($game->getCoverImageUrl(App\Enums\ImageSize::Cover_big)))
+        <img width="160" src="{{ $game->getCoverImageUrl(App\Enums\ImageSize::Cover_big) }}" alt="{{ $game->name }}">
         @endif
         <div class="game-info-details">
             <h3>{{ $game->name }}</h3>

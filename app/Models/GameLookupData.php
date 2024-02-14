@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ImageSize;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -65,12 +66,12 @@ class GameLookupData
         return '-';
     }
 
-    public function getCoverImageUrl($type = 't_thumb'): string
+    public function getCoverImageUrl(ImageSize $type = ImageSize::Thumb): string
     {
         if ($this->cover_url_slug === '' || $this->cover_url_slug === '0') {
             return '';
         }
 
-        return 'https:' . Str::replace('/{img_type}/', sprintf('/%s/', $type), $this->cover_url_slug);
+        return 'https:' . Str::replace('/{img_type}/', sprintf('/t_%s/', $type->value), $this->cover_url_slug);
     }
 }

@@ -48,9 +48,12 @@ class Game extends Model
         $this->page_url = $this->getPageUrl();
     }
 
-    public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_big): string
+    public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_small, bool $retina = true): string
     {
         $slug = "https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg";
+        if ($retina) {
+            return sprintf($slug, $size->value . "_2x", $this->igdb_cover_id);
+        }
         return sprintf($slug, $size->value, $this->igdb_cover_id);
     }
 

@@ -8,7 +8,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    @vite(['resources/css/admin.css', 'resources/js/admin.js'])
+    @vite(['resources/js/admin.js'])
 </head>
 
 <body style="height: 100%;" class="background">
