@@ -9,6 +9,7 @@ use App\Enums\ImageSize;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\GameCapture;
+use Illuminate\Database\Eloquent\Builder;
 
 class Game extends Model
 {
@@ -34,6 +35,10 @@ class Game extends Model
     {
         static::saving(function (Game $game) {
             $game->slug = Str::slug($game->title);
+        });
+
+        static::addGlobalScope('ordered', function (Builder $builder) {
+            $builder->orderBy('title');
         });
     }
 

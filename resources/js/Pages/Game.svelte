@@ -36,7 +36,7 @@
     .game-container {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 20px;
+        row-gap: 20px;
     }
     .game-image-wrapper {
         margin: 0 auto;
@@ -50,12 +50,10 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin: 8px;
     }
     .game-details-wrapper a {
         color: #1e3a8a;
         font-size: 16px;
-        line-height: 24px;
         text-decoration: solid #1e3a8a;
     }
     .game-details-wrapper a:hover {
@@ -63,7 +61,7 @@
     }
     @media (width >= 1024px) {
         .game-container {
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: 1fr 4fr;
         }
     }
 </style>
