@@ -29,3 +29,6 @@ vite.config.ts.timestamp-*
 
 # Vercel
 .vercel
+
+# Local
+.phpactor.json
