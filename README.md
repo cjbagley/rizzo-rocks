@@ -1,3 +1,3 @@
-A site built to share my Xbox captures over the years with my friends, and to have an excuse to learn Svelte!
+CURRENTLY UNDER CONSTRUCTION AS AND WHEN I GET A BIT OF TIME TO WORK ON IT
 
-Currently in development for l.0, and I also need to get PHP working with Vercel (or just host it myself when I look at it).
+A site built to share my Xbox captures over the years with my friends!
