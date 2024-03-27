@@ -8,7 +8,6 @@
 
 <style>
     header {
-        background-color: #fff;
         color: #1e3a8a;
         font-size: 32px;
         line-height: initial;

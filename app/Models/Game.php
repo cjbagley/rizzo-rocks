@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
+use App\Enums\ImageSize;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Enums\ImageSize;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\GameCapture;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Game extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     public $timesptamps = true;
 
     protected $fillable = [
@@ -55,10 +55,11 @@ class Game extends Model
 
     public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_small, bool $retina = true): string
     {
-        $slug = "https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg";
+        $slug = 'https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg';
         if ($retina) {
-            return sprintf($slug, $size->value . "_2x", $this->igdb_cover_id);
+            return sprintf($slug, $size->value.'_2x', $this->igdb_cover_id);
         }
+
         return sprintf($slug, $size->value, $this->igdb_cover_id);
     }
 

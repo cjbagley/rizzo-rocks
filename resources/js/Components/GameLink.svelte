@@ -9,7 +9,7 @@
     on:mouseenter={() => (grow = true)}
     on:mouseleave={() => (grow = false)}
 >
-    <img width="240" src={game.cover} alt={game.title} />
+    <img width="240" height="300" src={game.cover} alt={game.title} />
 </a>
 
 <style>
