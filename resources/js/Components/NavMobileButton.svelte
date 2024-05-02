@@ -16,7 +16,7 @@
         class="block"
         fill="none"
         viewBox="0 0 24 24"
-        stroke-width="1.5"
+        stroke-width="2.5"
         stroke="currentColor"
         aria-hidden="true"
     >
@@ -30,7 +30,7 @@
         class="hidden"
         fill="none"
         viewBox="0 0 24 24"
-        stroke-width="1.5"
+        stroke-width="2.5"
         stroke="currentColor"
         aria-hidden="true"
     >
@@ -45,17 +45,24 @@
 <style>
     button {
         align-items: center;
-        background-color: #000;
-        border-radius: 6px;
+        background-color: #fff;
+        border: none;
+        border-radius: 200px;
         color: #fff;
         display: inline-flex;
         justify-content: center;
+        margin-left: 8px;
         padding: 8px;
         position: relative;
     }
 
     svg {
+        color: #7f1d1d;
         height: 24px;
         width: 24px;
+    }
+
+    :global(.dark-theme) button {
+        background-color: #000;
     }
 </style>
