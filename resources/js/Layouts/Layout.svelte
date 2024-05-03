@@ -2,8 +2,9 @@
     import Nav from "../Components/Nav.svelte";
 </script>
 
-<Nav/>
+
 <div class="background">
+    <Nav/>
     <slot/>
 </div>
 
@@ -16,8 +17,7 @@
         background-image: linear-gradient(to right, silver 1px, transparent 1px),
         linear-gradient(to bottom, silver 1px, transparent 1px);
         color: #000;
-        min-height: calc(100vh - 65px);
-        padding: 30px 0;
+        height: 100%;
     }
 
     :global(.dark-theme) .background {
