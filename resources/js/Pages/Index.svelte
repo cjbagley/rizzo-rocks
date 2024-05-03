@@ -7,9 +7,17 @@
     <title>Rizzo's Recollections</title>
 </svelte:head>
 
-<Layout>
-    <Content header="Rizzo's Recollections">
-        <p>Welcome!</p>
-        <p>This is a site</p>
-    </Content>
-</Layout>
+<main>
+    <Layout>
+        <Content header="Rizzo's Recollections">
+            <p>Welcome!</p>
+            <p>This is a site</p>
+        </Content>
+    </Layout>
+</main>
+
+<style>
+    main {
+        height: 100%;
+    }
+</style>

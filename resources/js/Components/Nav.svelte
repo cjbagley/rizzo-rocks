@@ -8,15 +8,15 @@
     import NavSiteLogo from "./NavSiteLogo.svelte";
 
     const navLinks = [
-        { name: "By Game", href: "/browse/games" },
-        { name: "Full List", href: "/browse/list" },
+        {name: "By Game", href: "/browse/games"},
+        {name: "Full List", href: "/browse/list"},
     ];
 </script>
 
 <nav>
     <div id="desktop-menu">
         <div class="desktop-links-wrapper">
-            <NavSiteLogo />
+            <NavSiteLogo/>
             <div class="desktop-links">
                 {#each navLinks as link}
                     <NavLink href={link.href}>{link.name}</NavLink>
@@ -24,13 +24,13 @@
             </div>
         </div>
         <div class="mobile-buttons">
-            <DarkModeToggle />
-            <NavGithubLink />
-            <NavMobileButton />
+            <DarkModeToggle/>
+            <NavGithubLink/>
+            <NavMobileButton/>
         </div>
         <div class="desktop-buttons">
-            <DarkModeToggle />
-            <NavGithubLink />
+            <DarkModeToggle/>
+            <NavGithubLink/>
         </div>
     </div>
 
@@ -44,7 +44,9 @@
 <style>
     nav {
         background-color: #7f1d1d;
+        height: 65px;
     }
+
     #desktop-menu {
         margin-left: 12px;
         margin-right: 12px;
@@ -53,9 +55,11 @@
         align-items: center;
         justify-content: space-between;
     }
+
     #desktop-menu > div {
         height: 64px;
     }
+
     @media (width >= 1280px) {
         #desktop-menu {
             margin-left: auto;
@@ -79,10 +83,12 @@
         margin-left: 20px;
         align-items: center;
     }
+
     @media (width >= 768px) {
         .desktop-links {
             display: flex;
         }
+
         .mobile-buttons {
             display: none;
         }
@@ -93,6 +99,7 @@
         margin-left: 24px;
         align-items: center;
     }
+
     @media (width >= 768px) {
         .desktop-buttons {
             display: flex;

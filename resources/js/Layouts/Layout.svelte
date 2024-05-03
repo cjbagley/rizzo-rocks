@@ -2,9 +2,9 @@
     import Nav from "../Components/Nav.svelte";
 </script>
 
-<Nav />
+<Nav/>
 <div class="background">
-    <slot />
+    <slot/>
 </div>
 
 <style>
@@ -14,9 +14,10 @@
         /* Hat-tip: https://stackoverflow.com/a/32861765 */
         background-size: 40px 40px;
         background-image: linear-gradient(to right, silver 1px, transparent 1px),
-            linear-gradient(to bottom, silver 1px, transparent 1px);
+        linear-gradient(to bottom, silver 1px, transparent 1px);
         color: #000;
-        min-height: 100%;
+        min-height: calc(100vh - 65px);
+        padding: 30px 0;
     }
 
     :global(.dark-theme) .background {

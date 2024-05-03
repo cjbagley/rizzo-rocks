@@ -1,18 +1,19 @@
 <script>
     import Header from "../Components/Header.svelte";
+
     export let header = "";
 </script>
 
-<main>
+<div>
     {#if header}
         <div class="card card-header">
-            <Header {header} />
+            <Header {header}/>
         </div>
     {/if}
     <div class="card card-body">
-        <slot />
+        <slot/>
     </div>
-</main>
+</div>
 
 <style>
     main {
