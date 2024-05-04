@@ -19,7 +19,7 @@ html {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .sr-only {
@@ -32,4 +32,8 @@ html {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+}
+
+#mobile-menu a {
+    margin: 0 auto;
 }

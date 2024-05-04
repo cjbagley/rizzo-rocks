@@ -107,8 +107,8 @@
     }
 
     #mobile-menu {
-        padding: 8px 8px 12px;
-        margin-top: 4px;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     @media (width >= 768px) {
