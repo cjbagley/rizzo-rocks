@@ -11,55 +11,21 @@
     aria-controls="mobile-menu"
     aria-expanded="false"
 >
-    <span class="sr-only">Open main menu</span>
-    <svg
-        class="block"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="2.5"
-        stroke="currentColor"
-        aria-hidden="true"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-menu-down"
+         viewBox="0 0 16 16">
         <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-        />
-    </svg>
-    <svg
-        class="hidden"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="2.5"
-        stroke="currentColor"
-        aria-hidden="true"
-    >
-        <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-        />
+            d="M7.646.146a.5.5 0 0 1 .708 0L10.207 2H14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h3.793zM1 7v3h14V7zm14-1V4a1 1 0 0 0-1-1h-3.793a1 1 0 0 1-.707-.293L8 1.207l-1.5 1.5A1 1 0 0 1 5.793 3H2a1 1 0 0 0-1 1v2zm0 5H1v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
     </svg>
 </button>
 
 <style>
     button {
-        align-items: center;
-        background-color: #fff;
+        background: none;
         border: none;
-        border-radius: 200px;
-        color: #fff;
-        display: inline-flex;
-        justify-content: center;
-        margin-left: 8px;
-        padding: 8px;
-        position: relative;
     }
 
     svg {
-        color: #7f1d1d;
-        height: 24px;
-        width: 24px;
+        color: #fff;
     }
 
     :global(.dark-theme) button {

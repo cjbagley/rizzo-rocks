@@ -23,10 +23,10 @@
                 {/each}
             </div>
         </div>
+        <NavMobileButton/>
         <div class="mobile-buttons">
             <DarkModeToggle/>
             <NavGithubLink/>
-            <NavMobileButton/>
         </div>
         <div class="desktop-buttons">
             <DarkModeToggle/>
@@ -69,7 +69,6 @@
 
     .desktop-links {
         display: none;
-        margin-left: 16px;
         align-items: baseline;
     }
 
@@ -80,7 +79,6 @@
 
     .mobile-buttons {
         display: flex;
-        margin-left: 20px;
         align-items: center;
     }
 
@@ -96,7 +94,6 @@
 
     .desktop-buttons {
         display: none;
-        margin-left: 24px;
         align-items: center;
     }
 

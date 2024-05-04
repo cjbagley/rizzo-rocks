@@ -5,7 +5,7 @@
      * svelte, and I spent way to long trying vs. how important this is.
      */
 
-    import { onMount } from "svelte";
+    import {onMount} from "svelte";
 
     const DARK_THEME = "dark-theme";
     const LIGHT_THEME = "light-theme";
@@ -56,8 +56,8 @@
 <button id="dark-mode-toggle" on:click={toggleSiteTheme}>
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="35"
-        height="35"
+        width="32"
+        height="32"
         fill="currentColor"
         class="light-mode-icon"
         viewBox="0 0 16 16"
@@ -68,8 +68,8 @@
     </svg>
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="30"
+        width="32"
+        height="32"
         fill="currentColor"
         class="dark-mode-icon"
         viewBox="0 0 16 16"
@@ -85,9 +85,11 @@
         background: none;
         border: none;
     }
+
     .light-mode-icon {
         color: #fff;
     }
+
     .dark-mode-icon {
         color: #000;
     }

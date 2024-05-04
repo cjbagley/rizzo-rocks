@@ -5,8 +5,8 @@
 >
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="33"
-        height="33"
+        width="32"
+        height="32"
         fill="currentColor"
         viewBox="0 0 16 16"
     >
@@ -22,9 +22,11 @@
         position: relative;
         cursor: pointer;
     }
+
     svg {
         border-radius: 9999px;
     }
+
     :global(.dark-theme) .github {
         color: #000;
     }
