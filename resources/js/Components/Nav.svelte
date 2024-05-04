@@ -23,7 +23,9 @@
                 {/each}
             </div>
         </div>
-        <NavMobileButton/>
+        <div class="mobile-buttons">
+            <NavMobileButton/>
+        </div>
         <div class="mobile-buttons">
             <DarkModeToggle/>
             <NavGithubLink/>
@@ -75,6 +77,7 @@
     .desktop-links-wrapper {
         display: flex;
         align-items: center;
+        min-width: 76px; /* Same width as right-hand btn containers */;
     }
 
     .mobile-buttons {
