@@ -17,7 +17,7 @@
         background-image: linear-gradient(to right, silver 1px, transparent 1px),
         linear-gradient(to bottom, silver 1px, transparent 1px);
         color: #000;
-        height: 100%;
+        min-height: 100%;
     }
 
     :global(.dark-theme) .background {
