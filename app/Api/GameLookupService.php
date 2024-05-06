@@ -44,7 +44,7 @@ class GameLookupService
             ];
 
             $r = Http::post(self::AUTH_URL, $data)->throw()->json();
-            if (is_array($r) && !empty($r['access_token'])) {
+            if (is_array($r) && ! empty($r['access_token'])) {
                 Cache::put(self::CACHE_KEY, $r['access_token'], (int) $r['expires_in'] - 120);
                 $this->access_token = $r['access_token'];
             }
@@ -62,7 +62,7 @@ class GameLookupService
                 ->withToken($this->access_token)
                 ->withBody($body)
                 ->acceptJson()
-                ->post(self::API_URL . $endpoint)
+                ->post(self::API_URL.$endpoint)
                 ->throw()
                 ->json();
         } catch (Exception $exception) {
@@ -73,7 +73,7 @@ class GameLookupService
             throw new Exception(self::GENERIC_ERROR_MSG, $exception->getCode(), $exception);
         }
 
-        if (!is_array($r)) {
+        if (! is_array($r)) {
             Log::error(self::EMPTY_ARRAY_MSG);
             throw new Exception(self::EMPTY_ARRAY_MSG);
         }
@@ -86,7 +86,7 @@ class GameLookupService
         $body = sprintf('search "%s"; where version_parent = null; %s', $search, $this->body_request);
         $games = [];
         $r = $this->apiRequest('games', $body);
-        if (!is_array($r)) {
+        if (! is_array($r)) {
             return $games;
         }
 
@@ -101,7 +101,7 @@ class GameLookupService
     {
         $body = sprintf('where id = %d; %s', $id, $this->body_request);
         $r = $this->apiRequest('games', $body);
-        if (!is_array($r)) {
+        if (! is_array($r)) {
             return null;
         }
 

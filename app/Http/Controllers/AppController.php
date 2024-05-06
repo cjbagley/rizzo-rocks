@@ -32,6 +32,7 @@ class AppController
     public function game(Request $request, Game $game): InertiaResponse
     {
         $game->addCalculatedFields();
+
         return Inertia::render('Game')->with('game', $game);
     }
 }

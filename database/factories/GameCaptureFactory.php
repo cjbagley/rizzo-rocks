@@ -14,6 +14,7 @@ class GameCaptureFactory extends Factory
     public function definition(): array
     {
         $game = Game::factory()->create();
+
         return [
             'title' => fake()->name(),
             'game_id' => $game->id,

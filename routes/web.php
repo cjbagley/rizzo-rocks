@@ -28,4 +28,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('games/{game}/captures', GameCaptureController::class)->except(['show']);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

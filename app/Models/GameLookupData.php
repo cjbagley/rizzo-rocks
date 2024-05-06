@@ -59,7 +59,7 @@ class GameLookupData
 
     public function getReleaseDate(): string
     {
-        if (!empty($this->raw_data['first_release_date'])) {
+        if (! empty($this->raw_data['first_release_date'])) {
             return Carbon::parse($this->raw_data['first_release_date'])->format('d/m/Y');
         }
 
@@ -72,6 +72,6 @@ class GameLookupData
             return '';
         }
 
-        return 'https:' . Str::replace('/{img_type}/', sprintf('/t_%s/', $type->value), $this->cover_url_slug);
+        return 'https:'.Str::replace('/{img_type}/', sprintf('/t_%s/', $type->value), $this->cover_url_slug);
     }
 }

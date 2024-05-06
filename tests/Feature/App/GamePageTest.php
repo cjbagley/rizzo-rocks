@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Game;
 use Inertia\Testing\AssertableInertia as Assert;
 
 const GAME_URL = '/browse/game/%s';

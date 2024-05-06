@@ -5,7 +5,7 @@ use App\Models\GameCapture;
 
 function getCaptureUrl(Game $game, string $append = ''): string
 {
-    return sprintf('/admin/games/%s/captures', $game->slug) . $append;
+    return sprintf('/admin/games/%s/captures', $game->slug).$append;
 }
 
 test('capture index page is displayed', function () {
@@ -70,7 +70,7 @@ test('capture can be deleted', function () {
 
     $this
         ->actingAs(create_test_user())
-        ->delete(getCaptureUrl($game, '/' . $capture->id))
+        ->delete(getCaptureUrl($game, '/'.$capture->id))
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));
 

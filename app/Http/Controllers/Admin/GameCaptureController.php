@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\GameCaptureType;
+use App\Helpers\Helpers;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\Admin\GameCaptureRequest;
 use App\Models\Game;
 use App\Models\GameCapture;
-use App\Helpers\Helpers;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class GameCaptureController extends AuthController
 {

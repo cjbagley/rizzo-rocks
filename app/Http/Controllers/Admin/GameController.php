@@ -51,6 +51,7 @@ class GameController extends AuthController
                 'igdb_cover_id' => $data->cover_image_id,
                 'igdb_url' => $data->info_url,
             ]);
+
             return view('admin.games.form', $this->getFormData($game));
         }
 
