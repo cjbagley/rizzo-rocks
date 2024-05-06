@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Game extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    const COVER_IMG_CACHE_DIR = 'covers';
 
     public $timesptamps = true;
 
@@ -55,12 +58,22 @@ class Game extends Model
 
     public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_small, bool $retina = true): string
     {
+        $path = $this->getCoverImageStoragePath();
+        if (Storage::exists($path)) {
+            return url($path);
+        }
+
         $slug = 'https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg';
         if ($retina) {
             return sprintf($slug, $size->value.'_2x', $this->igdb_cover_id);
         }
 
         return sprintf($slug, $size->value, $this->igdb_cover_id);
+    }
+
+    public function getCoverImageStoragePath(): string
+    {
+        return self::COVER_IMG_CACHE_DIR.'/'.$this->igdb_cover_id.'.jpg';
     }
 
     public function getPageUrl(): string
