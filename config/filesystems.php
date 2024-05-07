@@ -48,7 +48,7 @@ return [
             'root' => storage_path('app/covers'),
             'url' => env('APP_URL').'/covers',
             'visibility' => 'public',
-            'throw' => false,
+            'throw' => true,
         ],
         's3' => [
             'driver' => 's3',

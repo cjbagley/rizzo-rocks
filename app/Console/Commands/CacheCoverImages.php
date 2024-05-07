@@ -20,7 +20,7 @@ class CacheCoverImages extends Command
         foreach (Game::all() as $game) {
             $img_url = sprintf(self::IMG_SLUG, ImageSize::Cover_small->value, $game->igdb_cover_id);
             $img = file_get_contents($img_url);
-            Storage::put($game->getCoverImageStoragePath(), $img, 'public');
+            Storage::disk(Game::COVER_IMG_CACHE_DIR)->put($game->getCoverImageFilename(), $img, 'public');
         }
 
         $this->info('All done!');

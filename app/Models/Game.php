@@ -58,9 +58,9 @@ class Game extends Model
 
     public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_small, bool $retina = true): string
     {
-        $path = $this->getCoverImageStoragePath();
-        if (Storage::exists($path)) {
-            return url($path);
+        $fn = $this->getCoverImageFilename();
+        if (Storage::disk(self::COVER_IMG_CACHE_DIR)->exists($fn)) {
+            return Storage::disk(self::COVER_IMG_CACHE_DIR)->url($fn);
         }
 
         $slug = 'https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg';
@@ -71,9 +71,9 @@ class Game extends Model
         return sprintf($slug, $size->value, $this->igdb_cover_id);
     }
 
-    public function getCoverImageStoragePath(): string
+    public function getCoverImageFilename(): string
     {
-        return self::COVER_IMG_CACHE_DIR.'/'.$this->igdb_cover_id.'.jpg';
+        return $this->igdb_cover_id.'.jpg';
     }
 
     public function getPageUrl(): string
