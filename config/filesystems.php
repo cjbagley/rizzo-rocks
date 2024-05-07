@@ -43,7 +43,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'covers' => [
+            'driver' => 'local',
+            'root' => storage_path('app/covers'),
+            'url' => env('APP_URL').'/covers',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -30,6 +30,9 @@ vite.config.ts.timestamp-*
 # Vercel
 .vercel
 
+# Public
+/public/covers/*
+
 # Local
 .phpactor.json
 /db-dumps
