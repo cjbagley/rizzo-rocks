@@ -6,6 +6,7 @@ use App\Enums\ImageSize;
 use App\Models\Game;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Image\Image;
 
 class CacheCoverImages extends Command
 {
@@ -17,10 +18,18 @@ class CacheCoverImages extends Command
 
     public function handle()
     {
+        $storage = Storage::disk('covers');
+
         foreach (Game::all() as $game) {
-            $img_url = sprintf(self::IMG_SLUG, ImageSize::Cover_small->value, $game->igdb_cover_id);
-            $img = file_get_contents($img_url);
-            Storage::disk(Game::COVER_IMG_CACHE_DIR)->put($game->getCoverImageFilename(), $img, 'public');
+            $igdb_url = sprintf(self::IMG_SLUG, ImageSize::Cover_big->value, $game->igdb_cover_id);
+            $img = file_get_contents($igdb_url);
+            $storage->put($game->getCoverImageFilename(), $img, 'public');
+
+            $jpg = $storage->path($game->getCoverImageFilename());
+            $webp = $storage->path($game->getCoverImageFilename('.webp'));
+
+            Image::load($jpg)->save($webp);
+            Image::load($webp)->optimize()->save($webp);
         }
 
         $this->info('All done!');
