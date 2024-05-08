@@ -1,7 +1,28 @@
 <script>
+    import {onMount} from "svelte";
+
     function toggleMobileMenu() {
-        document.getElementById("mobile-menu").classList.toggle("hidden");
+        let isShowing = mobileMenuShowing();
+
+        if (isShowing) {
+            localStorage.mobilemenu = undefined;
+            document.getElementById("mobile-menu").classList.add("hidden");
+            return;
+        }
+
+        localStorage.mobilemenu = "true";
+        document.getElementById("mobile-menu").classList.remove("hidden");
     }
+
+    function mobileMenuShowing() {
+        return localStorage.mobilemenu === 'true';
+    }
+
+    onMount(() => {
+        if (mobileMenuShowing()) {
+            document.getElementById("mobile-menu").classList.remove("hidden");
+        }
+    });
 </script>
 
 <!-- Mobile menu button -->

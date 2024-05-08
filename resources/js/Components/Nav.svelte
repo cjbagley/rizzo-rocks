@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div id="mobile-menu">
+    <div id="mobile-menu" class="hidden">
         {#each navLinks as link}
             <NavLink href={link.href}>{link.name}</NavLink>
         {/each}

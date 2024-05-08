@@ -1,16 +1,14 @@
 <script>
-    /*
-     * Note - as much as I didn't want to, I had to duplicate a little bit of this code in the
-     * app.html head, to stop Flash Of Colour on load. Could not find a way to do it with
-     * svelte, and I spent way to long trying vs. how important this is.
-     */
-
     import {onMount} from "svelte";
 
     const DARK_THEME = "dark-theme";
     const LIGHT_THEME = "light-theme";
 
     function getAppliedTheme() {
+        if (localStorage.theme !== undefined) {
+            return localStorage.theme
+        }
+
         return document
             .getElementsByTagName("html")[0]
             .classList.contains(DARK_THEME)
@@ -49,6 +47,9 @@
     }
 
     onMount(() => {
+        if (localStorage.theme == undefined) {
+            localStorage.theme = LIGHT_THEME;
+        }
         applySiteTheme(getAppliedTheme());
     });
 </script>
