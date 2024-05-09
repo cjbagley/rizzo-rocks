@@ -30,8 +30,11 @@ vite.config.ts.timestamp-*
 # Vercel
 .vercel
 
-# Public
-/public/covers/*
+# Media
+/public/covers
+/public/thumbs
+/public/images
+/public/videos
 
 # Local
 .phpactor.json
