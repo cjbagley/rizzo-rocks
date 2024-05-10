@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\GameCaptureType;
 use App\Enums\ImageSize;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +33,16 @@ class Game extends Model
     public function captures(): HasMany
     {
         return $this->hasMany(GameCapture::class);
+    }
+
+    public function videos(): HasMany
+    {
+        return $this->hasMany(GameCapture::class)->where('game_captures.type', '=', GameCaptureType::Video);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(GameCapture::class)->where('game_captures.type', '=', GameCaptureType::Image);
     }
 
     protected static function booted(): void

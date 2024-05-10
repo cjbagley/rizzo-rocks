@@ -33,6 +33,10 @@ class AppController
     {
         $game->addCalculatedFields();
 
-        return Inertia::render('Game')->with('game', $game);
+        return Inertia::render('Game', [
+            'game' => $game,
+            'videos' => $game->videos,
+            'images' => $game->images,
+        ]);
     }
 }

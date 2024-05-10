@@ -10,6 +10,16 @@ html {
     font-family: 'Bungee Inline', serif;
 }
 
+a {
+    color: #1e3a8a;
+    text-decoration: solid #1e3a8a;
+}
+
+.dark-theme a {
+    color: #6a91ff;
+    text-decoration: solid #6a91ff;
+}
+
 .block {
     display: block;
 }
