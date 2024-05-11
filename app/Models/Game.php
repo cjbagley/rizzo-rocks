@@ -21,6 +21,15 @@ class Game extends Model
 
     public $timesptamps = true;
 
+    protected $visible = [
+        'title',
+        'played_years',
+        'comments',
+        'cover',
+        'page_url',
+        'igdb_url',
+    ];
+
     protected $fillable = [
         'title',
         'played_years',

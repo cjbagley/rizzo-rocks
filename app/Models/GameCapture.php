@@ -13,6 +13,12 @@ class GameCapture extends Model
 
     public $timesptamps = true;
 
+    protected $visible = [
+        'title',
+        'href',
+        'comments',
+    ];
+
     protected $fillable = [
         'title',
         'game_id',
