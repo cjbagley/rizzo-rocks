@@ -6,36 +6,37 @@
 
 <Content>
     <div class="wrapper">
+        <header>
+            <h2 class="game-font">{video.title}</h2>
+        </header>
         <video controls controlslist="nodownload" disablepictureinpicture="true" playsinline="false">
             Your browser does not support video :(
             <source src="{video.href}" type="video/webm"/>
         </video>
         <div>
-            <h2>{video.title}</h2>
             <p>{video.comments}</p>
         </div>
     </div>
 </Content>
 
 <style>
-    .wrapper {
-        display: flex;
-        flex-direction: column-reverse;
+    header {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 24px;
     }
 
     video {
         margin: 0 auto;
-        max-width: 500px;
+        max-width: 100%;
     }
 
-    @media (width >= 1024px) {
-        .wrapper {
-            flex-direction: row;
-            column-gap: 20px;
-        }
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        row-gap: 30px;
     }
 
-    p {
-        margin: 10px 0;
-    }
 </style>

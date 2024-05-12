@@ -31,13 +31,17 @@
         </div>
     </Content>
 
-    {#each videos as video}
-        <Video {video}/>
-    {/each}
+    <div class="grid">
+        {#each videos as video}
+            <Video {video}/>
+        {/each}
+    </div>
 
-    {#each images as image}
-        <Image/>
-    {/each}
+    <div class="grid">
+        {#each images as image}
+            <Image/>
+        {/each}
+    </div>
 </Layout>
 
 <style>

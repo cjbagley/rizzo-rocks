@@ -27,6 +27,7 @@
         margin-left: 12px;
         margin-right: 12px;
         max-width: 1280px;
+        height: 100%;
     }
 
     @media (width >= 1280px) {

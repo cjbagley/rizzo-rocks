@@ -7,7 +7,12 @@ html {
 }
 
 .game-font {
+    color: #1e3a8a;
     font-family: 'Bungee Inline', serif;
+    font-size: 32px;
+    line-height: initial;
+    overflow: auto;
+    text-rendering: geometricPrecision;
 }
 
 a {
@@ -46,4 +51,14 @@ a {
 
 #mobile-menu a {
     margin: 0 auto;
+}
+
+@media (width >= 800px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 2fr));
+        gap: 1rem;
+        margin: 0 auto;
+        max-width: 1280px;
+    }
 }
