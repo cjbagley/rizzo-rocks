@@ -39,7 +39,7 @@
 
     <div class="grid">
         {#each images as image}
-            <Image/>
+            <Image {image}/>
         {/each}
     </div>
 </Layout>

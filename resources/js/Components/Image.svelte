@@ -1,7 +1,9 @@
 <script>
-    import Content from "../Components/Content.svelte";
+    import Media from "../Components/Media.svelte";
+
+    export let image;
 </script>
 
-<Content>
-    <img href="#" alt="#" />
-</Content>
+<Media item={image}>
+    <img src="{image.href}" alt="{image.title}" />
+</Media>
