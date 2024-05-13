@@ -26,7 +26,7 @@ test('capture can be added', function () {
         ->post(getCaptureUrl($game), [
             'title' => $capture->title,
             'type' => $capture->type,
-            'href' => $capture->href,
+            'filekey' => $capture->filekey,
             'comments' => $capture->comments,
         ])
         ->assertSessionHasNoErrors()
@@ -35,7 +35,7 @@ test('capture can be added', function () {
     $saved_capture = GameCapture::where(['title' => $capture->title, 'game_id' => $game->id])->first();
     expect($capture->title)->toBe($saved_capture->title);
     expect($capture->type)->toBe($saved_capture->type);
-    expect($capture->href)->toBe($saved_capture->href);
+    expect($capture->filekey)->toBe($saved_capture->filekey);
     expect($capture->comments)->toBe($saved_capture->comments);
 });
 
@@ -50,7 +50,7 @@ test('capture can be edited', function () {
         ->put(route('captures.update', ['game' => $game, 'capture' => $updated_capture]), [
             'title' => $updated_capture->title,
             'type' => $capture->type,
-            'href' => $capture->href,
+            'filekey' => $capture->filekey,
             'comments' => $capture->comments,
         ])
         ->assertSessionHasNoErrors()
@@ -59,7 +59,7 @@ test('capture can be edited', function () {
     $capture->refresh();
 
     expect($updated_capture->title)->toBe($capture->title);
-    expect($updated_capture->href)->toBe($capture->href);
+    expect($updated_capture->filekey)->toBe($capture->filekey);
     expect($updated_capture->comments)->toBe($capture->comments);
     expect($updated_capture->type)->toBe($capture->type);
 });

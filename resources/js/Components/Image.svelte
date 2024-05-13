@@ -5,5 +5,5 @@
 </script>
 
 <Media item={image}>
-    <img src="{image.href}" alt="{image.title}" />
+    <img on:click|once={showOverlay} src="{image.url}" alt="{image.title}"/>
 </Media>

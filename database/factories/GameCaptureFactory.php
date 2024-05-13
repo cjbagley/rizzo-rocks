@@ -6,9 +6,6 @@ use App\Enums\GameCaptureType;
 use App\Models\Game;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GameCapture>
- */
 class GameCaptureFactory extends Factory
 {
     public function definition(): array
@@ -19,7 +16,7 @@ class GameCaptureFactory extends Factory
             'title' => fake()->name(),
             'game_id' => $game->id,
             'type' => fake()->randomElement(GameCaptureType::class)->value,
-            'href' => fake()->url(),
+            'filekey' => fake()->uuid(),
             'comments' => fake()->text(),
         ];
     }

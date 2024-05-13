@@ -7,7 +7,7 @@
 <Media item={video}>
     <video controls controlslist="nodownload" disablepictureinpicture="true" playsinline="false">
         Your browser does not support video :(
-        <source src="{video.href}" type="video/webm"/>
+        <source src="{video.url}" type="video/webm"/>
     </video>
 </Media>
 

@@ -10,11 +10,10 @@ class GameCaptureRequest extends FormRequest
 {
     public function rules(): array
     {
-
         return [
             'title' => ['required', 'string', 'max:255'],
             'type' => ['required', Rule::enum(GameCaptureType::class)],
-            'href' => ['required', 'url'],
+            'filekey' => ['required', 'string', 'max:255'],
             'comments' => ['nullable', 'string', 'max:255'],
         ];
     }

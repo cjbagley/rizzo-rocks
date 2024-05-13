@@ -18,7 +18,7 @@ class CacheCoverImages extends Command
 
     public function handle()
     {
-        $storage = Storage::disk('covers');
+        $storage = Storage::disk(Game::COVER_IMG_CACHE_DIR);
 
         foreach (Game::all() as $game) {
             $igdb_url = sprintf(self::IMG_SLUG, ImageSize::Cover_big->value, $game->igdb_cover_id);

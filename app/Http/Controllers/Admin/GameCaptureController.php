@@ -21,7 +21,7 @@ class GameCaptureController extends AuthController
         return [
             'title' => $helpers->firstNonEmpty([$capture?->title, old('title', request()->title)]),
             'comments' => $helpers->firstNonEmpty([$capture?->comments, old('comments', request()->comments)]),
-            'href' => $helpers->firstNonEmpty([$capture?->href, old('href', request()->href)]),
+            'filekey' => $helpers->firstNonEmpty([$capture?->filekey, old('filekey', request()->filekey)]),
             'type' => $helpers->firstNonEmpty([$capture?->type, old('type', request()->type)]),
             'types' => [
                 ['text' => GameCaptureType::Image->name, 'value' => GameCaptureType::Image->value],
