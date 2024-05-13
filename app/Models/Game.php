@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\GameCaptureType;
 use App\Enums\ImageSize;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,7 +27,7 @@ class Game extends Model
         'played_years',
         'comments',
         'cover',
-        'page_url',
+        'url',
         'igdb_url',
     ];
 
@@ -38,6 +39,18 @@ class Game extends Model
         'igdb_cover_id',
         'igdb_url',
     ];
+
+    protected $appends = ['cover', 'url'];
+
+    protected function cover(): Attribute
+    {
+        return new Attribute(fn () => $this->getCoverImageUrl());
+    }
+
+    protected function url(): Attribute
+    {
+        return new Attribute(fn () => $this->getPageUrl());
+    }
 
     public function captures(): HasMany
     {
@@ -68,12 +81,6 @@ class Game extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    public function addCalculatedFields()
-    {
-        $this->cover = $this->getCoverImageUrl();
-        $this->page_url = $this->getPageUrl();
     }
 
     public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_small, bool $retina = true): string

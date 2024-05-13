@@ -16,12 +16,7 @@ class AppController
 
     public function games(): InertiaResponse
     {
-        $games = Game::all();
-        foreach ($games as $game) {
-            $game->addCalculatedFields();
-        }
-
-        return Inertia::render('Games')->with('games', $games);
+        return Inertia::render('Games')->with('games', Game::all());
     }
 
     public function list(): InertiaResponse
@@ -31,8 +26,6 @@ class AppController
 
     public function game(Request $request, Game $game): InertiaResponse
     {
-        $game->addCalculatedFields();
-
         return Inertia::render('Game', [
             'game' => $game,
             'videos' => $game->videos,
