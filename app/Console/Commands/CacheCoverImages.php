@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\Disk;
 use App\Enums\ImageSize;
 use App\Models\Game;
 use Illuminate\Console\Command;
@@ -18,7 +19,7 @@ class CacheCoverImages extends Command
 
     public function handle()
     {
-        $storage = Storage::disk(Game::COVER_IMG_CACHE_DIR);
+        $storage = Storage::disk(Disk::Covers->value);
 
         foreach (Game::all() as $game) {
             $igdb_url = sprintf(self::IMG_SLUG, ImageSize::Cover_big->value, $game->igdb_cover_id);

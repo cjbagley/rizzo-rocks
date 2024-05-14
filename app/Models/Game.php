@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Disk;
 use App\Enums\GameCaptureType;
 use App\Enums\ImageSize;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,8 +18,6 @@ class Game extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-    const COVER_IMG_CACHE_DIR = 'covers';
 
     public $timesptamps = true;
 
@@ -86,8 +85,8 @@ class Game extends Model
     public function getCoverImageUrl(ImageSize $size = ImageSize::Cover_small, bool $retina = true): string
     {
         $fn = $this->getCoverImageFilename('.webp');
-        if (Storage::disk(self::COVER_IMG_CACHE_DIR)->exists($fn)) {
-            return Storage::disk(self::COVER_IMG_CACHE_DIR)->url($fn);
+        if (Storage::disk(Disk::Covers->value)->exists($fn)) {
+            return Storage::disk(Disk::Covers->value)->url($fn);
         }
 
         $slug = 'https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg';

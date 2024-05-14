@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Disk;
 use App\Enums\GameCaptureType;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,8 +19,8 @@ class GameCapture extends Model
 
     protected $visible = [
         'title',
-        'filekey',
         'url',
+        'thumb',
         'comments',
     ];
 
@@ -31,7 +32,7 @@ class GameCapture extends Model
         'comments',
     ];
 
-    protected $appends = ['url'];
+    protected $appends = ['url', 'thumb'];
 
     protected function url(): Attribute
     {
@@ -39,10 +40,22 @@ class GameCapture extends Model
             $value = $attrs['filekey'];
 
             return match ($attrs['type']) {
-                GameCaptureType::Image->value => Storage::disk('images')->url($value.'.webp'),
-                GameCaptureType::Video->value => Storage::disk('videos')->url($value.'.webm'),
+                GameCaptureType::Image->value => Storage::disk(Disk::Image->value)->url($value.'.webp'),
+                GameCaptureType::Video->value => Storage::disk(Disk::Video->value)->url($value.'.webm'),
                 default => '#',
             };
+        });
+    }
+
+    protected function thumb(): Attribute
+    {
+        return Attribute::make(get: function (mixed $value, array $attrs) {
+            $file = $attrs['filekey'].'.webp';
+            if (! Storage::disk(Disk::Thumbs->value)->exists($file)) {
+                return $this->url;
+            }
+
+            return Storage::disk(Disk::Thumbs->value)->url($file);
         });
     }
 }
