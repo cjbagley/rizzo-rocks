@@ -17,13 +17,6 @@
         border-radius: 6px;
         overflow: hidden;
         width: 100%;
-        padding: 0 30px;
-    }
-
-    @media (width >= 640px) {
-        a {
-            padding: 0;
-        }
     }
 
     a:hover {

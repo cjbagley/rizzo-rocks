@@ -20,7 +20,7 @@ a {
     text-decoration: solid #1e3a8a;
 }
 
-.dark-theme a {
+.dark-theme a:not(game-font) {
     color: #6a91ff;
     text-decoration: solid #6a91ff;
 }
@@ -59,12 +59,3 @@ a {
     margin: 0 auto;
 }
 
-@media (width >= 800px) {
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(500px, 2fr));
-        gap: 1rem;
-        margin: 0 auto;
-        max-width: 1280px;
-    }
-}

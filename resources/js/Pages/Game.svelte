@@ -35,9 +35,7 @@
         {#each videos as video}
             <Video {video}/>
         {/each}
-    </div>
 
-    <div class="grid">
         {#each images as image}
             <Image {image}/>
         {/each}
@@ -76,6 +74,30 @@
     @media (width >= 1024px) {
         .game-container {
             grid-template-columns: 1fr 4fr;
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        margin: 0 12px;
+        gap: 24px;
+        max-width: 1280px;
+    }
+
+    .grid :global(.card) {
+        margin: 0;
+    }
+
+    @media (width >= 800px) {
+        .grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (width >= 1200px) {
+        .grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
 </style>

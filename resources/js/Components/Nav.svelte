@@ -46,7 +46,6 @@
 <style>
     nav {
         background-color: #7f1d1d;
-        margin-bottom: 30px;
     }
 
     #desktop-menu {

@@ -2,13 +2,20 @@
     import Nav from "../Components/Nav.svelte";
 </script>
 
-
-<div class="background">
+<div class="background flex-column">
     <Nav/>
-    <slot/>
+    <main class="flex-column">
+        <slot/>
+    </main>
 </div>
 
 <style>
+    main {
+        height: 100%;
+        row-gap: 30px;
+        align-items: center;
+    }
+
     .background {
         background-color: #fff;
 
@@ -18,6 +25,7 @@
         linear-gradient(to bottom, silver 1px, transparent 1px);
         color: #000;
         min-height: 100%;
+        row-gap: 30px;
     }
 
     :global(.dark-theme) .background {

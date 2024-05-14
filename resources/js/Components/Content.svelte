@@ -4,22 +4,16 @@
     export let header = "";
 </script>
 
-<div>
-    {#if header}
-        <div class="card card-header">
-            <Header {header}/>
-        </div>
-    {/if}
-    <div class="card card-body">
-        <slot/>
+{#if header}
+    <div class="card card-header">
+        <Header {header}/>
     </div>
+{/if}
+<div class="card card-body">
+    <slot/>
 </div>
 
 <style>
-    main {
-        padding-top: 30px;
-    }
-
     .card {
         background-color: #fff;
         border: 2px solid #000;
@@ -32,8 +26,9 @@
 
     @media (width >= 1280px) {
         .card {
-            margin-right: auto;
             margin-left: auto;
+            margin-right: auto;
+            width: 100%;
         }
     }
 
@@ -50,7 +45,6 @@
     .card-body {
         font-size: 24px;
         line-height: 24px;
-        margin-top: 30px;
         padding: 24px;
     }
 </style>

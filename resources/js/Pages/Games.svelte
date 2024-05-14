@@ -2,6 +2,7 @@
     import Layout from "../Layouts/Layout.svelte";
     import Content from "../Components/Content.svelte";
     import GameLink from "../Components/GameLink.svelte";
+
     export let games;
 </script>
 
@@ -13,7 +14,7 @@
     <Content header="Browse Games">
         <div class="games-wrapper">
             {#each games as game}
-                <GameLink {game} />
+                <GameLink {game}/>
             {/each}
         </div>
     </Content>
@@ -25,17 +26,26 @@
         grid-template-columns: repeat(1, minmax(0, 1fr));
         gap: 24px;
     }
-    @media (width >= 500px) {
+
+    @media (width >= 550px) {
         .games-wrapper {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     }
-    @media (width >= 640px) {
+
+    @media (width >= 780px) {
         .games-wrapper {
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
-    @media (width >= 1024px) {
+
+    @media (width >= 980px) {
+        .games-wrapper {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    @media (width >= 1280px) {
         .games-wrapper {
             grid-template-columns: repeat(5, minmax(0, 1fr));
         }
