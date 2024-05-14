@@ -5,11 +5,11 @@
 </script>
 
 <Content>
-    <div class="wrapper">
+    <div class="wrapper flex-column">
         <header>
             <h2 class="game-font">{item.title}</h2>
         </header>
-        <slot />
+        <slot/>
         <p>{item.comments}</p>
     </div>
 </Content>
@@ -24,9 +24,6 @@
     }
 
     .wrapper {
-        display: flex;
-        flex-direction: column;
         row-gap: 20px;
     }
-
 </style>

@@ -19,7 +19,7 @@
             <div class="game-image-wrapper">
                 <img width="200" src={game.cover} alt={game.title}/>
             </div>
-            <div class="game-details-wrapper">
+            <div class="game-details-wrapper flex-column">
                 <div class="game-details">
                     <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
                     <p>{game.comments}</p>
@@ -62,8 +62,6 @@
     }
 
     .game-details {
-        display: flex;
-        flex-direction: column;
         gap: 10px;
     }
 

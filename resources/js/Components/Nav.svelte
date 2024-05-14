@@ -14,8 +14,8 @@
 </script>
 
 <nav>
-    <div id="desktop-menu">
-        <div class="desktop-links-wrapper">
+    <div id="desktop-menu" class="flex-row">
+        <div class="desktop-links-wrapper flex-row">
             <NavSiteLogo/>
             <div class="desktop-links">
                 {#each navLinks as link}
@@ -53,7 +53,6 @@
         margin-left: 12px;
         margin-right: 12px;
         max-width: 1280px;
-        display: flex;
         align-items: center;
         justify-content: space-between;
     }
@@ -75,7 +74,6 @@
     }
 
     .desktop-links-wrapper {
-        display: flex;
         align-items: center;
         min-width: 76px; /* Same width as right-hand btn containers */;
     }
