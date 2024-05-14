@@ -17,10 +17,10 @@
     <Content header={game.title}>
         <div class="game-container">
             <div class="game-image-wrapper">
-                <img width="200" src={game.cover} alt={game.title}/>
+                <img width="240" height="300" src={game.cover} alt={game.title}/>
             </div>
             <div class="game-details-wrapper flex-column">
-                <div class="game-details">
+                <div class="game-details flex-column">
                     <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
                     <p>{game.comments}</p>
                 </div>
@@ -46,7 +46,7 @@
     .game-container {
         display: grid;
         grid-template-columns: 1fr;
-        row-gap: 20px;
+        gap: 20px;
     }
 
     .game-image-wrapper {
@@ -57,6 +57,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 20px;
     }
 
     .game-details {
