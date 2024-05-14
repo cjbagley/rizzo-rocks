@@ -85,6 +85,7 @@
     button {
         background: none;
         border: none;
+        display: flex;
     }
 
     .light-mode-icon {

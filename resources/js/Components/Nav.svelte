@@ -49,11 +49,10 @@
     }
 
     #desktop-menu {
-        margin-left: 12px;
-        margin-right: 12px;
         max-width: 1280px;
         align-items: center;
         justify-content: space-between;
+        padding: 0 30px;
     }
 
     #desktop-menu > div {

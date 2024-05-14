@@ -18,17 +18,15 @@
         background-color: #fff;
         border: 2px solid #000;
         border-radius: 8px;
-        margin-left: 12px;
-        margin-right: 12px;
         max-width: 1280px;
         height: 100%;
+        width: 100%;
     }
 
     @media (width >= 1280px) {
         .card {
             margin-left: auto;
             margin-right: auto;
-            width: 100%;
         }
     }
 

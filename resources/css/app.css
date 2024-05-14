@@ -20,7 +20,7 @@ a {
     text-decoration: solid #1e3a8a;
 }
 
-.dark-theme a:not(game-font) {
+.dark-theme a:not(.game-font) {
     color: #6a91ff;
     text-decoration: solid #6a91ff;
 }

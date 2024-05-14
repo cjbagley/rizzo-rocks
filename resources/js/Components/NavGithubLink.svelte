@@ -18,6 +18,7 @@
 
 <style>
     a {
+        display: flex;
         color: #fff;
         position: relative;
         cursor: pointer;

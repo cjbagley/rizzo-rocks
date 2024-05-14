@@ -81,7 +81,6 @@
     .grid {
         display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));
-        margin: 0 12px;
         gap: 24px;
         max-width: 1280px;
     }

@@ -12,8 +12,9 @@
 <style>
     main {
         height: 100%;
-        row-gap: 30px;
+        gap: 30px;
         align-items: center;
+        padding: 0 30px 30px;
     }
 
     .background {
@@ -25,7 +26,7 @@
         linear-gradient(to bottom, silver 1px, transparent 1px);
         color: #000;
         min-height: 100%;
-        row-gap: 30px;
+        gap: 30px;
     }
 
     :global(.dark-theme) .background {
