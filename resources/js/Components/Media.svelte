@@ -6,10 +6,10 @@
 
 <Content>
     <div class="wrapper flex-column">
+        <slot/>
         <header>
             <h2 class="game-font">{item.title}</h2>
         </header>
-        <slot/>
         <p>{item.comments}</p>
     </div>
 </Content>
