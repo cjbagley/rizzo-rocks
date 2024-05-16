@@ -33,7 +33,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        $code = $e->getStatusCode();
+        $code = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 404;
 
         if ($code === 404) {
             $image = Storage::disk(Disk::Image->value)->url('829733c8-7571-45a1-85ec-992bf53fdd8b.webp');
