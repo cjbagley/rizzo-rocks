@@ -28,6 +28,7 @@ class GameCaptureController extends AuthController
                 ['text' => GameCaptureType::Video->name, 'value' => GameCaptureType::Video->value],
             ],
             'is_update' => $is_update,
+            'header' => $is_update ? __('app.capture.edit') : __('app.capture.create'),
             'form_route' => $is_update ? route('captures.update', ['game' => $game, 'capture' => $capture]) : route('captures.store', $game),
         ];
     }

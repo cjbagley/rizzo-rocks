@@ -25,6 +25,7 @@ class GameController extends AuthController
         return [
             'id' => $helpers->firstNonEmpty([$game?->id]),
             'title' => $helpers->firstNonEmpty([$game?->title, old('title', request()->title)]),
+            'header' => $is_update ? __('app.game.edit') : __('app.game.create'),
             'igdb_id' => $helpers->firstNonEmpty([$game?->igdb_id, old('igdb_id', request()->igdb_id)]),
             'igdb_cover_id' => $helpers->firstNonEmpty([$game?->igdb_cover_id, old('igdb_cover_id', request()->igdb_cover_id)]),
             'igdb_url' => $helpers->firstNonEmpty([$game?->igdb_url, old('igdb_url', request()->igdb_url)]),

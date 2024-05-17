@@ -2,16 +2,19 @@
     <div class="admin-nav">
         <div class="nav-container">
             <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('app.dashboard.name') }}
             </x-nav-link>
             <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                {{ __('Profile') }}
+                {{ __('app.profile') }}
             </x-nav-link>
             <x-nav-link :href="route('lookup.form')" :active="request()->routeIs('lookup.form')">
-                {{ __('IGDB Lookup') }}
+                {{ __('app.igdb_lookup') }}
             </x-nav-link>
             <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
-                {{ __('Games') }}
+                {{ __('app.games') }}
+            </x-nav-link>
+            <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
+                {{ __('app.tags') }}
             </x-nav-link>
         </div>
 
@@ -23,7 +26,7 @@
 
                 <a href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                    {{ __('Log Out') }}
+                    {{ __('app.logout') }}
                 </a>
             </form>
         </div>
