@@ -12,6 +12,7 @@ return [
     'capture' => [
         'create' => 'Add Capture',
         'edit' => 'Edit Capture',
+        'name' => 'Captures',
     ],
     'dashboard' => [
         'index' => 'Welcome - you are now logged in',
@@ -20,5 +21,14 @@ return [
     'game' => [
         'create' => 'Add Game',
         'edit' => 'Edit Game',
+        'empty' => 'No games added yet!',
+        'index' => 'Add, edit and delete games and game captures',
+        'info' => 'More info',
+    ],
+    'tag' => [
+        'create' => 'Add Tag',
+        'edit' => 'Edit Tag',
+        'empty' => 'No tags added yet!',
+        'index' => 'Add, edit and delete tags',
     ],
 ];
