@@ -6,7 +6,6 @@ use App\Helpers\Helpers;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\TagRequest;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -14,14 +13,12 @@ class TagController extends AuthController
 {
     private const INDEX_ROUTE = 'tags.index';
 
-    final protected const HEADER = ['header' => 'Tags'];
-
     public function index()
     {
-        return view('admin.tags.index')->with('tags', Tag::all())->with(self::HEADER);
+        return view('admin.tags.index')->with('tags', Tag::all())->with(['header' => 'Tags']);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.tags.form', $this->getFormData());
     }
@@ -47,6 +44,7 @@ class TagController extends AuthController
         $tag = new Tag();
         $tag->fill($request->validated());
         $tag->save();
+
         Session::flash('success', sprintf('%s added', $tag->tag));
 
         return Redirect::to(route(self::INDEX_ROUTE));
@@ -61,6 +59,7 @@ class TagController extends AuthController
     {
         $tag->fill($request->validated());
         $tag->save();
+
         Session::flash('success', sprintf('%s added', $tag->tag));
 
         return Redirect::to(route(self::INDEX_ROUTE));

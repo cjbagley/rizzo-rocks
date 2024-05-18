@@ -57,7 +57,7 @@ function create_test_game(array $attrs = []): Game
     return Game::factory()->create($attrs);
 }
 
-function create_test_tag(array $attrs = []): Game
+function create_test_tag(array $attrs = []): Tag
 {
     return Tag::factory()->create($attrs);
 }
