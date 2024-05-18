@@ -12,6 +12,7 @@
 */
 
 use App\Models\Game;
+use App\Models\Tag;
 use App\Models\User;
 
 uses(
@@ -54,4 +55,9 @@ function create_test_user(array $attrs = []): User
 function create_test_game(array $attrs = []): Game
 {
     return Game::factory()->create($attrs);
+}
+
+function create_test_tag(array $attrs = []): Game
+{
+    return Tag::factory()->create($attrs);
 }

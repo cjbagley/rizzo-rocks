@@ -13,7 +13,7 @@
             <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
                 {{ __('app.games') }}
             </x-nav-link>
-            <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
+            <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
                 {{ __('app.tags') }}
             </x-nav-link>
         </div>

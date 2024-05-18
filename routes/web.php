@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\GameCaptureController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\LookupController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/lookup', [LookupController::class, 'search'])->name('lookup.search');
 
     Route::resource('games', GameController::class)->except(['show']);
+    Route::resource('tags', TagController::class)->except(['show']);
     Route::resource('games/{game}/captures', GameCaptureController::class)->except(['show']);
 });
 

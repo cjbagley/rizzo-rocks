@@ -2,7 +2,8 @@
 
 return [
     'add' => 'Add',
-    'edit' => 'Edit',
-    'delete' => 'Delete',
     'cancel' => 'Cancel',
+    'delete' => 'Delete',
+    'edit' => 'Edit',
+    'save' => 'Save',
 ];
