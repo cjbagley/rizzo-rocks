@@ -33,6 +33,10 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+        if (\App::environment('development')) {
+            return parent::render($request, $e);
+        }
+
         $code = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 404;
 
         if ($code === 404) {
