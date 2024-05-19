@@ -14,6 +14,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+/**
+ * @property string $cover
+ * @property string $url
+ */
 class Game extends Model
 {
     use HasFactory;

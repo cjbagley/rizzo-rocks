@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @property string $thumb
+ * @property string $url
+ */
 class GameCapture extends Model
 {
     use HasFactory;
@@ -32,7 +36,7 @@ class GameCapture extends Model
         'comments',
     ];
 
-    protected $appends = ['url', 'thumb'];
+    protected $appends = ['thumb', 'url'];
 
     protected function url(): Attribute
     {

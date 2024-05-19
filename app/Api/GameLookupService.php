@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Log;
 
 class GameLookupService
 {
-    private $access_token = '';
+    private string $access_token;
 
-    private $body_request = 'fields *, platforms.*, cover.*; limit 50;';
+    private string $body_request = 'fields *, platforms.*, cover.*; limit 50;';
 
     final protected const CACHE_KEY = 'game_lookup_acccess_token';
 
@@ -52,7 +52,7 @@ class GameLookupService
             Log::error(sprintf('Error optaining key: %s', $exception->getMessage()));
         }
 
-        return $this->access_token ?? '';
+        return $this->access_token;
     }
 
     private function apiRequest(string $endpoint, string $body): array

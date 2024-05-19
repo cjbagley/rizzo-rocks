@@ -11,7 +11,7 @@ use Spatie\Image\Image;
 
 class CacheCoverImages extends Command
 {
-    const IMG_SLUG = 'https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg';
+    public const IMG_SLUG = 'https://images.igdb.com/igdb/image/upload/t_%s/%s.jpg';
 
     protected $signature = 'app:cache-cover-images';
 
