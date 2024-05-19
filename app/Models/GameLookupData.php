@@ -25,11 +25,8 @@ class GameLookupData
 
     public string $cover_image_id;
 
-    public array $raw_data;
-
-    public function __construct(array $raw_data)
+    public function __construct(public array $raw_data)
     {
-        $this->raw_data = $raw_data;
         $this->id = Arr::get($this->raw_data, 'id', '-');
         $this->name = Arr::get($this->raw_data, 'name', '-');
         $this->cover_url_slug = $this->getCoverUrlSlug();

@@ -15,7 +15,6 @@ use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->paths([
-        __DIR__.'/api',
         __DIR__.'/app',
         __DIR__.'/config',
         __DIR__.'/public',
@@ -38,10 +37,10 @@ return static function (RectorConfig $rectorConfig): void {
 
     //define sets of rules
     $rectorConfig->sets([
-        // LevelSetList::UP_TO_PHP_81,
+        LevelSetList::UP_TO_PHP_83,
         // SetList::CODE_QUALITY,
         // SetList::CODING_STYLE,
         // SetList::DEAD_CODE,
-        SetList::EARLY_RETURN,
+        //SetList::EARLY_RETURN,
     ]);
 };
