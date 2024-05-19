@@ -11,9 +11,11 @@
 
         @forelse($tags as $tag)
             <x-admin-card>
-                <div class="game-info-wrapper">
-                    <div class="game-info-details">
+                <div class="game-info-wrapper" style="background-color: {{ $tag->colour }}">
+                    <div class="game-info-details"
+                         style="justify-content: space-between; width: 100%; flex-direction: row">
                         <h3>{{ $tag->tag }}</h3>
+                        <p>{{ $tag->is_sensitive ? 'sensitive' : 'not sensitive' }}</p>
                     </div>
                 </div>
                 <div class="btn-container">
