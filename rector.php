@@ -37,10 +37,10 @@ return static function (RectorConfig $rectorConfig): void {
 
     //define sets of rules
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_83,
-        // SetList::CODE_QUALITY,
-        // SetList::CODING_STYLE,
-        // SetList::DEAD_CODE,
-        //SetList::EARLY_RETURN,
+        //LevelSetList::UP_TO_PHP_83,
+        SetList::CODE_QUALITY,
+        SetList::CODING_STYLE,
+        SetList::DEAD_CODE,
+        SetList::EARLY_RETURN,
     ]);
 };

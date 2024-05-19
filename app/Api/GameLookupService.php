@@ -70,6 +70,7 @@ class GameLookupService
             if (defined('DEBUG_ERRORS')) {
                 throw new Exception($exception->getMessage(), $exception->getCode(), $exception);
             }
+
             throw new Exception(self::GENERIC_ERROR_MSG, $exception->getCode(), $exception);
         }
 

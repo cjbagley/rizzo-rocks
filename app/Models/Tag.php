@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tag extends Model
 {
-    use HasFactory, SoftDeletes;
-
+    use HasFactory;
+    use SoftDeletes;
     public $timestamps = true;
 
     protected $visible = [
