@@ -35,14 +35,14 @@ class Handler extends ExceptionHandler
     {
         $code = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 404;
 
+        if (\App::environment('development')) {
+            return parent::render($request, $e);
+        }
+
         if ($code === 404) {
             $image = Storage::disk(Disk::Image->value)->url('829733c8-7571-45a1-85ec-992bf53fdd8b.webp');
 
             return Inertia::render('404', ['code' => $code, 'image' => $image]);
-        }
-
-        if (\App::environment('development')) {
-            return parent::render($request, $e);
         }
 
         $image = Storage::disk(Disk::Image->value)->url('0c606f65-f035-42ab-81a1-388a9811b99f.webp');
