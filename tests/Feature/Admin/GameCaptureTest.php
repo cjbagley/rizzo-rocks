@@ -2,6 +2,7 @@
 
 use App\Models\Game;
 use App\Models\GameCapture;
+use App\Models\Tag;
 
 function getCaptureUrl(Game $game, string $append = ''): string
 {
@@ -19,6 +20,7 @@ test('capture index page is displayed', function () {
 
 test('capture can be added', function () {
     $game = create_test_game();
+    $tags = Tag::factory()->count(5)->create();
     $capture = GameCapture::factory()->make();
 
     $this
@@ -28,6 +30,7 @@ test('capture can be added', function () {
             'type' => $capture->type,
             'filekey' => $capture->filekey,
             'comments' => $capture->comments,
+            'tags' => $tags->random(2)->pluck('id')->toArray(),
         ])
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));
@@ -37,10 +40,12 @@ test('capture can be added', function () {
     expect($capture->type)->toBe($saved_capture->type);
     expect($capture->filekey)->toBe($saved_capture->filekey);
     expect($capture->comments)->toBe($saved_capture->comments);
+    expect($saved_capture->tags->count())->toBe(2);
 });
 
 test('capture can be edited', function () {
     $game = create_test_game();
+    $tags = Tag::factory()->count(5)->create();
     $capture = GameCapture::factory()->create();
     $updated_capture = clone $capture;
     $updated_capture->title = fake()->name();
@@ -52,6 +57,7 @@ test('capture can be edited', function () {
             'type' => $capture->type,
             'filekey' => $capture->filekey,
             'comments' => $capture->comments,
+            'tags' => $tags->random(3)->pluck('id')->toArray(),
         ])
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));
@@ -62,6 +68,7 @@ test('capture can be edited', function () {
     expect($updated_capture->filekey)->toBe($capture->filekey);
     expect($updated_capture->comments)->toBe($capture->comments);
     expect($updated_capture->type)->toBe($capture->type);
+    expect($capture->tags->count())->toBe(3);
 });
 
 test('capture can be deleted', function () {

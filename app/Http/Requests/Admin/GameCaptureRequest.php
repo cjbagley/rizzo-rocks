@@ -15,6 +15,7 @@ class GameCaptureRequest extends FormRequest
             'type' => ['required', Rule::enum(GameCaptureType::class)],
             'filekey' => ['required', 'string', 'max:255'],
             'comments' => ['nullable', 'string', 'max:255'],
+            'tags' => ['nullable'],
         ];
     }
 }

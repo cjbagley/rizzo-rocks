@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests\Admin\GameCaptureRequest;
 use App\Models\Game;
 use App\Models\GameCapture;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -17,11 +18,19 @@ class GameCaptureController extends AuthController
     {
         $helpers = new Helpers();
         $is_update = $capture instanceof \App\Models\GameCapture && $capture->exists;
+        $tags = [];
+        foreach (Tag::all() as $tag) {
+            $tags[$tag->id] = ['text' => $tag->tag, 'value' => $tag->id];
+        }
+
+        $tags_selected = $capture ? $capture->tags->pluck('id')->toArray() : [];
 
         return [
             'title' => $helpers->firstNonEmpty([$capture?->title, old('title', request()->title)]),
             'comments' => $helpers->firstNonEmpty([$capture?->comments, old('comments', request()->comments)]),
             'filekey' => $helpers->firstNonEmpty([$capture?->filekey, old('filekey', request()->filekey)]),
+            'tags_selected' => $helpers->firstNonEmpty([$tags_selected, old('tags', request()->tags)]),
+            'tags' => $tags,
             'type' => $helpers->firstNonEmpty([$capture?->type, old('type', request()->type)]),
             'types' => [
                 ['text' => GameCaptureType::Image->name, 'value' => GameCaptureType::Image->value],
@@ -51,6 +60,8 @@ class GameCaptureController extends AuthController
         $capture->game_id = $game->id;
         $capture->save();
 
+        $capture->tags()->sync($request->tags);
+
         Session::flash('success', sprintf('%s added', $capture->title));
 
         return Redirect::to(route('captures.index', $game));
@@ -65,6 +76,8 @@ class GameCaptureController extends AuthController
     {
         $capture->fill($request->validated());
         $capture->save();
+        $capture->tags()->sync($request->tags);
+
         Session::flash('success', sprintf('%s added', $capture->title));
 
         return Redirect::to(route('captures.index', $game));

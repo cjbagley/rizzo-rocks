@@ -29,6 +29,12 @@
             <x-input-error :messages="$errors->get('comments')"/>
         </div>
 
+        <div>
+            <x-input-label for="tags" :value="__('Tags')"/>
+            <x-multi-select :options="$tags" :selected="$tags_selected" class="select" name="tags"/>
+            <x-input-error :messages="$errors->get('tags')"/>
+        </div>
+
         <div class="btn-container">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
         </div>
