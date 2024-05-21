@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class GameLookupService
 {
-    private string $access_token;
+    private ?string $access_token;
 
     private string $body_request = 'fields *, platforms.*, cover.*; limit 50;';
 
