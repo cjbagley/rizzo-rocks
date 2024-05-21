@@ -22,6 +22,7 @@ test('capture can be added', function () {
     $game = create_test_game();
     $tags = Tag::factory()->count(5)->create();
     $capture = GameCapture::factory()->make();
+    $selected_tags = $tags->random(2)->pluck('id')->toArray();
 
     $this
         ->actingAs(create_test_user())
@@ -30,7 +31,7 @@ test('capture can be added', function () {
             'type' => $capture->type,
             'filekey' => $capture->filekey,
             'comments' => $capture->comments,
-            'tags' => $tags->random(2)->pluck('id')->toArray(),
+            'tags' => $selected_tags,
         ])
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));
@@ -41,6 +42,9 @@ test('capture can be added', function () {
     expect($capture->filekey)->toBe($saved_capture->filekey);
     expect($capture->comments)->toBe($saved_capture->comments);
     expect($saved_capture->tags->count())->toBe(2);
+    foreach ($saved_capture->tags as $tag) {
+        expect($tag->id)->toBeIn($selected_tags);
+    }
 });
 
 test('capture can be edited', function () {
@@ -49,6 +53,7 @@ test('capture can be edited', function () {
     $capture = GameCapture::factory()->create();
     $updated_capture = clone $capture;
     $updated_capture->title = fake()->name();
+    $selected_tags = $tags->random(3)->pluck('id')->toArray();
 
     $this
         ->actingAs(create_test_user())
@@ -57,7 +62,7 @@ test('capture can be edited', function () {
             'type' => $capture->type,
             'filekey' => $capture->filekey,
             'comments' => $capture->comments,
-            'tags' => $tags->random(3)->pluck('id')->toArray(),
+            'tags' => $selected_tags,
         ])
         ->assertSessionHasNoErrors()
         ->assertRedirect(getCaptureUrl($game));
@@ -69,6 +74,9 @@ test('capture can be edited', function () {
     expect($updated_capture->comments)->toBe($capture->comments);
     expect($updated_capture->type)->toBe($capture->type);
     expect($capture->tags->count())->toBe(3);
+    foreach ($capture->tags as $tag) {
+        expect($tag->id)->toBeIn($selected_tags);
+    }
 });
 
 test('capture can be deleted', function () {
