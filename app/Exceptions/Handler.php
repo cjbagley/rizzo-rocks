@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App;
 use App\Enums\Disk;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,7 @@ class Handler extends ExceptionHandler
     {
         $code = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 404;
 
-        if (\App::environment('development')) {
+        if (in_array(App::environment(), ['development', 'testing'], true)) {
             return parent::render($request, $e);
         }
 
