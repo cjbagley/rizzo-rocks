@@ -67,7 +67,7 @@
     });
 </script>
 
-<Media item={image}>
+<Media item={image} tags={image.tags ? image.tags : undefined}>
     <button class="image" aria-label="fullscreen image" data-alt="{image.title}" data-img="{image.url}"
             on:click|preventDefault={showOverlay}>
         <img height="200" src="{image.thumb}" alt="{image.title}" data-img="{image.url}"/>

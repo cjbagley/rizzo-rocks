@@ -31,15 +31,21 @@
         </div>
     </Content>
 
-    <div class="grid">
-        {#each videos as video}
-            <Video {video}/>
-        {/each}
+    {#if (videos || images) }
+        <div class="grid">
+            {#if (videos) }
+                {#each videos as video}
+                    <Video {video}/>
+                {/each}
+            {/if}
 
-        {#each images as image}
-            <Image {image}/>
-        {/each}
-    </div>
+            {#if (images) }
+                {#each images as image}
+                    <Image {image}/>
+                {/each}
+            {/if}
+        </div>
+    {/if}
 </Layout>
 
 <style>

@@ -30,6 +30,7 @@ class AppController
             'game' => $game,
             'videos' => $game->videos,
             'images' => $game->images,
+            'tags' => $game->tags,
         ]);
     }
 }

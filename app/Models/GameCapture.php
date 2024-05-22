@@ -27,6 +27,7 @@ class GameCapture extends Model
         'url',
         'thumb',
         'comments',
+        'tags',
     ];
 
     protected $fillable = [
@@ -36,6 +37,8 @@ class GameCapture extends Model
         'filekey',
         'comments',
     ];
+
+    protected $with = ['tags'];
 
     protected $appends = ['thumb', 'url'];
 

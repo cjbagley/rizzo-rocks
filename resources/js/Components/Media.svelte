@@ -1,7 +1,9 @@
 <script>
     import Content from "../Components/Content.svelte";
+    import Tags from "@/Components/Tags.svelte";
 
     export let item;
+    export let tags;
 </script>
 
 <Content>
@@ -11,6 +13,9 @@
             <h2 class="game-font">{item.title}</h2>
         </header>
         <p>{item.comments}</p>
+        {#if (tags) }
+            <Tags tags="{tags}"/>
+        {/if}
     </div>
 </Content>
 
