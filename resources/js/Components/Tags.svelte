@@ -3,7 +3,7 @@
 </script>
 
 
-<div>
+<div class="tag-wrapper">
     {#each tags as tag}
         <span style="background-color: {tag.colour}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -17,9 +17,11 @@
 </div>
 
 <style>
-    div {
+    .tag-wrapper {
         display: flex;
         gap: 10px;
+        flex-wrap: wrap;
+        margin-top: auto;
     }
 
     span {
@@ -32,5 +34,6 @@
         font-size: 18px;
         line-height: 18px;
         font-weight: 500;
+        flex-wrap: wrap;
     }
 </style>

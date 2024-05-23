@@ -30,5 +30,6 @@
 
     .wrapper {
         row-gap: 20px;
+        height: 100%;
     }
 </style>
