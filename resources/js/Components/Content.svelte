@@ -23,13 +23,6 @@
         width: 100%;
     }
 
-    @media (width >= 1280px) {
-        .card {
-            margin-left: auto;
-            margin-right: auto;
-        }
-    }
-
     :global(.dark-theme) .card {
         background-color: #000;
         border-color: #a1a1aa;

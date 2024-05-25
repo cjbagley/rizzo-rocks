@@ -25,7 +25,8 @@
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 26px;
+        font-weight: normal;
     }
 
     .wrapper {
