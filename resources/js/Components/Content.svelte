@@ -9,7 +9,7 @@
         <Header {header}/>
     </div>
 {/if}
-<div class="card card-body">
+<div class="card card-body flex-column">
     <slot/>
 </div>
 
@@ -37,5 +37,6 @@
         font-size: 24px;
         line-height: 24px;
         padding: 24px;
+        row-gap: 20px;
     }
 </style>
