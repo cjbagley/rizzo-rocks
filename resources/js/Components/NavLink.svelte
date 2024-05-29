@@ -1,7 +1,7 @@
 <script>
     import {Link} from "@inertiajs/svelte";
 
-    export let href = "";
+    export let href;
 </script>
 
 <Link {href} class="desktop-nav-link" aria-current="page">

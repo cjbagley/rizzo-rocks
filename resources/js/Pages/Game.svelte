@@ -1,5 +1,4 @@
 <script>
-    import Layout from "../Layouts/Layout.svelte";
     import Content from "../Components/Content.svelte";
     import Video from "../Components/Video.svelte";
     import Image from "../Components/Image.svelte";
@@ -13,40 +12,38 @@
     <title>{game.title}</title>
 </svelte:head>
 
-<Layout>
-    <Content header={game.title}>
-        <div class="game-container">
-            <div class="game-image-wrapper">
-                <img width="240" height="300" src={game.cover} alt={game.title}/>
-            </div>
-            <div class="game-details-wrapper flex-column">
-                <div class="game-details flex-column">
-                    <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
-                    <p>{game.comments}</p>
-                </div>
-                <p>
-                    <a href={game.igdb_url}>{game.igdb_url}</a>
-                </p>
-            </div>
+<Content header={game.title}>
+    <div class="game-container">
+        <div class="game-image-wrapper">
+            <img width="240" height="300" src={game.cover} alt={game.title}/>
         </div>
-    </Content>
-
-    {#if (videos || images) }
-        <div class="grid">
-            {#if (videos) }
-                {#each videos as video}
-                    <Video {video}/>
-                {/each}
-            {/if}
-
-            {#if (images) }
-                {#each images as image}
-                    <Image {image}/>
-                {/each}
-            {/if}
+        <div class="game-details-wrapper flex-column">
+            <div class="game-details flex-column">
+                <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
+                <p>{game.comments}</p>
+            </div>
+            <p>
+                <a target="_new" rel="noreferrer" href={game.igdb_url}>{game.igdb_url}</a>
+            </p>
         </div>
-    {/if}
-</Layout>
+    </div>
+</Content>
+
+{#if (videos || images) }
+    <div class="grid">
+        {#if (videos) }
+            {#each videos as video}
+                <Video {video}/>
+            {/each}
+        {/if}
+
+        {#if (images) }
+            {#each images as image}
+                <Image {image}/>
+            {/each}
+        {/if}
+    </div>
+{/if}
 
 <style>
     .game-container {

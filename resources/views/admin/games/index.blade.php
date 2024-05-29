@@ -19,7 +19,9 @@
                         <h3>{{ $game->title }}</h3>
                         <p>{{ $game->comments }}</p>
                         @if(!empty($game->url))
-                            <small><a href="{{ $game->info_url }}">{{__('app.game.info')}}</a></small>
+                            <small><a
+                                    target="_new" rel="noreferrer"
+                                    href="{{ $game->info_url }}">{{__('app.game.info')}}</a></small>
                         @endif
                     </div>
                 </div>

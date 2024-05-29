@@ -1,21 +1,21 @@
 <nav x-data="{ open: false }">
     <div class="admin-nav">
         <div class="nav-container">
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-admin-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('app.dashboard.name') }}
-            </x-nav-link>
-            <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                 {{ __('app.profile') }}
-            </x-nav-link>
-            <x-nav-link :href="route('lookup.form')" :active="request()->routeIs('lookup.form')">
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('lookup.form')" :active="request()->routeIs('lookup.form')">
                 {{ __('app.igdb_lookup') }}
-            </x-nav-link>
-            <x-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('games.index')" :active="request()->routeIs('games.index')">
                 {{ __('app.games') }}
-            </x-nav-link>
-            <x-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('tags.index')" :active="request()->routeIs('tags.index')">
                 {{ __('app.tags') }}
-            </x-nav-link>
+            </x-admin-nav-link>
         </div>
 
         <div class="profile-container">

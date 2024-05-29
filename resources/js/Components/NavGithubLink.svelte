@@ -1,6 +1,7 @@
 <a
     class="github"
     tabindex="0"
+    target="_new" rel="noreferrer"
     href="https://github.com/cjbagley/rizzo-rocks"
 >
     <svg

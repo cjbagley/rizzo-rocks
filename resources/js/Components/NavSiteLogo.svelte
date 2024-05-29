@@ -1,5 +1,9 @@
+<script>
+    import {Link} from "@inertiajs/svelte";
+</script>
+
 <div>
-    <a href="/" class="game-font">RR</a>
+    <Link href="/" class="game-font">RR</Link>
 </div>
 
 <style>

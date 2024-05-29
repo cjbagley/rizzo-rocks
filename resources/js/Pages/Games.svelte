@@ -1,5 +1,4 @@
 <script>
-    import Layout from "../Layouts/Layout.svelte";
     import Content from "../Components/Content.svelte";
     import GameLink from "../Components/GameLink.svelte";
 
@@ -10,15 +9,13 @@
     <title>Browse Games</title>
 </svelte:head>
 
-<Layout>
-    <Content header="Browse Games">
-        <div class="games-wrapper">
-            {#each games as game}
-                <GameLink {game}/>
-            {/each}
-        </div>
-    </Content>
-</Layout>
+<Content header="Browse Games">
+    <div class="games-wrapper">
+        {#each games as game}
+            <GameLink {game}/>
+        {/each}
+    </div>
+</Content>
 
 <style>
     .games-wrapper {

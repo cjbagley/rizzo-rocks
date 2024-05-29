@@ -1,9 +1,12 @@
 <script>
+    import {inertia} from "@inertiajs/svelte";
+
     let grow = false;
     export let game;
 </script>
 
 <a
+    use:inertia
     href={game.url}
     class:grow
     on:mouseenter={() => (grow = true)}
