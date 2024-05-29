@@ -34,6 +34,8 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e): \Inertia\Response|\Symfony\Component\HttpFoundation\Response
     {
+        Inertia::share('appName', config('app.name'));
+
         $code = method_exists($e, 'getStatusCode') ? $e->getStatusCode() : 404;
 
         if (in_array(App::environment(), ['development', 'testing'], true)) {

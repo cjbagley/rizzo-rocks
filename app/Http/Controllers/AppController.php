@@ -9,6 +9,11 @@ use Inertia\Response as InertiaResponse;
 
 class AppController
 {
+    public function __construct()
+    {
+        Inertia::share('appName', config('app.name'));
+    }
+
     public function index(): InertiaResponse
     {
         return Inertia::render('Index');

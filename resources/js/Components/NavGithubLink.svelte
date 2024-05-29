@@ -1,7 +1,7 @@
 <a
     class="github"
     tabindex="0"
-    href="https://github.com/cjbagley/rizzos-recollections"
+    href="https://github.com/cjbagley/rizzo-rocks"
 >
     <svg
         xmlns="http://www.w3.org/2000/svg"

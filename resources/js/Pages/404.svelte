@@ -4,10 +4,11 @@
 
     export let code;
     export let image;
+    export let appName;
 </script>
 
 <svelte:head>
-    <title>Rizzo's Recollections</title>
+    <title>{appName}</title>
 </svelte:head>
 
 <Layout>

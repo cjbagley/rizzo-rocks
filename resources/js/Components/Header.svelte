@@ -1,5 +1,5 @@
 <script>
-    export let header = "Rizzo's Recollections";
+    export let header;
 </script>
 
 <header class="game-font">

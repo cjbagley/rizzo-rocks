@@ -4,15 +4,16 @@
 
     export let code;
     export let image;
+    export let appName;
 </script>
 
 <svelte:head>
-    <title>Rizzo's Recollections</title>
+    <title>{appName}</title>
 </svelte:head>
 
 <Layout>
-    <Content header="Rizzo's Recollections">
-        <p>Oh oh, something went wrong! Don't you hate when that happens? Let Colin know you got the following error
+    <Content header="Oh no...">
+        <p>Something went wrong! Don't you hate when that happens? Let Colin know you got the following error
             code: {code}</p>
     </Content>
     <Content>
