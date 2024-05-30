@@ -3,13 +3,15 @@
     import GameLink from "../Components/GameLink.svelte";
 
     export let games;
+    export let appName;
+    export let gameBrowse;
 </script>
 
 <svelte:head>
-    <title>Browse Games</title>
+    <title>{appName} - {gameBrowse}</title>
 </svelte:head>
 
-<Content header="Browse Games">
+<Content header={gameBrowse}>
     <div class="games-wrapper">
         {#each games as game}
             <GameLink {game}/>

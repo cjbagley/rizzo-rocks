@@ -1,13 +1,12 @@
 <script>
     import Content from "../Components/Content.svelte";
 
-    export let code;
     export let image;
     export let appName;
 </script>
 
 <svelte:head>
-    <title>{appName}</title>
+    <title>{appName} - Not Found</title>
 </svelte:head>
 
 <Content header="404 Not Found">

@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-    <title>{appName}</title>
+    <title>{appName} - Home</title>
 </svelte:head>
 
 <Content header="{appName}">

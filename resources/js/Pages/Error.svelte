@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-    <title>{appName}</title>
+    <title>{appName} - Error</title>
 </svelte:head>
 
 <Content header="Oh no...">

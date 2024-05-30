@@ -1,9 +1,12 @@
 <script>
     import Content from "../Components/Content.svelte";
+
+    export let appName;
+    export let gameList;
 </script>
 
 <svelte:head>
-    <title>Game List</title>
+    <title>{appName} - {gameList}</title>
 </svelte:head>
 
-<Content header="Game List">Game list</Content>
+<Content header={gameList}>{gameList}</Content>

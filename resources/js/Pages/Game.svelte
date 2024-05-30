@@ -6,10 +6,11 @@
     export let game;
     export let videos;
     export let images;
+    export let appName;
 </script>
 
 <svelte:head>
-    <title>{game.title}</title>
+    <title>{appName} - {game.title}</title>
 </svelte:head>
 
 <Content header={game.title}>

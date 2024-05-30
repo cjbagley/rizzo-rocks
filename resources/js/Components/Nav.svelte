@@ -6,10 +6,11 @@
     import NavMobileProfile from "./NavMobileProfile.svelte";
     import NavProfileDropdown from "./NavProfileDropdown.svelte";
     import NavSiteLogo from "./NavSiteLogo.svelte";
+    import {page} from "@inertiajs/svelte";
 
     const navLinks = [
-        {name: "By Game", href: "/browse/games"},
-        {name: "Full List", href: "/browse/list"},
+        {name: $page.props.gameBrowse, href: "/browse/games"},
+        {name: $page.props.gameList, href: "/browse/list"},
     ];
 </script>
 
