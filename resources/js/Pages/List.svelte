@@ -5,8 +5,8 @@
     export let appName;
     export let gameList;
 
-    let values;
-    export let games;
+    let captures;
+    export let data;
 </script>
 
 <svelte:head>
@@ -14,14 +14,13 @@
 </svelte:head>
 
 <Content header={gameList}>
-    {#if values}
-        {#each values as value}
+    {#if captures}
+        {#each captures as capture}
             <p>
-                {value.title}
+                {capture.title}
             </p>
         {/each}
     {/if}
 
-    <Pagination data={games} perPage={games.per_page} bind:rows={values}/>
-
+    <Pagination data={data} bind:rows={captures}/>
 </Content>

@@ -24,9 +24,7 @@ class AppController
 
     public function list(): InertiaResponse
     {
-        $games = GameCapture::paginate(self::PER_PAGE);
-
-        return Inertia::render('List')->with('games', $games);
+        return Inertia::render('List')->with('data', GameCapture::paginate(self::PER_PAGE));
     }
 
     public function game(Request $request, Game $game): InertiaResponse

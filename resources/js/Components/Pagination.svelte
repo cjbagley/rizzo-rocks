@@ -3,23 +3,38 @@
     // Was then able to build on that and make AJAX, with Laravel pagination endpoints
     export let rows;
     export let data;
-    export let perPage;
 
     $: rows = data.data;
+    $: perPage = data.per_page;
     $: totalRows = data.total;
     $: currentPage = data.current_page;
     $: totalPages = Math.ceil(totalRows / perPage);
-    $: start = currentPage * perPage;
-    $: end = currentPage === totalPages - 1 ? totalRows - 1 : start + perPage - 1;
+    $: from = data.from;
+    $: to = data.to;
+    $: nextUrl = data.next_page_url;
+    $: prevUrl = data.prev_page_url;
 
     $: totalRows, currentPage = 0;
-    $: currentPage, start, end;
+    $: currentPage, from, to, nextUrl, prevUrl;
+
+    const previous = () => {
+        console.log('Previous');
+    };
+    const next = () => {
+        console.log('Next');
+    };
+
+    async function load(url) {
+        const response = await fetch(url);
+        const responseData = await response.json();
+        return responseData;
+    }
 </script>
 
 {#if totalRows && totalRows > perPage}
     <div class='pagination'>
-        <button on:click={() => currentPage -= 1}
-                disabled={currentPage === 0 ? true : false}
+        <button on:click={previous}
+                disabled={prevUrl == undefined ? true : false}
                 aria-label="left arrow icon"
                 aria-describedby="prev">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -29,9 +44,9 @@
             </svg>
         </button>
         <span id='prev' class='sr-only'>Load previous {perPage} rows</span>
-        <p>{start + 1} - {end + 1} of {totalRows}</p>
-        <button on:click={() => currentPage += 1}
-                disabled={currentPage === totalPages - 1 ? true : false}
+        <p>{from} - {to} of {totalRows}</p>
+        <button on:click={next}
+                disabled={nextUrl == undefined ? true : false}
                 aria-label="right arrow icon"
                 aria-describedby="next">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
