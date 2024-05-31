@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\GameCapture;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
 class AppController
 {
+    const PER_PAGE = 10;
+
     public function index(): InertiaResponse
     {
         return Inertia::render('Index');
@@ -21,7 +24,9 @@ class AppController
 
     public function list(): InertiaResponse
     {
-        return Inertia::render('List');
+        $games = GameCapture::paginate(self::PER_PAGE);
+
+        return Inertia::render('List')->with('games', $games);
     }
 
     public function game(Request $request, Game $game): InertiaResponse
