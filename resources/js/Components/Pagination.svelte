@@ -17,17 +17,38 @@
     $: totalRows, currentPage = 0;
     $: currentPage, from, to, nextUrl, prevUrl;
 
+    const meta = document.querySelectorAll('meta[name="csrf-token"]');
+
     const previous = () => {
-        console.log('Previous');
+        let d = load(prevUrl);
+        console.log(d);
     };
     const next = () => {
-        console.log('Next');
+        let d = load(nextUrl);
+        console.log(d);
     };
 
     async function load(url) {
-        const response = await fetch(url);
-        const responseData = await response.json();
-        return responseData;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': meta.length > 0 ? meta[0].content : '',
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Error loading response");
+            }
+
+            const responseData = await response.json();
+            return responseData;
+        } catch (e) {
+            // Fallback, just reload the correct page instead of AJAX
+            window.location.assign(url);
+        }
     }
 </script>
 

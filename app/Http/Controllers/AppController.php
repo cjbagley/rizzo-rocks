@@ -22,8 +22,12 @@ class AppController
         return Inertia::render('Games')->with('games', Game::all());
     }
 
-    public function list(): InertiaResponse
+    public function list(Request $request): InertiaResponse
     {
+        if ($request->wantsJson()) {
+            return response()->json(['HERE']);
+        }
+
         return Inertia::render('List')->with('data', GameCapture::paginate(self::PER_PAGE));
     }
 
