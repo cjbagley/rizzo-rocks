@@ -1,4 +1,6 @@
 <script>
+    import {page} from "@inertiajs/svelte";
+
     // Hat tip to example at: https://svelte.dev/repl/84a8d64a6f1e49feba8f6a491ecc55f5?version=3.35.0
     // Was then able to build on that and make AJAX, with Laravel pagination endpoints
     export let rows;
@@ -8,7 +10,6 @@
     $: perPage = data.per_page;
     $: totalRows = data.total;
     $: currentPage = data.current_page;
-    $: totalPages = Math.ceil(totalRows / perPage);
     $: from = data.from;
     $: to = data.to;
     $: nextUrl = data.next_page_url;
@@ -20,12 +21,10 @@
     const meta = document.querySelectorAll('meta[name="csrf-token"]');
 
     const previous = () => {
-        let d = load(prevUrl);
-        console.log(d);
+        load(prevUrl);
     };
     const next = () => {
-        let d = load(nextUrl);
-        console.log(d);
+        load(nextUrl);
     };
 
     async function load(url) {
@@ -43,8 +42,9 @@
                 throw new Error("Error loading response");
             }
 
-            const responseData = await response.json();
-            return responseData;
+            data = await response.json();
+            const newUrl = new URL(url);
+            window.history.replaceState(null, '', newUrl);
         } catch (e) {
             // Fallback, just reload the correct page instead of AJAX
             window.location.assign(url);

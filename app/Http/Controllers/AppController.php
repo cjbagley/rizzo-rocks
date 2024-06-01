@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\GameCapture;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
@@ -22,13 +23,14 @@ class AppController
         return Inertia::render('Games')->with('games', Game::all());
     }
 
-    public function list(Request $request): InertiaResponse
+    public function list(Request $request): InertiaResponse|JsonResponse
     {
+        $data = GameCapture::paginate(self::PER_PAGE);
         if ($request->wantsJson()) {
-            return response()->json(['HERE']);
+            return response()->json($data);
         }
 
-        return Inertia::render('List')->with('data', GameCapture::paginate(self::PER_PAGE));
+        return Inertia::render('List')->with('data', $data);
     }
 
     public function game(Request $request, Game $game): InertiaResponse
