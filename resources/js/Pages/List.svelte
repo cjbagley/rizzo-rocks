@@ -1,6 +1,8 @@
 <script>
     import Content from "../Components/Content.svelte";
     import Pagination from "@/Components/Pagination.svelte";
+    import Video from "@/Components/Video.svelte";
+    import Image from "@/Components/Image.svelte";
 
     export let appName;
     export let gameList;
@@ -14,13 +16,19 @@
 </svelte:head>
 
 <Content header={gameList}>
+    <Pagination data={data} bind:rows={captures}/>
     {#if captures}
-        {#each captures as capture}
-            <p>
-                {capture.title}
-            </p>
-        {/each}
+        <div class="grid">
+            {#each captures as capture}
+                {#if capture.type == 'video' }
+                    <Video video={capture}/>
+                {/if}
+
+                {#if capture.type == 'image' }
+                    <Image image={capture}/>
+                {/if}
+            {/each}
+        </div>
     {/if}
 
-    <Pagination data={data} bind:rows={captures}/>
 </Content>

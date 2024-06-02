@@ -11,7 +11,7 @@ use Inertia\Response as InertiaResponse;
 
 class AppController
 {
-    const PER_PAGE = 10;
+    const PER_PAGE = 9;
 
     public function index(): InertiaResponse
     {
