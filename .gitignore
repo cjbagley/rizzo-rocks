@@ -32,8 +32,9 @@ vite.config.ts.timestamp-*
 
 # Media
 /public/covers
-/public/thumbs
 /public/images
+/public/posters
+/public/thumbs
 /public/videos
 
 # Local

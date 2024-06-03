@@ -8,4 +8,5 @@ enum Disk: string
     case Video = 'videos';
     case Thumbs = 'thumbs';
     case Covers = 'covers';
+    case Posters = 'posters';
 }

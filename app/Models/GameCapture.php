@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * @property string $thumb
+ * @property string $poster
  * @property string $url
  */
 class GameCapture extends Model
@@ -26,6 +27,7 @@ class GameCapture extends Model
         'title',
         'url',
         'thumb',
+        'poster',
         'comments',
         'tags',
         'type',
@@ -41,7 +43,7 @@ class GameCapture extends Model
 
     protected $with = ['tags'];
 
-    protected $appends = ['thumb', 'url'];
+    protected $appends = ['thumb', 'url', 'poster'];
 
     public function tags(): BelongsToMany
     {
@@ -70,6 +72,18 @@ class GameCapture extends Model
             }
 
             return Storage::disk(Disk::Thumbs->value)->url($file);
+        });
+    }
+
+    protected function poster(): Attribute
+    {
+        return Attribute::make(get: function (mixed $value, array $attrs) {
+            $file = $attrs['filekey'].'.webp';
+            if (! Storage::disk(Disk::Posters->value)->exists($file)) {
+                return null;
+            }
+
+            return Storage::disk(Disk::Posters->value)->url($file);
         });
     }
 }
