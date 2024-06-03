@@ -16,7 +16,6 @@
 </svelte:head>
 
 <Content header={gameList}>
-    <Pagination data={data} bind:rows={captures}/>
     {#if captures}
         <div class="grid">
             {#each captures as capture}
@@ -30,5 +29,5 @@
             {/each}
         </div>
     {/if}
-
+    <Pagination data={data} bind:rows={captures}/>
 </Content>

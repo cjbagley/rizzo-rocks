@@ -44,6 +44,7 @@
             data = await response.json();
             const newUrl = new URL(url);
             window.history.replaceState(null, '', newUrl);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         } catch (e) {
             // Fallback, just reload the correct page instead of AJAX
             window.location.assign(url);
