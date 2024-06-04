@@ -19,13 +19,13 @@ return [
         'name' => 'Dashboard',
     ],
     'game' => [
-        'browse' => 'Browse Games',
+        'browse' => 'Browse',
         'create' => 'Add Game',
         'edit' => 'Edit Game',
         'empty' => 'No games added yet!',
         'index' => 'Add, edit and delete games and game captures',
         'info' => 'More info',
-        'list' => 'Search List',
+        'list' => 'List',
     ],
     'tag' => [
         'create' => 'Add Tag',

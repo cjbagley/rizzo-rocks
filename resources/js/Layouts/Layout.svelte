@@ -27,7 +27,6 @@
         color: #000;
         min-height: 100%;
         gap: 30px;
-        width: 100vw;
     }
 
     :global(.dark-theme) .background {
