@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 /**
  * @property string $cover
  * @property string $url
+ * @property string $tags
  */
 class Game extends Model
 {
