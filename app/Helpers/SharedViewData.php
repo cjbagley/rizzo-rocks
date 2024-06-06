@@ -11,6 +11,7 @@ class SharedViewData
             'appName' => config('app.name'),
             'gameBrowse' => __('app.game.browse'),
             'gameList' => __('app.game.list'),
+            'noResults' => __('app.no_results_found'),
         ];
     }
 }

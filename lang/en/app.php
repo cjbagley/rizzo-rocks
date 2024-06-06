@@ -33,4 +33,5 @@ return [
         'empty' => 'No tags added yet!',
         'index' => 'Add, edit and delete tags',
     ],
+    'no_results_found' => 'No results found',
 ];

@@ -3,9 +3,11 @@
     import Pagination from "@/Components/Pagination.svelte";
     import Video from "@/Components/Video.svelte";
     import Image from "@/Components/Image.svelte";
+    import Search from "@/Components/Search.svelte";
 
     export let appName;
     export let gameList;
+    export let noResults;
 
     let captures;
     export let data;
@@ -16,6 +18,9 @@
 </svelte:head>
 
 <Content header={gameList}>
+    <Content>
+        <Search/>
+    </Content>
     {#if captures}
         <div class="grid">
             {#each captures as capture}
@@ -28,6 +33,10 @@
                 {/if}
             {/each}
         </div>
+    {:else }
+        <Content>
+            {noResults}
+        </Content>
     {/if}
     <Pagination data={data} bind:rows={captures}/>
 </Content>
