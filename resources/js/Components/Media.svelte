@@ -1,6 +1,6 @@
 <script>
     import Content from "../Components/Content.svelte";
-    import Tags from "@/Components/Tags.svelte";
+    import Tags from "@/Components/TagsDisplay.svelte";
 
     export let item;
     export let tags;

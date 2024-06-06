@@ -19,7 +19,7 @@
 
 <Content header={gameList}>
     <Content>
-        <Search/>
+        <Search tags={data.tags}/>
     </Content>
     {#if captures}
         <div class="grid">
@@ -38,5 +38,5 @@
             {noResults}
         </Content>
     {/if}
-    <Pagination data={data} bind:rows={captures}/>
+    <Pagination data={data.data} bind:rows={captures}/>
 </Content>
