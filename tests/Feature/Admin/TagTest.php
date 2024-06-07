@@ -12,7 +12,7 @@ test('tag index page is displayed', function () {
 });
 
 test('tag can be added', function () {
-    $tag = create_test_tag();
+    $tag = Tag::factory()->make();
 
     $this
         ->actingAs(create_test_user())
