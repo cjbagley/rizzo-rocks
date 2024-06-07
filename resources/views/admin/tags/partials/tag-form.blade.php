@@ -10,7 +10,11 @@
             <x-text-input id="tag" :value="$tag" name="tag"/>
             <x-input-error :messages="$errors->get('tag')"/>
         </div>
-
+        <div>
+            <x-input-label for="code" :value="__('code')"/>
+            <x-text-input id="code" :value="$code" name="code"/>
+            <x-input-error :messages="$errors->get('code')"/>
+        </div>
         <div>
             <x-input-label for="colour" :value="__('colour')"/>
             <x-colour-input id="colour" :value="$colour" name="colour"/>

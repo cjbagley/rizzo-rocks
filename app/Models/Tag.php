@@ -15,12 +15,14 @@ class Tag extends Model
 
     protected $visible = [
         'tag',
+        'code',
         'colour',
         'is_sensitive',
     ];
 
     protected $fillable = [
         'tag',
+        'code',
         'colour',
         'is_sensitive',
     ];

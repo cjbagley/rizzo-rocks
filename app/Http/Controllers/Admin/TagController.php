@@ -31,6 +31,7 @@ class TagController extends AuthController
         return [
             'id' => $helpers->firstNonEmpty([$tag?->id]),
             'tag' => $helpers->firstNonEmpty([$tag?->tag, old('tag', request()->tag)]),
+            'code' => $helpers->firstNonEmpty([$tag?->code, old('code', request()->code)]),
             'colour' => $helpers->firstNonEmpty([$tag?->colour, old('colour', request()->colour)]),
             'is_sensitive' => $helpers->firstNonEmpty([$tag?->is_sensitive, old('is_sensitive', request()->is_sensitive)]),
             'header' => $is_update ? __('app.tag.edit') : __('app.tag.create'),

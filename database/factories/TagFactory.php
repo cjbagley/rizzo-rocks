@@ -10,6 +10,7 @@ class TagFactory extends Factory
     {
         return [
             'tag' => $this->faker->word(),
+            'code' => substr($this->faker->word(), 0, 3),
             'is_sensitive' => $this->faker->boolean(),
             'colour' => $this->faker->hexColor(),
         ];
