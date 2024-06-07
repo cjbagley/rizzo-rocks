@@ -4,29 +4,35 @@
     export let tags;
 </script>
 
-<form>
-    <div>
+<form class="flex-column">
+    <div class="flex-row">
         <label for="search">Search:</label>
         <input id="search" type="search" title="HERE">
     </div>
 
     {#if tags}
-        <fieldset>
-            <lengend>Tags:</lengend>
+        <div class="flex-row">
+            <legend>Tags:</legend>
             <div class="flex-row wrapper">
                 {#each tags as tag}
                     <div class="flex-row tag-input">
-                        <input type="checkbox" id="tag_{tag.id}" name="tag_{tag.id}" checked>
-                        <label class="sr-only" for="tag_{tag.id}">{tag.tag}</label>
-                        <Tag {tag}/>
+                        <input type="checkbox" id="tag_{tag.code}" name="tag_{tag.code}" checked>
+                        <Tag {tag} tagLabel="tag_"/>
                     </div>
                 {/each}
             </div>
-        </fieldset>
+        </div>
     {/if}
 </form>
 
 <style>
+    form {
+        gap: 20px;
+    }
+
+    legend, label {
+        min-width: 80px;
+    }
 
     fieldset {
         border: none;
@@ -41,5 +47,9 @@
 
     .tag-input {
         gap: 10px;
+    }
+
+    input[type='checkbox'] {
+        margin: 0;
     }
 </style>

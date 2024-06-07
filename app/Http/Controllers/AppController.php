@@ -26,21 +26,19 @@ class AppController
 
     public function list(Request $request): InertiaResponse|JsonResponse
     {
-        $game_captures = GameCapture::orderBy('title');
-        $game_ids = $game_captures->pluck('id')->toArray();
         // In theory, should only get tags linked to games with the below
         // In practice, I'm setting up the data so I know they are all linked,
         // so not spending time on it at this point.
         $tags = Tag::orderBy('tag')->get();
-
-        $data = [
-            'tags' => $tags,
-            'data' => $game_captures->paginate(self::PER_PAGE),
-        ];
+        $game_captures = GameCapture::orderBy('title')
+            ->paginate(self::PER_PAGE);
 
         return $request->wantsJson()
-            ? response()->json($data['data'])
-            : Inertia::render('List')->with('data', $data);
+            ? response()->json($game_captures)
+            : Inertia::render('List')->with('data', [
+                'tags' => $tags,
+                'data' => $game_captures,
+            ]);
     }
 
     public function game(Request $request, Game $game): InertiaResponse
