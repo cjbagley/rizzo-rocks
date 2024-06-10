@@ -7,7 +7,7 @@
 <form class="flex-column">
     <div class="flex-row">
         <label for="search">Search:</label>
-        <input id="search" type="search" title="HERE">
+        <input id="search" type="search" title="Search">
     </div>
 
     {#if tags}

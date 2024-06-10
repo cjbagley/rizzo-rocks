@@ -34,7 +34,10 @@
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': meta.length > 0 ? meta[0].content : '',
-                }
+                },
+                body: JSON.stringify({
+                    search: document.querySelector('input[id="search"]').value,
+                })
             });
 
             if (!response.ok) {

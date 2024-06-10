@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
+use App\Http\Requests\ListPageRequest;
 use App\Models\Game;
 use App\Models\GameCapture;
 use App\Models\Tag;
@@ -24,13 +26,22 @@ class AppController
         return Inertia::render('Games')->with('games', Game::all());
     }
 
-    public function list(Request $request): InertiaResponse|JsonResponse
+    public function list(ListPageRequest $request): InertiaResponse|JsonResponse
     {
+        $helpers = new Helpers();
+
+        $search = $request->has('search')
+            ? $helpers->sanitiseString($request->input('search'))
+            : '';
+
         // In theory, should only get tags linked to games with the below
         // In practice, I'm setting up the data so I know they are all linked,
         // so not spending time on it at this point.
         $tags = Tag::orderBy('tag')->get();
         $game_captures = GameCapture::orderBy('title')
+            ->when($search, function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%");
+            })
             ->paginate(self::PER_PAGE);
 
         return $request->wantsJson()
