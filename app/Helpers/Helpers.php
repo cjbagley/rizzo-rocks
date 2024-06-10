@@ -18,4 +18,9 @@ class Helpers
 
         return $default;
     }
+
+    public function sanitiseString(string $string): string
+    {
+        return trim(preg_replace('/[^a-zA-Z0-9 ]/', '', $string));
+    }
 }
