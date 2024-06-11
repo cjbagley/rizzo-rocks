@@ -9,7 +9,8 @@ class ListPageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'search' => ['string', 'max:30'],
+            'search' => ['string', 'nullable', 'max:30'],
+            'page' => ['numeric'],
         ];
     }
 }

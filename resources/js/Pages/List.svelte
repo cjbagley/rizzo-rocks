@@ -11,6 +11,37 @@
 
     let captures;
     export let data;
+    const meta = document.querySelectorAll('meta[name="csrf-token"]');
+
+    async function load(e) {
+        let url = e.detail.url;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': meta.length > 0 ? meta[0].content : '',
+                },
+                body: JSON.stringify({
+                    search: document.querySelector('input[id="search"]').value,
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error("Error loading response");
+            }
+
+            data = await response.json();
+            const newUrl = new URL(url);
+            window.history.replaceState(null, '', newUrl);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        } catch (e) {
+            // Fallback, just reload the correct page instead of AJAX
+            window.location.assign(url);
+        }
+    }
+
 </script>
 
 <svelte:head>
@@ -38,5 +69,5 @@
             {noResults}
         </Content>
     {/if}
-    <Pagination data={data.data} bind:rows={captures}/>
+    <Pagination on:refresh={load} data={data.data} bind:rows={captures} bind:captures={captures}/>
 </Content>

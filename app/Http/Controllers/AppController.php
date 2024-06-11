@@ -31,7 +31,7 @@ class AppController
         $helpers = new Helpers();
 
         $search = $request->has('search')
-            ? $helpers->sanitiseString($request->input('search'))
+            ? $helpers->sanitiseString((string) $request->validated('search'))
             : '';
 
         // In theory, should only get tags linked to games with the below
@@ -39,13 +39,16 @@ class AppController
         // so not spending time on it at this point.
         $tags = Tag::orderBy('tag')->get();
         $game_captures = GameCapture::orderBy('title')
-            ->when($search, function ($query) use ($search) {
+            ->when(! empty($search), function ($query) use ($search) {
                 $query->where('title', 'LIKE', "%{$search}%");
             })
             ->paginate(self::PER_PAGE);
 
         return $request->wantsJson()
-            ? response()->json($game_captures)
+            ? response()->json([
+                'tags' => $tags,
+                'data' => $game_captures,
+            ])
             : Inertia::render('List')->with('data', [
                 'tags' => $tags,
                 'data' => $game_captures,

@@ -1,4 +1,6 @@
 <script>
+    import {createEventDispatcher} from "svelte";
+
     // Hat tip to example at: https://svelte.dev/repl/84a8d64a6f1e49feba8f6a491ecc55f5?version=3.35.0
     // Was then able to build on that and make AJAX, with Laravel pagination endpoints
     export let rows;
@@ -17,42 +19,16 @@
     $: currentPage, from, to, nextUrl, prevUrl;
     $: pageText = `${from} - ${to} of ${totalRows}`
 
-    const meta = document.querySelectorAll('meta[name="csrf-token"]');
+    const dispatch = createEventDispatcher();
 
-    const previous = () => {
-        load(prevUrl);
-    };
-    const next = () => {
-        load(nextUrl);
-    };
-
-    async function load(url) {
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': meta.length > 0 ? meta[0].content : '',
-                },
-                body: JSON.stringify({
-                    search: document.querySelector('input[id="search"]').value,
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error("Error loading response");
-            }
-
-            data = await response.json();
-            const newUrl = new URL(url);
-            window.history.replaceState(null, '', newUrl);
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        } catch (e) {
-            // Fallback, just reload the correct page instead of AJAX
-            window.location.assign(url);
-        }
+    function previous() {
+        dispatch('refresh', {url: prevUrl});
     }
+
+    function next() {
+        dispatch('refresh', {url: nextUrl});
+    }
+
 </script>
 
 {#if totalRows && totalRows > perPage}
