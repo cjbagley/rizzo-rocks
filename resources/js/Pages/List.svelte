@@ -51,7 +51,7 @@
 
 <Content header={gameList}>
     <Content>
-        <Search tags={data.tags}/>
+        <Search on:refresh={load} tags={data.tags}/>
     </Content>
     {#if captures}
         <div class="grid">
