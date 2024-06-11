@@ -14,9 +14,12 @@
     const meta = document.querySelectorAll('meta[name="csrf-token"]');
 
     async function load(e) {
-        let url = e.detail.url;
         try {
-            const response = await fetch(url, {
+            if (!e.detail || !e.detail.url) {
+                throw new Error("Error loading response");
+            }
+
+            const response = await fetch(e.detail.url, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -33,12 +36,10 @@
             }
 
             data = await response.json();
-            const newUrl = new URL(url);
-            window.history.replaceState(null, '', newUrl);
             window.scrollTo({top: 0, behavior: 'smooth'});
         } catch (e) {
             // Fallback, just reload the correct page instead of AJAX
-            window.location.assign(url);
+            window.location.reload();
         }
     }
 

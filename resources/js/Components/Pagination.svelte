@@ -22,10 +22,12 @@
     const dispatch = createEventDispatcher();
 
     function previous() {
+        window.history.replaceState(null, '', new URL(prevUrl));
         dispatch('refresh', {url: prevUrl});
     }
 
     function next() {
+        window.history.replaceState(null, '', new URL(nextUrl));
         dispatch('refresh', {url: nextUrl});
     }
 
