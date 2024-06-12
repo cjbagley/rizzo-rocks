@@ -29,21 +29,16 @@ class AppController
 
     public function list(ListPageRequest $request): InertiaResponse|JsonResponse
     {
-        $helpers = new Helpers();
+        $q = GameCapture::select('game_captures.*')
+            ->addSelect('games.title as game')
+            ->join('games', 'games.id', '=', 'game_captures.game_id');
 
+        $helpers = new Helpers();
         $search = $request->has('search')
             ? $helpers->sanitiseString((string) $request->validated('search'))
             : '';
 
-        // In theory, should only get tags linked to games with the below
-        // In practice, I'm setting up the data so I know they are all linked,
-        // so not spending time on it at this point.
-        $tags = Tag::orderBy('tag')->get();
-
-        $q = GameCapture::select('game_captures.*');
         if ($search !== '') {
-            $q->join('games', 'games.id', '=', 'game_captures.game_id');
-
             collect(str_getcsv($search, ' ', '"'))->filter()->each(function ($part) use ($q) {
                 $term = "%{$part}%";
                 $q->where(function (Builder $sq) use ($term) {
@@ -56,9 +51,13 @@ class AppController
             ->orderBy('game_captures.title')
             ->paginate(self::PER_PAGE);
 
+        // In theory, should only get tags linked to games with the below
+        // In practice, I'm setting up the data so I know they are all linked,
+        // so not spending time on it at this point.
+        $tags = Tag::orderBy('tag')->get();
+
         return $request->wantsJson()
             ? response()->json([
-                'tags' => $tags,
                 'data' => $game_captures,
             ])
             : Inertia::render('List')->with('data', [

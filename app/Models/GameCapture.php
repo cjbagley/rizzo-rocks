@@ -31,6 +31,7 @@ class GameCapture extends Model
         'comments',
         'tags',
         'type',
+        'game',
     ];
 
     protected $fillable = [

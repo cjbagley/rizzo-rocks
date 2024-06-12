@@ -1,12 +1,14 @@
 <script>
     import Content from "../Components/Content.svelte";
     import Tags from "@/Components/TagsDisplay.svelte";
+    import Tag from "@/Components/Tag.svelte";
 
     export let item;
     export let tags;
 </script>
 
 <Content>
+
     <div class="wrapper flex-column">
         <slot/>
         <header>
@@ -15,6 +17,9 @@
         <p>{item.comments}</p>
         {#if (tags) }
             <Tags tags="{tags}"/>
+        {/if}
+        {#if item.game}
+            <Tag tag={{tag: item.game, icon: 'game'}}/>
         {/if}
     </div>
 </Content>

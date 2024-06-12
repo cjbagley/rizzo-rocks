@@ -1,5 +1,6 @@
 <script>
     import TagSvg from "@/Components/TagSvg.svelte";
+    import GameSvg from "@/Components/GameSvg.svelte";
 
     export let tag;
     export let tagLabel = '';
@@ -12,6 +13,11 @@
             {tag.tag}
         </span>
     </label>
+{:else if tag.icon == 'game'}
+    <span class="game-title">
+        <GameSvg/>
+        {tag.tag}
+    </span>
 {:else}
     <span style="background-color: {tag.colour}">
         <TagSvg/>
@@ -31,5 +37,14 @@
         line-height: 18px;
         font-weight: 500;
         flex-wrap: wrap;
+    }
+
+    .game-title {
+        padding: 0;
+        color: #000;
+    }
+
+    :global(.dark-theme .game-title) {
+        color: #fff !important;
     }
 </style>
