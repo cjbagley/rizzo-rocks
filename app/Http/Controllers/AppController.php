@@ -7,6 +7,7 @@ use App\Http\Requests\ListPageRequest;
 use App\Models\Game;
 use App\Models\GameCapture;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -38,11 +39,19 @@ class AppController
         // In practice, I'm setting up the data so I know they are all linked,
         // so not spending time on it at this point.
         $tags = Tag::orderBy('tag')->get();
-        $game_captures = GameCapture::orderBy('title')
-            ->when(! empty($search), function ($query) use ($search) {
-                $query->where('title', 'LIKE', "%{$search}%");
-            })
-            ->paginate(self::PER_PAGE);
+
+        $q = GameCapture::orderBy('title');
+
+        if ($search !== '') {
+            collect(str_getcsv($search, ' ', '"'))->filter()->each(function ($part) use ($q) {
+                $term = "%{$part}%";
+                $q->where(function (Builder $sq) use ($term) {
+                    $sq->where('title', 'like', $term);
+                });
+            });
+        }
+
+        $game_captures = $q->paginate(self::PER_PAGE);
 
         return $request->wantsJson()
             ? response()->json([
