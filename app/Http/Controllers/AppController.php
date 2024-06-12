@@ -40,18 +40,21 @@ class AppController
         // so not spending time on it at this point.
         $tags = Tag::orderBy('tag')->get();
 
-        $q = GameCapture::orderBy('title');
-
+        $q = GameCapture::select('game_captures.*');
         if ($search !== '') {
+            $q->join('games', 'games.id', '=', 'game_captures.game_id');
+
             collect(str_getcsv($search, ' ', '"'))->filter()->each(function ($part) use ($q) {
                 $term = "%{$part}%";
                 $q->where(function (Builder $sq) use ($term) {
-                    $sq->where('title', 'like', $term);
+                    $sq->where('game_captures.title', 'like', $term)
+                        ->orWhere('games.title', 'like', $term);
                 });
             });
         }
-
-        $game_captures = $q->paginate(self::PER_PAGE);
+        $game_captures = $q
+            ->orderBy('game_captures.title')
+            ->paginate(self::PER_PAGE);
 
         return $request->wantsJson()
             ? response()->json([
