@@ -12,6 +12,7 @@
     let captures;
     export let data;
     const meta = document.querySelectorAll('meta[name="csrf-token"]');
+    let searchTerm = data.search ? data.search : '';
 
     async function load(e) {
         try {
@@ -51,7 +52,7 @@
 
 <Content header={gameList}>
     <Content>
-        <Search on:refresh={load} tags={data.tags}/>
+        <Search on:refresh={load} tags={data.tags} term={searchTerm}/>
     </Content>
     {#if captures}
         <div class="grid">

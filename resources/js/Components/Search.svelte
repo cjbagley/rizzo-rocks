@@ -17,15 +17,18 @@
 
             window.history.replaceState(null, '', new URL(newUrl));
             dispatch('refresh', {url: newUrl});
-        }, 750);
+        }, 500);
     }
     export let tags;
+    export let term;
 </script>
 
 <form class="flex-column">
     <div class="flex-row">
         <label for="search">Search:</label>
-        <input id="search" type="search" title="Search" on:keyup={({ target: { value } }) => debounce(value)}>
+        <input id="search" value={term} type="search" title="Search"
+               on:keyup={({ target: { value } }) => debounce(value)}
+               on:change={({ target: { value } }) => debounce(value)}>
     </div>
 
 

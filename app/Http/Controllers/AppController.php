@@ -47,23 +47,21 @@ class AppController
                 });
             });
         }
-        $game_captures = $q
-            ->orderBy('game_captures.title')
-            ->paginate(self::PER_PAGE);
 
         // In theory, should only get tags linked to games with the below
         // In practice, I'm setting up the data so I know they are all linked,
         // so not spending time on it at this point.
-        $tags = Tag::orderBy('tag')->get();
+        $data = [
+            'data' => $q
+                ->orderBy('game_captures.title')
+                ->paginate(self::PER_PAGE),
+            'tags' => Tag::orderBy('tag')->get(),
+            'search' => $search,
+        ];
 
         return $request->wantsJson()
-            ? response()->json([
-                'data' => $game_captures,
-            ])
-            : Inertia::render('List')->with('data', [
-                'tags' => $tags,
-                'data' => $game_captures,
-            ]);
+            ? response()->json($data)
+            : Inertia::render('List')->with('data', $data);
     }
 
     public function game(Request $request, Game $game): InertiaResponse
