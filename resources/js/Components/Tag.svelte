@@ -40,6 +40,7 @@
     }
 
     .game-title {
+        margin: 0 auto;
         padding: 0;
         color: #000;
     }

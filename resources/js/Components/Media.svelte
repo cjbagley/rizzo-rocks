@@ -10,16 +10,16 @@
 <Content>
 
     <div class="wrapper flex-column">
+        {#if item.game}
+            <Tag tag={{tag: item.game, icon: 'game'}}/>
+        {/if}
         <slot/>
         <header>
             <h2 class="game-font">{item.title}</h2>
         </header>
         <p>{item.comments}</p>
-        {#if (tags) }
+        {#if tags }
             <Tags tags="{tags}"/>
-        {/if}
-        {#if item.game}
-            <Tag tag={{tag: item.game, icon: 'game'}}/>
         {/if}
     </div>
 </Content>
