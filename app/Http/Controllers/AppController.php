@@ -54,7 +54,8 @@ class AppController
         $data = [
             'data' => $q
                 ->orderBy('game_captures.title')
-                ->paginate(self::PER_PAGE),
+                ->paginate(self::PER_PAGE)
+                ->withQueryString(),
             'tags' => Tag::orderBy('tag')->get(),
             'search' => $search,
         ];

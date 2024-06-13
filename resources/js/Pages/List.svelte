@@ -14,7 +14,7 @@
     const meta = document.querySelectorAll('meta[name="csrf-token"]');
     let searchTerm = data.search ? data.search : '';
 
-    async function load(e) {
+    async function refresh(e) {
         try {
             if (!e.detail || !e.detail.url) {
                 throw new Error("Error loading response");
@@ -27,9 +27,6 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': meta.length > 0 ? meta[0].content : '',
                 },
-                body: JSON.stringify({
-                    search: document.querySelector('input[id="search"]').value,
-                })
             });
 
             if (!response.ok) {
@@ -52,7 +49,7 @@
 
 <Content header={gameList}>
     <Content>
-        <Search on:refresh={load} tags={data.tags} term={searchTerm}/>
+        <Search on:refresh={refresh} tags={data.tags} term={searchTerm}/>
     </Content>
     {#if captures}
         <div class="grid">
@@ -71,5 +68,5 @@
             {noResults}
         </Content>
     {/if}
-    <Pagination on:refresh={load} data={data.data} bind:rows={captures} bind:captures={captures}/>
+    <Pagination on:refresh={refresh} data={data.data} bind:rows={captures} bind:captures={captures}/>
 </Content>

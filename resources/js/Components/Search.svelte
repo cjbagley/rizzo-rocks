@@ -10,27 +10,37 @@
     const debounce = v => {
         clearTimeout(timer);
         timer = setTimeout(() => {
+            let tagInputs = document.querySelectorAll('input[id^="tag_"]:checked');
+            let tags = [];
+
+            if (tagInputs.length > 0) {
+                tagInputs.forEach((el, i) => {
+                    tags.push(el.value);
+                })
+            }
+
             let newUrl = new URL(window.location.href);
 
             newUrl.searchParams.set('page', 1);
-            newUrl.searchParams.set('search', v);
+            newUrl.searchParams.set('search', document.querySelector('input[id="search"]').value);
+            newUrl.searchParams.set('tags', tags.join("+"));
 
             window.history.replaceState(null, '', new URL(newUrl));
             dispatch('refresh', {url: newUrl});
-        }, 500);
+        }, 750);
     }
     export let tags;
     export let term;
 </script>
 
-<form class="flex-column">
+<form id="search-form" class="flex-column" on:submit|preventDefault>
     <div class="flex-column">
         <label for="search">Search:</label>
         <input id="search" value={term} type="search" title="Search"
                on:keyup={({ target: { value } }) => debounce(value)}
-               on:change={({ target: { value } }) => debounce(value)}>
+               on:change={({target: {value}}) => debounce(value)}
+        >
     </div>
-
 
     {#if tags}
         <div class="flex-column">
@@ -38,7 +48,9 @@
             <div class="flex-row wrapper">
                 {#each tags as tag}
                     <div class="flex-row tag-input">
-                        <input type="checkbox" id="tag_{tag.code}" name="tag_{tag.code}" checked>
+                        <input type="checkbox" id="tag_{tag.code}" name="tag_{tag.code}" value="{tag.code}" checked
+                               on:change={({target: {value}}) => debounce(value)}
+                        >
                         <Tag {tag} tagLabel="tag_"/>
                     </div>
                 {/each}
