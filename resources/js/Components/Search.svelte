@@ -24,7 +24,7 @@
 </script>
 
 <form class="flex-column">
-    <div class="flex-row">
+    <div class="flex-column">
         <label for="search">Search:</label>
         <input id="search" value={term} type="search" title="Search"
                on:keyup={({ target: { value } }) => debounce(value)}
@@ -33,7 +33,7 @@
 
 
     {#if tags}
-        <div class="flex-row">
+        <div class="flex-column">
             <legend>Tags:</legend>
             <div class="flex-row wrapper">
                 {#each tags as tag}
@@ -49,15 +49,28 @@
 
 <style>
     form {
-        gap: 20px;
+        gap: 30px;
     }
+
+    form > div {
+        gap: 10px;
+    }
+
+    @media (width >= 640px) {
+        form > div {
+            flex-direction: row;
+            gap: 0;
+        }
+    }
+
 
     legend, label {
         min-width: 80px;
     }
 
     .wrapper {
-        gap: 20px;
+        column-gap: 20px;
+        row-gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
     }
