@@ -28,9 +28,9 @@ it('sanitises string', function (mixed $input, string $want) {
 it('it prepares tag params', function (string $input, array $want) {
     expect($this->helper->prepareParamTags($input))->toBe($want);
 })->with([
-    'correct format' => ['H+G+P', ['H', 'G', 'P']],
+    'correct format' => ['H-G-P', ['H', 'G', 'P']],
     'empty' => ['', []],
     'off tag' => ['oFf', ['OFF']],
-    'random gibberish' => ['Test+#<[G+B3333', ['TES', 'G', 'B']],
-    'injection attempt' => ['name\'); DELETE FROM items; --; + HI', ['NAM', 'HI']],
+    'random gibberish' => ['Test-#<[G+B3333', ['TES', 'GB']],
+    'injection attempt' => ['name\'); DELETE FROM items; --; - HI', ['NAM', 'HI']],
 ]);
