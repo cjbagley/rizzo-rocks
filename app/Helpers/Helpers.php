@@ -23,4 +23,28 @@ class Helpers
     {
         return trim(preg_replace('/[^a-zA-Z0-9 ]/', '', $string));
     }
+
+    public function prepareParamTags(string $tag_param): array
+    {
+        $tag_param = trim($tag_param);
+        if ($tag_param === '') {
+            return [];
+        }
+
+        $parts = explode('+', $tag_param);
+        if (count($parts) == 0) {
+            return [];
+        }
+
+        $tags = [];
+        foreach ($parts as $part) {
+            $part = trim(preg_replace('/[^a-zA-Z]/', ' ', $part));
+            $part = strtoupper(substr($part, 0, 3));
+            if (trim($part) !== '') {
+                $tags[] = trim($part);
+            }
+        }
+
+        return $tags;
+    }
 }

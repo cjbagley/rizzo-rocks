@@ -2,46 +2,35 @@
 
 use App\Helpers\Helpers;
 
-it('gets first non empty', function () {
-    $helpers = new Helpers();
-
-    $expected_1 = 'Hello';
-    $result_1 = $helpers->firstNonEmpty(['Hello', 242]);
-    expect($result_1)->toBe($expected_1);
-
-    $expected_2 = 55;
-    $result_2 = $helpers->firstNonEmpty([0, 55]);
-    expect($result_2)->toBe($expected_2);
-
-    $expected_3 = 'Default';
-    $result_3 = $helpers->firstNonEmpty([], 'Default');
-    expect($result_3)->toBe($expected_3);
-
-    $expected_4 = ['Key' => 'Value'];
-    $result_4 = $helpers->firstNonEmpty([0, ['Key' => 'Value']], 'Default');
-    expect($result_4)->toBe($expected_4);
+beforeEach(function () {
+    $this->helper = new Helpers();
 });
 
-it('sanitises string', function () {
-    $helpers = new Helpers();
+it('gets first non empty', function (array $arr = [], mixed $default = null, $want = null) {
+    expect($this->helper->firstNonEmpty($arr, $default))->toBe($want);
+})->with([
+    'string' => [['Hello', 242], null, 'Hello'],
+    'integer' => [[0, 55], null, 55],
+    'default' => [[], 'Default', 'Default'],
+    'key and value pair' => [[0, null, '', ['Key' => 'Value']], 'Default', ['Key' => 'Value']],
+]);
 
-    $expected_1 = 'Hello';
-    $result_1 = $helpers->sanitiseString('Hello#!<{}>');
-    expect($result_1)->toBe($expected_1);
+it('sanitises string', function (mixed $input, string $want) {
+    expect($this->helper->sanitiseString($input))->toBe($want);
+})->with([
+    'string' => ['Hello#!<{}>', 'Hello'],
+    'integer' => [55, '55'],
+    'string with special characters' => ['Halo 2; "thing \'', 'Halo 2 thing'],
+    'empty' => ['', ''],
+    'injection attempt' => ['name\'); DELETE FROM items; --', 'name DELETE FROM items'],
+]);
 
-    $expected_2 = 55;
-    $result_2 = $helpers->sanitiseString('55');
-    expect((string) $result_2)->toBe((string) $expected_2);
-
-    $expected_3 = 'Halo 2 thing';
-    $result_3 = $helpers->sanitiseString('Halo 2; "thing \'');
-    expect($result_3)->toBe($expected_3);
-
-    $expected_4 = '';
-    $result_4 = $helpers->sanitiseString('');
-    expect($result_4)->toBe($expected_4);
-
-    $expected_5 = 'name DELETE FROM items';
-    $result_5 = $helpers->sanitiseString('name\'); DELETE FROM items; --');
-    expect($result_5)->toBe($expected_5);
-});
+it('it prepares tag params', function (string $input, array $want) {
+    expect($this->helper->prepareParamTags($input))->toBe($want);
+})->with([
+    'correct format' => ['H+G+P', ['H', 'G', 'P']],
+    'empty' => ['', []],
+    'off tag' => ['oFf', ['OFF']],
+    'random gibberish' => ['Test+#<[G+B3333', ['TES', 'G', 'B']],
+    'injection attempt' => ['name\'); DELETE FROM items; --; + HI', ['NAM', 'HI']],
+]);
