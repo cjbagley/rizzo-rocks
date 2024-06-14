@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Helpers\Helpers;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ListPageRequest extends FormRequest
@@ -10,7 +11,17 @@ class ListPageRequest extends FormRequest
     {
         return [
             'search' => ['string', 'nullable', 'max:30'],
-            'page' => ['numeric'],
+            'page' => ['nullable', 'numeric'],
+            'tags' => ['nullable', 'array'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $helpers = new Helpers();
+
+        $this->merge([
+            'tags' => $helpers->prepareParamTags($this->tags ?? ''),
+        ]);
     }
 }

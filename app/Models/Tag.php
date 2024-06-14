@@ -18,6 +18,7 @@ class Tag extends Model
         'code',
         'colour',
         'is_sensitive',
+        'is_selected',
     ];
 
     protected $fillable = [

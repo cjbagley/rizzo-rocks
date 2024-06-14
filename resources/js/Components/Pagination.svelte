@@ -30,7 +30,6 @@
         window.history.replaceState(null, '', new URL(nextUrl));
         dispatch('refresh', {url: nextUrl});
     }
-
 </script>
 
 {#if totalRows && totalRows > perPage}

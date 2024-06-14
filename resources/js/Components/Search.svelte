@@ -1,7 +1,6 @@
 <script>
-    import Tag from "@/Components/Tag.svelte";
     import {createEventDispatcher} from "svelte";
-
+    import TagInput from "@/Components/TagInput.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -23,7 +22,7 @@
 
             newUrl.searchParams.set('page', 1);
             newUrl.searchParams.set('search', document.querySelector('input[id="search"]').value);
-            newUrl.searchParams.set('tags', tags.join("+"));
+            newUrl.searchParams.set('tags', tags.join("-"));
 
             window.history.replaceState(null, '', new URL(newUrl));
             dispatch('refresh', {url: newUrl});
@@ -47,12 +46,7 @@
             <legend>Tags:</legend>
             <div class="flex-row wrapper">
                 {#each tags as tag}
-                    <div class="flex-row tag-input">
-                        <input type="checkbox" id="tag_{tag.code}" name="tag_{tag.code}" value="{tag.code}" checked
-                               on:change={({target: {value}}) => debounce(value)}
-                        >
-                        <Tag {tag} tagLabel="tag_"/>
-                    </div>
+                    <TagInput on:debounce={debounce} {tag}/>
                 {/each}
             </div>
         </div>

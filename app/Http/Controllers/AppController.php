@@ -48,6 +48,18 @@ class AppController
             });
         }
 
+        $tags = Tag::orderBy('tag')->get();
+        $selected_tags = $request->has('tags') ? $request->validated('tags') : [];
+        foreach ($tags as $tag) {
+            $tag->is_selected = in_array($tag->code, $selected_tags);
+        }
+
+        if ($selected_tags != []) {
+            $q->whereHas('tags', function (Builder $sq) use ($selected_tags) {
+                $sq->whereIn('code', $selected_tags);
+            });
+        }
+
         // In theory, should only get tags linked to games with the below
         // In practice, I'm setting up the data so I know they are all linked,
         // so not spending time on it at this point.
@@ -56,7 +68,7 @@ class AppController
                 ->orderBy('game_captures.title')
                 ->paginate(self::PER_PAGE)
                 ->withQueryString(),
-            'tags' => Tag::orderBy('tag')->get(),
+            'tags' => $tags,
             'search' => $search,
         ];
 
