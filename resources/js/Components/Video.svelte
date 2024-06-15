@@ -9,6 +9,7 @@
            disablepictureinpicture="true"
            playsinline="false">
         Your browser does not support video :(
+        <track kind="captions">
         <source src="{video.url}" type="video/webm"/>
     </video>
 </Media>

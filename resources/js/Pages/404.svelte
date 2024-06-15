@@ -13,5 +13,5 @@
     <p>Oh oh, could not find the page you are looking for! </p>
 </Content>
 <Content>
-    <img src="{image}" alt="Not found image - character posing from Fallout 4">
+    <img src="{image}" alt="Not found image - character posing from Fallout 4"/>
 </Content>

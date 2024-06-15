@@ -3,7 +3,7 @@
 </script>
 
 <div>
-    <Link href="/" class="game-font">RR</Link>
+    <Link href="/" class="logo-link game-font">RR</Link>
 </div>
 
 <style>
@@ -14,7 +14,7 @@
         padding: 0 4px;
     }
 
-    a {
+    .logo-link {
         font-size: 36px;
         color: #1e3a8a;
         text-decoration: none;

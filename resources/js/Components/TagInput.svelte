@@ -18,3 +18,13 @@
     >
     <Tag {tag} tagLabel="tag_"/>
 </div>
+
+<style>
+    .tag-input {
+        gap: 10px;
+    }
+
+    input[type='checkbox'] {
+        margin: 0;
+    }
+</style>

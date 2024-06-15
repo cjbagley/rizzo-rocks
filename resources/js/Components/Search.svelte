@@ -69,7 +69,6 @@
         }
     }
 
-
     legend, label {
         min-width: 80px;
     }
@@ -79,13 +78,5 @@
         row-gap: 10px;
         flex-wrap: wrap;
         justify-content: center;
-    }
-
-    .tag-input {
-        gap: 10px;
-    }
-
-    input[type='checkbox'] {
-        margin: 0;
     }
 </style>
