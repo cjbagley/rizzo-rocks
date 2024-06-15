@@ -3,8 +3,6 @@
     import NavGithubLink from "./NavGithubLink.svelte";
     import NavLink from "./NavLink.svelte";
     import NavMobileButton from "./NavMobileButton.svelte";
-    import NavMobileProfile from "./NavMobileProfile.svelte";
-    import NavProfileDropdown from "./NavProfileDropdown.svelte";
     import NavSiteLogo from "./NavSiteLogo.svelte";
     import {page} from "@inertiajs/svelte";
 
