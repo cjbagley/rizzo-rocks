@@ -2,12 +2,19 @@ html {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+body {
+    padding: 0;
+}
+
 #app {
     height: 100%;
 }
 
 p, span {
+    font-size: 20px;
     text-align: justify;
+    line-height: 30px;
+    font-family: Helvetica, serif;
 }
 
 .game-font {
@@ -17,6 +24,14 @@ p, span {
     line-height: initial;
     overflow: auto;
     text-rendering: geometricPrecision;
+}
+
+
+@media (width >= 640px ) {
+    .reading-padding {
+        padding-left: 82px;
+        padding-right: 82px;
+    }
 }
 
 a {

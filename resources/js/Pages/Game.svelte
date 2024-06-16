@@ -18,7 +18,7 @@
         <div class="game-image-wrapper">
             <img width="240" height="300" src={game.cover} alt={game.title}/>
         </div>
-        <div class="game-details-wrapper flex-column">
+        <div class="game-details-wrapper flex-column reading-padding">
             <div class="game-details flex-column">
                 <p><strong>Played:&nbsp;</strong>{game.played_years}</p>
                 <p>{game.comments}</p>
@@ -62,6 +62,10 @@
     }
 
     @media (width >= 1024px) {
+        .game-details-wrapper.reading-padding {
+            padding-left: 40px;
+        }
+
         .game-container {
             grid-template-columns: 1fr 4fr;
         }
