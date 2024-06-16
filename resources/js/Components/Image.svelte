@@ -86,6 +86,7 @@
         position: relative;
         background-color: transparent;
         border: none;
+        margin: 0 auto;
     }
 
     .fullscreen-icon {

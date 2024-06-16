@@ -28,21 +28,23 @@
 <style>
     span {
         align-items: center;
-        display: flex;
-        gap: 5px;
-        padding: 4px 8px;
         border-radius: 5px;
         color: #000000;
-        font-size: 18px;
-        line-height: 18px;
-        font-weight: 500;
+        display: flex;
         flex-wrap: wrap;
+        font-size: 18px;
+        font-weight: 500;
+        gap: 5px;
+        line-height: 18px;
+        padding: 4px 8px;
     }
 
     .game-title {
+        color: #000;
+        gap: 10px;
+        flex-wrap: nowrap;
         margin: 0 auto;
         padding: 0;
-        color: #000;
     }
 
     :global(.dark-theme .game-title) {

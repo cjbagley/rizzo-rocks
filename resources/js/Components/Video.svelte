@@ -18,5 +18,12 @@
     video {
         margin: 0 auto;
         max-width: 100%;
+        height: unset;
+    }
+
+    @media (width >= 640px) {
+        video {
+            height: 200px;
+        }
     }
 </style>

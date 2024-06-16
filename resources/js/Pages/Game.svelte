@@ -48,9 +48,23 @@
 
 <style>
     .game-container {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
+    }
+
+    @media (width >= 800px) {
+        .game-container {
+            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (width >= 1024px) {
+        .game-container {
+            grid-template-columns: 1fr 4fr;
+        }
     }
 
     .game-image-wrapper {
@@ -69,6 +83,7 @@
     }
 
     .game-details-wrapper a {
+        overflow-wrap: break-word;
         font-size: 18px;
     }
 
@@ -76,10 +91,5 @@
         opacity: 0.8;
     }
 
-    @media (width >= 1024px) {
-        .game-container {
-            grid-template-columns: 1fr 4fr;
-        }
-    }
 
 </style>
