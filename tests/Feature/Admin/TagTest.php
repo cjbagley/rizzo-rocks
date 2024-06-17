@@ -29,7 +29,7 @@ test('tag can be added', function () {
     expect($saved_tag->tag)->toBe($tag->tag)
         ->and($saved_tag->colour)->toBe($tag->colour)
         ->and($saved_tag->code)->toBe($tag->code)
-        ->and((bool) $saved_tag->is_sensitive)->toBe((bool) $tag->is_sensitive);
+        ->and($saved_tag->is_sensitive)->toBe($tag->is_sensitive);
 });
 
 test('tag can be edited', function () {
@@ -56,7 +56,7 @@ test('tag can be edited', function () {
     expect($updated_tag->code)->not->toBe($original_tag->code);
 
     expect($updated_tag->colour)->toBe($original_tag->colour)
-        ->and((bool) $updated_tag->is_sensitive)->toBe((bool) $original_tag->is_sensitive)
+        ->and($updated_tag->is_sensitive)->toBe($original_tag->is_sensitive)
         ->and($updated_tag->tag)->toBe($new_tag)
         ->and($updated_tag->code)->toBe($new_code);
 });

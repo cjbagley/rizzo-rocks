@@ -11,16 +11,16 @@
                     <p>{{ $game->summary }}</p>
                     <ul>
                         <x-lookup-li
-                            label="Rating">{{ $game->rating >= 0 ? '-' : $game->rating . '/100' }}</x-lookup-li>
+                                label="Rating">{{ $game->rating >= 0 ? '-' : $game->rating . '/100' }}</x-lookup-li>
                         <x-lookup-li label="Release Date">{{ $game->getReleaseDate() }}</x-lookup-li>
                         <x-lookup-li
-                            label="Platforms">{{ empty($game->platforms) ? '-' : implode(', ', $game->platforms) }}</x-lookup-li>
+                                label="Platforms">{{ empty($game->platforms) ? '-' : implode(', ', $game->platforms) }}</x-lookup-li>
                         <x-lookup-li label="IGDB ID">{{ $game->id }}</x-lookup-li>
                     </ul>
                     @if(!empty($data->url))
                         <small><a
-                                target="_new" rel="noreferrer"
-                                href="{{ $game->info_url }}">More Info</a></small>
+                                    target="_new" rel="noreferrer"
+                                    href="{{ $game->info_url }}">More Info</a></small>
                     @endif
                 </div>
             </div>

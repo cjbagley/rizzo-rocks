@@ -13,7 +13,7 @@
         @forelse($game->captures as $capture)
             <x-admin-card>
                 <div class="game-info-wrapper">
-                    @if($capture->type == 'video')
+                    @if($capture->type == 'image')
                         <img width="160" src="{{ $capture->url }}" alt="{{ $capture->title }}">
                     @else
                         <video width="160" controls>

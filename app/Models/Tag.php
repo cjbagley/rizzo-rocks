@@ -13,6 +13,10 @@ class Tag extends Model
 
     public $timestamps = true;
 
+    protected $casts = [
+        'is_sensitive' => 'boolean',
+    ];
+
     protected $visible = [
         'tag',
         'code',

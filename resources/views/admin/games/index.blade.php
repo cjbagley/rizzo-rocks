@@ -18,10 +18,8 @@
                     <div class="game-info-details">
                         <h3>{{ $game->title }}</h3>
                         <p>{{ $game->comments }}</p>
-                        @if(!empty($game->url))
-                            <small><a
-                                    target="_new" rel="noreferrer"
-                                    href="{{ $game->info_url }}">{{__('app.game.info')}}</a></small>
+                        @if(!empty($game->is_sensitive))
+                            <strong style="color: red">Sensitive</strong>
                         @endif
                     </div>
                 </div>
