@@ -26,6 +26,10 @@ class Game extends Model
 
     public $timesptamps = true;
 
+    protected $casts = [
+        'is_sensitive' => 'boolean',
+    ];
+
     protected $visible = [
         'title',
         'played_years',
@@ -42,6 +46,7 @@ class Game extends Model
         'igdb_id',
         'igdb_cover_id',
         'igdb_url',
+        'is_sensitive',
     ];
 
     protected $appends = ['cover', 'url'];

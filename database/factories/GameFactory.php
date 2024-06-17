@@ -15,6 +15,7 @@ class GameFactory extends Factory
             'igdb_url' => fake()->url(),
             'played_years' => fake()->words(3, true),
             'comments' => fake()->text(),
+            'is_sensitive' => fake()->boolean(),
         ];
     }
 }

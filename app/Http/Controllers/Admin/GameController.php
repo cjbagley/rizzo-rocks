@@ -31,6 +31,7 @@ class GameController extends AuthController
             'igdb_url' => $helpers->firstNonEmpty([$game?->igdb_url, old('igdb_url', request()->igdb_url)]),
             'played_years' => $helpers->firstNonEmpty([$game?->played_years, old('played_years', request()->played_years)]),
             'comments' => $helpers->firstNonEmpty([$game?->comments, old('comments', request()->comments)]),
+            'is_sensitive' => $helpers->firstNonEmpty([$game?->is_sensitive, old('is_sensitive', request()->is_sensitive)]),
             'is_update' => $is_update,
             'form_route' => $is_update ? route('games.update', $game->slug) : route('games.store'),
         ];

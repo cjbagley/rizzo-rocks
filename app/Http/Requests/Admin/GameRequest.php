@@ -15,6 +15,7 @@ class GameRequest extends FormRequest
             'igdb_cover_id' => ['nullable', 'string', 'max:255'],
             'igdb_url' => ['nullable', 'string', 'url', 'max:255'],
             'comments' => ['nullable', 'string'],
+            'is_sensitive' => ['boolean'],
         ];
     }
 }
