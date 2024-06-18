@@ -12,6 +12,7 @@
 */
 
 use App\Models\Game;
+use App\Models\GameCapture;
 use App\Models\Tag;
 use App\Models\User;
 
@@ -47,6 +48,10 @@ expect()->extend('toBeOne', function () {
 |
 */
 
+const SENSITIVE_GAME_TITLE = 'Sensitive Game';
+const SENSITIVE_CAPTURE_TITLE = 'Sensitive Cap';
+const SENSITIVE_TAG_TITLE = 'Sensitive Tag';
+
 function create_test_user(array $attrs = []): User
 {
     return User::factory()->create($attrs);
@@ -60,4 +65,38 @@ function create_test_game(array $attrs = []): Game
 function create_test_tag(array $attrs = []): Tag
 {
     return Tag::factory()->create($attrs);
+}
+
+function create_dummy_games_and_captures()
+{
+    // Create mix of sensitive and non-sensitive tags
+    Tag::factory()->count(5)->create(['is_sensitive' => false]);
+    $sensitive_tag = Tag::factory()->create(['is_sensitive' => true, 'tag' => SENSITIVE_TAG_TITLE]);
+
+    // Create mix of sensitive and non-sensitive games
+    Game::factory()->count(5)->create(['is_sensitive' => false]);
+    Game::factory()->create(['is_sensitive' => true, 'title' => SENSITIVE_GAME_TITLE]);
+
+    $games = Game::all();
+    if ($games->count() != 6) {
+        dd(sprintf('%s should create 6 games, %s given', __METHOD__, $games->count()));
+    }
+
+    // Make sure a non-sensitive game has a capture with a sensitive tag
+    $non_sensitive_game = Game::where('is_sensitive', false)->first();
+    $sensitive_capture = GameCapture::factory()->create(['game_id' => $non_sensitive_game->id, 'title' => SENSITIVE_CAPTURE_TITLE]);
+    $sensitive_capture->tags()->attach([$sensitive_tag->id]);
+
+    // Create captures against games
+    foreach ($games as $game) {
+        GameCapture::factory()->count(5)->create(['game_id' => $game->id]);
+    }
+
+    // Set tags against the captures
+    $tags = Tag::all();
+    foreach (GameCapture::all() as $gameCapture) {
+        $selected_tags = $tags->random(2)->pluck('id')->toArray();
+        $gameCapture->tags()->attach($selected_tags);
+    }
+    return Game::all();
 }

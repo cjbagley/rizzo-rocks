@@ -7,6 +7,7 @@ use App\Enums\GameCaptureType;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
@@ -45,6 +46,11 @@ class GameCapture extends Model
     protected $with = ['tags'];
 
     protected $appends = ['thumb', 'url', 'poster'];
+
+    public function game(): BelongsTo
+    {
+        return $this->belongsTo(Game::class);
+    }
 
     public function tags(): BelongsToMany
     {

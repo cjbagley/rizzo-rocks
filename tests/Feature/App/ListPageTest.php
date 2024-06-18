@@ -4,41 +4,51 @@ use Inertia\Testing\AssertableInertia as Assert;
 
 const LIST_URL = '/browse/list';
 
-test('list page is displayed', function () {
-    $this->get(LIST_URL)->assertOk();
+// Not ideal, as this is still called before each test,
+// but as far as I can find so far, there is no way to do
+// this just once. beforeAll() would be ideal, but it can't
+// call factories, so not possible.
+beforeEach(function () {
+    create_dummy_games_and_captures();
 });
 
-test('list page loads games component', function () {
-    $this->get(LIST_URL)->assertInertia(
-        fn (Assert $page) => $page
-            ->component('List')
-    );
-});
+describe('listpage', function () {
+    test('is displayed', function () {
+        $this->get(LIST_URL)->assertOk();
+    });
 
-test('list page is displayed with a pagination link', function () {
-    $response = $this->get(LIST_URL);
-    $response->assertOk();
-    $response->assertInertia(
-        fn (Assert $page) => $page
-            ->component('List', fn (Assert $page) => $page
-                ->has('pagination')
-            ));
-});
+    test('is loaded with games component', function () {
+        $this->get(LIST_URL)->assertInertia(
+            fn (Assert $page) => $page
+                ->component('List')
+        );
+    });
 
-test('search does not break the page', function () {
-    $response = $this->get(LIST_URL);
-    $response->assertOk();
-    $response->assertInertia(fn (Assert $page) => $page
-        ->has('data.data.data')
-    );
-});
+    test('displays pagination', function () {
+        $response = $this->get(LIST_URL);
+        $response->assertOk();
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->component('List', fn (Assert $page) => $page
+                    ->has('pagination')
+                ));
+    });
 
-test('tag filtering does not break the page', function () {
-    $response = $this->get(LIST_URL.'?tags=C');
-    $response->assertOk();
-});
+    test('works when search parameter used', function () {
+        $response = $this->get(LIST_URL);
+        $response->assertOk();
+        $response->assertInertia(fn (Assert $page) => $page
+            ->has('data.data.data')
+        );
+    });
 
-test('senstive game does not show', function () {
-    $response = $this->get(LIST_URL.'?search=gears');
-    $response->assertOk();
+    test('works when tag filtering used', function () {
+        $response = $this->get(LIST_URL.'?tags=C');
+        $response->assertOk();
+    });
+
+    test('does not show senstive game', function () {
+        $response = $this->get(LIST_URL.'?search=gears');
+        $response->assertOk();
+    });
 });

@@ -21,7 +21,7 @@ test('capture index page is displayed', function () {
 test('capture can be added', function () {
     $game = create_test_game();
     $tags = Tag::factory()->count(5)->create();
-    $capture = GameCapture::factory()->make();
+    $capture = GameCapture::factory()->for($game)->make();
     $selected_tags = $tags->random(2)->pluck('id')->toArray();
 
     $this
@@ -41,6 +41,7 @@ test('capture can be added', function () {
     expect($capture->type)->toBe($saved_capture->type);
     expect($capture->filekey)->toBe($saved_capture->filekey);
     expect($capture->comments)->toBe($saved_capture->comments);
+    expect($capture->game_id)->toBe($saved_capture->game_id);
     expect($saved_capture->tags->count())->toBe(2);
     foreach ($saved_capture->tags as $tag) {
         expect($tag->id)->toBeIn($selected_tags);
@@ -50,7 +51,7 @@ test('capture can be added', function () {
 test('capture can be edited', function () {
     $game = create_test_game();
     $tags = Tag::factory()->count(5)->create();
-    $capture = GameCapture::factory()->create();
+    $capture = GameCapture::factory()->for($game)->create();
     $updated_capture = clone $capture;
     $updated_capture->title = fake()->name();
     $selected_tags = $tags->random(3)->pluck('id')->toArray();
@@ -73,6 +74,8 @@ test('capture can be edited', function () {
     expect($updated_capture->filekey)->toBe($capture->filekey);
     expect($updated_capture->comments)->toBe($capture->comments);
     expect($updated_capture->type)->toBe($capture->type);
+    expect($updated_capture->game_id)->toBe($game->id);
+    expect($updated_capture->game_id)->toBe($capture->game_id);
     expect($capture->tags->count())->toBe(3);
     foreach ($capture->tags as $tag) {
         expect($tag->id)->toBeIn($selected_tags);
@@ -81,7 +84,7 @@ test('capture can be edited', function () {
 
 test('capture can be deleted', function () {
     $game = create_test_game();
-    $capture = GameCapture::factory()->create();
+    $capture = GameCapture::factory()->for($game)->create();
 
     $this
         ->actingAs(create_test_user())
