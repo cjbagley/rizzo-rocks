@@ -3,8 +3,6 @@
 use App\Enums\ImageSize;
 use App\Models\Game;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
-
 it('gets cover url', function () {
     $expected_thumb = 'https://images.igdb.com/igdb/image/upload/t_thumb/abcde.jpg';
     $expected_cover_small = 'https://images.igdb.com/igdb/image/upload/t_cover_small/abcde.jpg';
