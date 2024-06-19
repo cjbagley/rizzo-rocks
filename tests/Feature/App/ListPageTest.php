@@ -39,57 +39,47 @@ describe('listpage', function () {
     });
 
     test('works when search parameter used', function () {
-        $capture = GameCapture::all()->random(1)->first();
-        $response = $this->get(sprintf('%s?search=%s', LIST_URL, $capture->title));
-        $response->assertOk();
-        $page = $response->viewData('page');
-        if (! isset($page['props']['data']['data']['data'])) {
-            $this->fail('Properties missing');
-        }
+        $test_capture = GameCapture::all()->random(1)->first();
+        $response = $this->get(sprintf('%s?search=%s', LIST_URL, $test_capture->title));
 
-        $data = $page['props']['data']['data']['data'];
+        $response->assertOk();
+
+        $data = getPageData($response);
+
         expect($data)->toHaveCount(1);
         expect($data[0])->toHaveKey('title');
-        expect($data[0]['title'])->toBe($capture->title);
+        expect($data[0]['title'])->toBe($test_capture->title);
         foreach ($data[0]['tags'] as $tag) {
             expect('is_sensitive')->toBe(false);
         }
-
     });
 
-    test('works when tag filtering used', function () {
-        $tag = Tag::where('is_sensitive', '=', false)->first();
+    test(
+        'works when tag filtering used', function () {
+            $tag = Tag::where('is_sensitive', '=', false)->first();
 
-        $response = $this->get(sprintf('%s?tags=%s', LIST_URL, $tag->code));
-        $response->assertOk();
+            $response = $this->get(sprintf('%s?tags=%s', LIST_URL, $tag->code));
+            $response->assertOk();
 
-        $page = $response->viewData('page');
-        if (! isset($page['props']['data']['data']['data'])) {
-            $this->fail('Properties missing');
-        }
+            $data = getPageData($response);
+            $this->assertNotEmpty($data);
 
-        $data = $page['props']['data']['data']['data'];
-        $this->assertNotEmpty($data);
-        foreach ($data as $capture) {
-            $this->assertArrayHasKey('tags', $capture);
-            $this->assertNotEmpty($capture['tags']);
-            $tag_codes = collect($capture['tags'])->pluck('code')->toArray();
-            assertContains($tag->code, $tag_codes);
-            foreach ($capture['tags'] as $tag) {
-                expect('is_sensitive')->toBe(false);
+            foreach ($data as $capture) {
+                $this->assertArrayHasKey('tags', $capture);
+                $this->assertNotEmpty($capture['tags']);
+                $tag_codes = collect($capture['tags'])->pluck('code')->toArray();
+                assertContains($tag->code, $tag_codes);
+                foreach ($capture['tags'] as $tag) {
+                    expect('is_sensitive')->toBe(false);
+                }
             }
-        }
-    });
+        });
 
     test('does not show sensitive game', function () {
         $response = $this->get(sprintf('%s?search=%s', LIST_URL, SENSITIVE_GAME_TITLE));
         $response->assertOk();
 
-        $page = $response->viewData('page');
-        if (! isset($page['props']['data']['data']['data'])) {
-            $this->fail('Properties missing');
-        }
-
-        $this->assertEmpty($page['props']['data']['data']['data']);
+        $data = getPageData($response);
+        $this->assertEmpty($data);
     });
 });

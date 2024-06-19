@@ -15,6 +15,7 @@ use App\Models\Game;
 use App\Models\GameCapture;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Testing\TestResponse;
 
 uses(
     Tests\TestCase::class,
@@ -98,5 +99,16 @@ function create_dummy_games_and_captures()
         $selected_tags = $tags->random(2)->pluck('id')->toArray();
         $gameCapture->tags()->attach($selected_tags);
     }
+
     return Game::all();
+}
+
+function getPageData(TestResponse $response): array
+{
+    $page = $response->viewData('page');
+    if (! isset($page['props']['data']['ddata']['data'])) {
+        throw new Exception('Properties missing');
+    }
+
+    return $page['props']['data']['data']['data'];
 }
