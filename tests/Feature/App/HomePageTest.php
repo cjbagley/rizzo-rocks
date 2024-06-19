@@ -2,13 +2,15 @@
 
 use Inertia\Testing\AssertableInertia as Assert;
 
-test('home page is displayed', function () {
-    $this->get('/')->assertOk();
-});
+describe('Home page', function () {
+    test('is displayed', function () {
+        $this->get('/')->assertOk();
+    });
 
-test('home page loads index component', function () {
-    $this->get('/')->assertInertia(
-        fn (Assert $page) => $page
-            ->component('Index')
-    );
+    test('loads correct component', function () {
+        $this->get('/')->assertInertia(
+            fn (Assert $page) => $page
+                ->component('Index')
+        );
+    });
 });

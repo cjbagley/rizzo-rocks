@@ -103,12 +103,22 @@ function create_dummy_games_and_captures()
     return Game::all();
 }
 
-function getPageData(TestResponse $response): array
+function getListPageData(TestResponse $response): array
 {
     $page = $response->viewData('page');
-    if (! isset($page['props']['data']['ddata']['data'])) {
-        throw new Exception('Properties missing');
+    if (! isset($page['props']['data']['data']['data'])) {
+        throw new Exception('Games list missing');
     }
 
     return $page['props']['data']['data']['data'];
+}
+
+function getGamesPageData(TestResponse $response): array
+{
+    $page = $response->viewData('page');
+    if (! isset($page['props']['games'])) {
+        throw new Exception('Games missing');
+    }
+
+    return $page['props']['games'];
 }
