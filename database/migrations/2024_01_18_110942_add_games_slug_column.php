@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('slug')->nullable()->after('igdb_url');
         });
 
-        foreach (Game::all() as $game) {
+        foreach (Game::withoutGlobalScopes()->get() as $game) {
             $game->slug = Str::slug($game->title);
             $game->save();
         }

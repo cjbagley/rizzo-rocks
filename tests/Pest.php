@@ -78,7 +78,7 @@ function create_dummy_games_and_captures()
     Game::factory()->count(5)->create(['is_sensitive' => false]);
     Game::factory()->create(['is_sensitive' => true, 'title' => SENSITIVE_GAME_TITLE]);
 
-    $games = Game::all();
+    $games = Game::withoutGlobalScopes()->get();
     if ($games->count() != 6) {
         dd(sprintf('%s should create 6 games, %s given', __METHOD__, $games->count()));
     }

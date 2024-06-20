@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Disk;
 use App\Enums\GameCaptureType;
 use App\Enums\ImageSize;
+use App\Models\Scopes\SensitiveGameScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -85,6 +86,8 @@ class Game extends Model
         static::addGlobalScope('ordered', function (Builder $builder) {
             $builder->orderBy('title');
         });
+
+        static::addGlobalScope(SensitiveGameScope::class);
     }
 
     public function getRouteKeyName()
