@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Game;
+use App\Models\Scopes\SensitiveGameScope;
 use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
@@ -21,11 +22,11 @@ return new class extends Migration
 
     public function up(): void
     {
-        Game::whereIn('igdb_id', self::SENSITIVE_GAMES)->update(['is_sensitive' => true]);
+        Game::withoutGlobalScope(SensitiveGameScope::class)->whereIn('igdb_id', self::SENSITIVE_GAMES)->update(['is_sensitive' => true]);
     }
 
     public function down(): void
     {
-        Game::whereNull('deleted_at')->update(['is_sensitive' => false]);
+        Game::withoutGlobalScope(SensitiveGameScope::class)->whereNull('deleted_at')->update(['is_sensitive' => false]);
     }
 };

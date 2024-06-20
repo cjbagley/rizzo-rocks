@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\Disk;
 use App\Enums\GameCaptureType;
+use App\Models\Scopes\SensitiveGameCaptureScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
  * @property string $poster
  * @property string $url
  */
+#[ScopedBy([SensitiveGameCaptureScope::class])]
 class GameCapture extends Model
 {
     use HasFactory;

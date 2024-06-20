@@ -55,9 +55,9 @@ describe('List page', function () {
     });
 
     test('correct results when tag filtering used', function () {
-        $tag = Tag::where('is_sensitive', '=', false)->first();
+        $test_tag = Tag::where('is_sensitive', '=', false)->first();
 
-        $response = $this->get(sprintf('%s?tags=%s', LIST_URL, $tag->code));
+        $response = $this->get(sprintf('%s?tags=%s', LIST_URL, $test_tag->code));
         $response->assertOk();
 
         $data = getListPageData($response);
@@ -68,7 +68,7 @@ describe('List page', function () {
             $this->assertNotEmpty($capture['tags']);
 
             $tag_codes = collect($capture['tags'])->pluck('code')->toArray();
-            expect($tag_codes)->toContain($tag['code']);
+            expect($tag_codes)->toContain($test_tag->code);
             foreach ($capture['tags'] as $tag) {
                 expect($tag['is_sensitive'])->toBeFalse();
             }

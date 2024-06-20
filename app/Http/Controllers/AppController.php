@@ -33,6 +33,10 @@ class AppController
             ->addSelect('games.title as game')
             ->join('games', 'games.id', '=', 'game_captures.game_id');
 
+        if (! auth()->check()) {
+            $q->where('games.is_sensitive', '=', false);
+        }
+
         $helpers = new Helpers();
         $search = $request->has('search')
             ? $helpers->sanitiseString((string) $request->validated('search'))

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GameCapture;
+use App\Models\Scopes\SensitiveGameCaptureScope;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +14,7 @@ return new class extends Migration
             $table->string('filekey')->nullable()->after('href');
         });
 
-        foreach (GameCapture::all() as $capture) {
+        foreach (GameCapture::withoutGlobalScope(SensitiveGameCaptureScope::class)->get() as $capture) {
             $href = basename($capture->getRawOriginal('href'));
             $capture->filekey = pathinfo($href, PATHINFO_FILENAME);
             $capture->save();

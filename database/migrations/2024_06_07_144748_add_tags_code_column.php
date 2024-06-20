@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Scopes\SensitiveTagScope;
 use App\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +16,7 @@ return new class extends Migration
 
         // Based on the data at time migration ran, below is sufficient and causes no
         // duplicates; not worth doing something more fancy as YAGNI
-        foreach (Tag::all() as $tag) {
+        foreach (Tag::withoutGlobalScope(SensitiveTagScope::class)->get() as $tag) {
             $tag->code = substr($tag->tag, 0, 1);
             $tag->save();
         }

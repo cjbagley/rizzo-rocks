@@ -13,6 +13,9 @@
 
 use App\Models\Game;
 use App\Models\GameCapture;
+use App\Models\Scopes\SensitiveGameCaptureScope;
+use App\Models\Scopes\SensitiveGameScope;
+use App\Models\Scopes\SensitiveTagScope;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Testing\TestResponse;
@@ -78,7 +81,7 @@ function create_dummy_games_and_captures()
     Game::factory()->count(5)->create(['is_sensitive' => false]);
     Game::factory()->create(['is_sensitive' => true, 'title' => SENSITIVE_GAME_TITLE]);
 
-    $games = Game::withoutGlobalScopes()->get();
+    $games = Game::withoutGlobalScope(SensitiveGameScope::class)->get();
     if ($games->count() != 6) {
         dd(sprintf('%s should create 6 games, %s given', __METHOD__, $games->count()));
     }
@@ -94,13 +97,11 @@ function create_dummy_games_and_captures()
     }
 
     // Set tags against the captures
-    $tags = Tag::all();
-    foreach (GameCapture::all() as $gameCapture) {
+    $tags = Tag::withoutGlobalScope(SensitiveTagScope::class)->get();
+    foreach (GameCapture::withoutGlobalScope(SensitiveGameCaptureScope::class)->get() as $gameCapture) {
         $selected_tags = $tags->random(2)->pluck('id')->toArray();
         $gameCapture->tags()->attach($selected_tags);
     }
-
-    return Game::all();
 }
 
 function getListPageData(TestResponse $response): array
