@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class Helpers
 {
-    const TAG_PARAM_SEPARATOR = '-';
+    public const TAG_PARAM_SEPARATOR = '-';
 
     public function firstNonEmpty(array $arr = [], mixed $default = null): mixed
     {
@@ -23,22 +23,18 @@ class Helpers
 
     public function sanitiseString(string $string): string
     {
-        return trim(preg_replace('/[^a-zA-Z0-9 ]/', '', $string));
+        return trim((string) preg_replace('/[^a-zA-Z0-9 ]/', '', $string));
     }
 
     public function prepareParamTags(string $tag_param): array
     {
-        $tag_param = trim(preg_replace('/[^a-zA-Z-]/', '', $tag_param));
+        $tag_param = trim((string) preg_replace('/[^a-zA-Z-]/', '', $tag_param));
         if ($tag_param === '') {
             return [];
         }
 
-        $parts = explode(self::TAG_PARAM_SEPARATOR, $tag_param);
-        if (count($parts) == 0) {
-            return [];
-        }
-
         $tags = [];
+        $parts = explode(self::TAG_PARAM_SEPARATOR, $tag_param);
         foreach ($parts as $part) {
             $part = strtoupper(substr($part, 0, 3));
             if (trim($part) !== '') {

@@ -22,7 +22,7 @@ it('sanitises string', function (mixed $input, string $want) {
     'integer' => [55, '55'],
     'string with special characters' => ['Halo 2; "thing \'', 'Halo 2 thing'],
     'empty' => ['', ''],
-    'injection attempt' => ['name\'); DELETE FROM items; --', 'name DELETE FROM items'],
+    'injection attempt' => ["name'); DELETE FROM items; --", 'name DELETE FROM items'],
 ]);
 
 it('it prepares tag params', function (string $input, array $want) {
@@ -32,5 +32,5 @@ it('it prepares tag params', function (string $input, array $want) {
     'empty' => ['', []],
     'off tag' => ['oFf', ['OFF']],
     'random gibberish' => ['Test-#<[G+B3333', ['TES', 'GB']],
-    'injection attempt' => ['name\'); DELETE FROM items; --; - HI', ['NAM', 'HI']],
+    'injection attempt' => ["name'); DELETE FROM items; --; - HI", ['NAM', 'HI']],
 ]);

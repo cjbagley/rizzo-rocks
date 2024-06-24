@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property bool $is_sensitive
+ * @property bool $is_selected
+ */
 #[ScopedBy([SensitiveTagScope::class])]
 class Tag extends Model
 {

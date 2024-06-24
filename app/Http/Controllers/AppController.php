@@ -44,7 +44,7 @@ class AppController
 
         if ($search !== '') {
             collect(str_getcsv($search, ' ', '"'))->filter()->each(function ($part) use ($q) {
-                $term = "%{$part}%";
+                $term = sprintf('%%%s%%', $part);
                 $q->where(function (Builder $sq) use ($term) {
                     $sq->where('game_captures.title', 'like', $term)
                         ->orWhere('games.title', 'like', $term);

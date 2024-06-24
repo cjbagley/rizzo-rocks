@@ -23,7 +23,7 @@ class GameCaptureController extends AuthController
             $tags[$tag->id] = ['text' => $tag->tag, 'value' => $tag->id];
         }
 
-        $tags_selected = $capture ? $capture->tags->pluck('id')->toArray() : [];
+        $tags_selected = $capture instanceof \App\Models\GameCapture ? $capture->tags->pluck('id')->toArray() : [];
 
         return [
             'title' => $helpers->firstNonEmpty([$capture?->title, old('title', request()->title)]),

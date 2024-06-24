@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -9,7 +10,8 @@ class TagRequest extends FormRequest
 {
     public function rules(): array
     {
-        $tag_id = $this->route('tag')?->id;
+        $tag = $this->route('tag');
+        $tag_id = ($tag instanceof Tag) ? $tag->id : null;
 
         return [
             'tag' => ['required'],
