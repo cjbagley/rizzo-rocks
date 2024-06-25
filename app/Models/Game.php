@@ -38,6 +38,7 @@ class Game extends Model
         'cover',
         'url',
         'igdb_url',
+        'capture_count',
     ];
 
     protected $fillable = [
@@ -50,7 +51,7 @@ class Game extends Model
         'is_sensitive',
     ];
 
-    protected $appends = ['cover', 'url'];
+    protected $appends = ['cover', 'url', 'capture_count'];
 
     protected function cover(): Attribute
     {
@@ -60,6 +61,11 @@ class Game extends Model
     protected function url(): Attribute
     {
         return new Attribute(fn () => $this->getPageUrl());
+    }
+
+    protected function captureCount(): Attribute
+    {
+        return new Attribute(fn () => $this->captures->count());
     }
 
     public function captures(): HasMany
