@@ -43,7 +43,7 @@
 
     {#if tags}
         <div class="flex-column">
-            <legend>Tags:</legend>
+            <legend>Only show:</legend>
             <div class="flex-row wrapper">
                 {#each tags as tag}
                     <TagInput on:debounce={debounce} {tag}/>
@@ -70,7 +70,7 @@
     }
 
     legend, label {
-        min-width: 80px;
+        min-width: 130px;
     }
 
     .wrapper {

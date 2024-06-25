@@ -8,7 +8,7 @@
 
 {#if tagLabel != ''}
     <label for="{tagLabel}{tag.code}">
-        <span style="background-color: {tag.colour}">
+        <span class="tag" style="background-color: {tag.colour}">
             <TagSvg/>
             {tag.tag}
         </span>
@@ -19,14 +19,14 @@
         {tag.tag}
     </span>
 {:else}
-    <span style="background-color: {tag.colour}">
+    <span class="tag" style="background-color: {tag.colour}">
         <TagSvg/>
         {tag.tag}
     </span>
 {/if}
 
 <style>
-    span {
+    .tag {
         align-items: center;
         border-radius: 5px;
         color: #000000;
@@ -40,11 +40,14 @@
     }
 
     .game-title {
-        color: #000;
-        gap: 10px;
-        flex-wrap: nowrap;
-        margin: 0 auto;
-        padding: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    :global(.game-title > svg) {
+        margin-right: 8px;
     }
 
     :global(.dark-theme .game-title) {
