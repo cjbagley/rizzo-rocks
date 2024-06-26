@@ -27,10 +27,13 @@ p, span {
 }
 
 
-@media (width >= 640px ) {
+.reading-padding {
+    gap: 20px;
+}
+@media (width >= 800px ) {
     .reading-padding {
-        padding-left: 82px;
-        padding-right: 82px;
+        padding-left: 80px;
+        padding-right: 80px;
     }
 }
 

@@ -9,22 +9,16 @@
 </svelte:head>
 
 <Content header="{appName}">
-    <div class="reading-padding">
+    <div class="reading-padding flex-column">
         <p>Welcome to {appName}!</p>
-        <p>This is a personal site used to show off some of the Xbox captures I've
-            taken over the years, now that they are being removed from the Xbox network.</p>
-        <p>I also wanted an excuse to try out Svelte, which eventually morphed into using it as the front-end for a
-            Laravel project.</p>
-        <p>Explore the site either 'By Game', which displays the different games there are captures for, or 'Full list',
-            which has a table of the captures available for each game.</p>
+        <p>What is it? It's a personal, hand-made site used to show off the Xbox captures I've taken over the years.</p>
+        <p>It contains a mix of funny-things-that-happened, a side helping of cool-looking photos, topped off with a generous helping of me-screwing-over-my-friends-in-some-way (sorry Mike).</p>
+        <p>It was also an excuse to try out Svelte, which morphed into using Svelte as the front end for a Laravel project. The GitHub icon in the top right will take you to the repo if you are interested in taking a look.</p>
     </div>
 </Content>
 <Content header="What's with this design?">
-    <div class="reading-padding">
-        <p>Well, some of the first video game consoles I remember playing are the Sega Master System, and the Sega Mega
-            Drive. This design is an homage to the box art style that they both</p>
-        <p> Also, it struck me that the white of
-            the Master System and the black of the Mega Drive would be perfect for a light/dark mode toggle. Go on, give
-            it a try in the top right corner!</p>
+    <div class="reading-padding flex-column">
+        <p>The first video game console I remember owning was the Sega Master System. This design is a homage to the box art style that it had.</p>
+        <p>It also struck me that the Mega Drive box art is pretty much the same, just in black. That makes it perfect for a light/dark mode toggle, so I can pay homage to both! Go on, give it a try in the top right corner, you know you want to...</p>
     </div>
 </Content>
