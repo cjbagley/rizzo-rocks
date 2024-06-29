@@ -73,7 +73,7 @@
     }
 
     .pagination .text {
-        min-width: 150px;
+        min-width: 160px;
         text-align: center;
     }
 </style>
