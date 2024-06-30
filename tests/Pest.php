@@ -61,6 +61,13 @@ function create_test_user(array $attrs = []): User
     return User::factory()->create($attrs);
 }
 
+function create_admin_user(array $attrs = []): User
+{
+    $attrs = array_merge($attrs, ['admin_token' => Hash::make(config('auth.admin_token'))]);
+
+    return User::factory()->create($attrs);
+}
+
 function create_test_game(array $attrs = []): Game
 {
     return Game::factory()->create($attrs);

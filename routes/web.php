@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LookupController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\AppController;
+use App\Http\Middleware\CanAccessAdmin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'index']);
@@ -16,7 +17,7 @@ Route::post('/browse/list', [AppController::class, 'list']);
 
 Route::get('/admin', function () {
     return view('admin.dashboard', ['header' => 'Dashboard']);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', CanAccessAdmin::class])->name('dashboard');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

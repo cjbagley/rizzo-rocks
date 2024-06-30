@@ -23,10 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'admin_token',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'admin_token' => 'hashed',
     ];
 }
