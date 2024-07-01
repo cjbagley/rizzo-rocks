@@ -19,6 +19,7 @@ use App\Models\Scopes\SensitiveTagScope;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Testing\TestResponse;
+use Tests\TestCase;
 
 uses(
     Tests\TestCase::class,
@@ -56,6 +57,21 @@ const SENSITIVE_GAME_TITLE = 'Sensitive Game';
 const SENSITIVE_CAPTURE_TITLE = 'Sensitive Cap';
 const SENSITIVE_TAG_TITLE = 'Sensitive Tag';
 
+function adminUserTest(Closure $test)
+{
+    return describe('Admin User', $test);
+}
+
+function guestUserTest(Closure $test)
+{
+    return describe('Guest User', $test);
+}
+
+function loggedUserTest(Closure $test)
+{
+    return describe('Logged User', $test);
+}
+
 function create_test_user(array $attrs = []): User
 {
     return User::factory()->create($attrs);
@@ -66,6 +82,16 @@ function create_admin_user(array $attrs = []): User
     $attrs = array_merge($attrs, ['admin_token' => Hash::make(config('auth.admin_token'))]);
 
     return User::factory()->create($attrs);
+}
+
+function asLoggedUser(): TestCase
+{
+    return test()->actingAs(create_test_user());
+}
+
+function asAdmin(): TestCase
+{
+    return test()->actingAs(create_admin_user());
 }
 
 function create_test_game(array $attrs = []): Game
