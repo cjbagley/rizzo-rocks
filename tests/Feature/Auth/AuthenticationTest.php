@@ -4,22 +4,22 @@ use App\Providers\RouteServiceProvider;
 
 test('login screen can be rendered', function () {
     $this
-        ->get('/login')
+        ->get(RouteServiceProvider::LOGIN)
         ->assertStatus(200);
 });
 
 test('users can authenticate using the login screen', function () {
-    $response = $this->post('/login', [
+    $response = $this->post(RouteServiceProvider::LOGIN, [
         'email' => create_test_user()->email,
         'password' => 'password',
     ]);
 
     $this->assertAuthenticated();
-    $response->assertRedirect(RouteServiceProvider::HOME);
+    $response->assertRedirect(RouteServiceProvider::ADMIN_DASHBOARD);
 });
 
 test('users can not authenticate with invalid password', function () {
-    $this->post('/login', [
+    $this->post(RouteServiceProvider::LOGIN, [
         'email' => create_test_user()->email,
         'password' => 'wrong-password',
     ]);
