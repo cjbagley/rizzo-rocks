@@ -1,30 +1,30 @@
 <?php
 
-describe('Guest user', function () {
-    test('the dashboard page is not displayed', function () {
+use App\Providers\RouteServiceProvider;
+
+guestUserTest(function () {
+    test('cannot access', function () {
         $this
-            ->get('/admin')
-            ->assertStatus(302)
-            ->assertRedirect('login');
+            ->get(RouteServiceProvider::ADMIN_DASHBOARD)
+            ->assertFound()
+            ->assertRedirect(RouteServiceProvider::LOGIN);
     });
 });
 
-describe('Logged in user', function () {
-    test('the dashboard page is displayed', function () {
-        $this
-            ->actingAs(create_test_user())
-            ->get('/admin')
-            ->assertStatus(302)
-            ->assertRedirect('/');
+loggedUserTest(function () {
+    test('cannot access', function () {
+        asLoggedUser()
+            ->get(RouteServiceProvider::ADMIN_DASHBOARD)
+            ->assertFound()
+            ->assertRedirect(RouteServiceProvider::HOME);
     });
 });
 
-describe('Admin user', function () {
-
+adminUserTest(function () {
     test('the dashboard page is displayed', function () {
-        $this
-            ->actingAs(create_admin_user())
-            ->get('/admin')
-            ->assertOk();
+        asAdmin()
+            ->get(RouteServiceProvider::ADMIN_DASHBOARD)
+            ->assertOk()
+            ->assertViewIs('admin.dashboard');
     });
 });
