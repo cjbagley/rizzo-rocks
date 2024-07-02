@@ -1,11 +1,11 @@
 # RIZZO.ROCKS
 
 ![MIT Licence Badge](https://img.shields.io/badge/Licence-MIT-navy)
-![Made with Laravel Badge](https://img.shields.io/badge/Laravel-Framework?style=flat&label=Made%20With&labelColor=58525B&color=F9322C)]
-![Made with Svelte Badge](https://img.shields.io/badge/Svelte-Frontend?style=flat&label=Made%20With&labelColor=58525B&color=D43008)]
-![Linting Badge](https://img.shields.io/badge/Pint-Linting?style=flat&label=Linting&labelColor=58525B&color=FFD000)]
-![Static Check Badge](https://img.shields.io/badge/Larastan-Check?style=flat&label=Static%20Checker&labelColor=58525B&color=2563EB)]
-![Automated Refactoring Badge](https://img.shields.io/badge/Rector-Refactoring?style=flat&label=Automated%20Refactoring&labelColor=58525B&color=59A35E)]
+![Made with Laravel Badge](https://img.shields.io/badge/Laravel-Framework?style=flat&label=Made%20With&labelColor=58525B&color=F9322C)
+![Made with Svelte Badge](https://img.shields.io/badge/Svelte-Frontend?style=flat&label=Made%20With&labelColor=58525B&color=D43008)
+![Linting Badge](https://img.shields.io/badge/Pint-Linting?style=flat&label=Linting&labelColor=58525B&color=FFD000)
+![Static Check Badge](https://img.shields.io/badge/Larastan-Check?style=flat&label=Static%20Checker&labelColor=58525B&color=2563EB)
+![Automated Refactoring Badge](https://img.shields.io/badge/Rector-Refactoring?style=flat&label=Automated%20Refactoring&labelColor=58525B&color=59A35E)
 
 ## What is it?
 
