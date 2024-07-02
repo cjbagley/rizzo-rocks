@@ -15,8 +15,7 @@ class Select extends Component
         public string $name,
         public ?string $selected = '',
         public ?string $class = '',
-    ) {
-    }
+    ) {}
 
     public function render(): View
     {

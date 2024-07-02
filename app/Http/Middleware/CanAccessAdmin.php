@@ -28,7 +28,7 @@ class CanAccessAdmin
             if (! Hash::check(config('auth.admin_token'), Auth::user()->admin_token)) {
                 return redirect('/');
             }
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return redirect('/');
         }
 
