@@ -15,6 +15,12 @@
     let searchTerm = data.search ? data.search : '';
 
     async function refresh(e) {
+
+        document.querySelectorAll('video').forEach((video, i) => {
+            video.pause();
+            video.removeAttribute('src');
+        });
+
         try {
             if (!e.detail || !e.detail.url) {
                 throw new Error("Error loading response");
@@ -35,6 +41,9 @@
 
             data = await response.json();
             window.scrollTo({top: 0, behavior: 'smooth'});
+            document.querySelectorAll('video').forEach((video, i) => {
+                video.load();
+            });
         } catch (e) {
             // Fallback, just reload the correct page instead of AJAX
             window.location.reload();
