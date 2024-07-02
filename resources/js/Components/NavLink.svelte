@@ -2,9 +2,13 @@
     import {Link} from "@inertiajs/svelte";
 
     export let href;
+
+    function clear() {
+        document.getElementById('search').value = '';
+    }
 </script>
 
-<Link {href} class="desktop-nav-link" aria-current="page">
+<Link {href} on:click={clear} class="desktop-nav-link" aria-current="page" replace>
     <slot/>
 </Link>
 

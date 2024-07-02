@@ -42,7 +42,7 @@ class AppController
             ? $helpers->sanitiseString((string) $request->validated('search'))
             : '';
 
-        if ($search !== '') {
+        if (filled($search)) {
             collect(str_getcsv($search, ' ', '"'))->filter()->each(function ($part) use ($q) {
                 $term = sprintf('%%%s%%', $part);
                 $q->where(function (Builder $sq) use ($term) {
