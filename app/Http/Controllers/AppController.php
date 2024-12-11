@@ -24,7 +24,7 @@ class AppController
 
     public function games(): InertiaResponse
     {
-        return Inertia::render('Games')->with('games', Game::all());
+        return Inertia::render('Games')->with('games', Game::with(['captures'])->get());
     }
 
     public function list(ListPageRequest $request): InertiaResponse|JsonResponse
