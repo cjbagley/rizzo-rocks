@@ -18,6 +18,8 @@
         "spatie/laravel-backup": "^8.8"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.14",
+        "beyondcode/laravel-query-detector": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "larastan/larastan": "*",
         "laravel/breeze": "^2.0",
